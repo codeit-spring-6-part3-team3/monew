@@ -44,3 +44,6 @@ target/
 
 # Ignore Gradle build output directory
 build
+
+### Environment Variables ###
+.env
