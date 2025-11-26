@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -14,31 +16,34 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Notification {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "userId", nullable = false)
     private UUID userId;
 
-    @Column(nullable = false)
+    @Column(name = "context", nullable = false)
     private String context;
 
-    @Column(length = 10, nullable = false)
-    private noticeResourceType resource;
+    @Column(name = "resource", length = 10, nullable = false)
+    private NoticeResourceType resource;
 
-    @Column(nullable = false, columnDefinition = "default false")
+    @Column(name = "isChecked", nullable = false, columnDefinition = "default false")
     private boolean isChecked;
 
-    @Column
+    @CreationTimestamp
+    @Column(name = "creationAt", nullable = false, updatable = false)
     private LocalDateTime creationAt;
 
-    @Column
+    @UpdateTimestamp
+    @Column(name = "updatedAt", nullable = false)
     private LocalDateTime updatedAt;
 
     private Notification(
             UUID id,
             UUID userId,
             String context,
-            noticeResourceType resource,
+            NoticeResourceType resource,
             boolean isChecked,
             LocalDateTime creationAt,
             LocalDateTime updatedAt
@@ -61,10 +66,10 @@ public class Notification {
     private Notification(
             UUID userId,
             String context,
-            noticeResourceType resource
+            NoticeResourceType resource
     ) {
         this(
-                null,
+                UUID.randomUUID(),
                 userId,
                 context,
                 resource,
@@ -77,7 +82,7 @@ public class Notification {
     public static Notification from(
             UUID userId,
             String context,
-            noticeResourceType resource
+            NoticeResourceType resource
     ) {
         return new Notification(userId, context, resource);
     }
