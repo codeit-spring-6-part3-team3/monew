@@ -1,0 +1,1 @@
+package com.team03.monew.news.domain;
