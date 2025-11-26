@@ -25,19 +25,16 @@ public class Notification {
     @Column(name = "context", nullable = false)
     private String context;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "resource", length = 10, nullable = false)
     private NoticeResourceType resource;
 
-    @Column(name = "isChecked", nullable = false, columnDefinition = "default false")
+    @Column(name = "isChecked", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean isChecked;
 
     @CreationTimestamp
     @Column(name = "creationAt", nullable = false, updatable = false)
     private LocalDateTime creationAt;
-
-    @UpdateTimestamp
-    @Column(name = "updatedAt", nullable = false)
-    private LocalDateTime updatedAt;
 
     private Notification(
             UUID id,
@@ -45,8 +42,7 @@ public class Notification {
             String context,
             NoticeResourceType resource,
             boolean isChecked,
-            LocalDateTime creationAt,
-            LocalDateTime updatedAt
+            LocalDateTime creationAt
     ) {
         this.id = id;
         this.userId = userId;
@@ -54,13 +50,12 @@ public class Notification {
         this.resource = resource;
         this.isChecked = isChecked;
         this.creationAt = creationAt;
-        this.updatedAt = updatedAt;
     }
 
     /*
     * 내부 로직에 따른 변경이 있는 것
     * userId   : 받는 대상 (요청자x)
-    * context  : 보내는 내용 (댓글-불변 / 뉴스-가변)
+    * context  : 보내는 내용 (댓글 - 유저 닉네임, 뉴스 - 수집한 뉴스 중 등록된 건 수)
     * resource : 무엇인지 (댓글, 뉴스)
     * */
     private Notification(
@@ -69,13 +64,12 @@ public class Notification {
             NoticeResourceType resource
     ) {
         this(
-                UUID.randomUUID(),
+                null,
                 userId,
                 context,
                 resource,
                 false,
-                LocalDateTime.now(),
-                LocalDateTime.now()
+                null
         );
     }
 
@@ -87,9 +81,12 @@ public class Notification {
         return new Notification(userId, context, resource);
     }
 
+    public boolean isExpired() {
+        return isChecked && creationAt.isBefore(LocalDateTime.now().minusWeeks(1));
+    }
+
     public Notification check() {
         this.isChecked = true;
-        this.updatedAt = LocalDateTime.now();
         return this;
     }
 }
