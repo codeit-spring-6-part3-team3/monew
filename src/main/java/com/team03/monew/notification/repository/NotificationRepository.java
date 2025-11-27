@@ -13,7 +13,7 @@ import java.util.UUID;
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, UUID>, NotificationRepositoryCustom {
 
-    // 만료 알림 삭제 (배치처리)
+    // 만료 알림 삭제 (배치 처리)
     @Modifying
     @Query("DELETE FROM Notification n WHERE n.isChecked = true AND n.updatedAt < :expiredDate")
     int deleteExpiredNotifications(

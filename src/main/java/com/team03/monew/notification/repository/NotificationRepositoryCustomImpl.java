@@ -4,6 +4,7 @@ package com.team03.monew.notification.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.team03.monew.notification.domain.Notification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Repository;
