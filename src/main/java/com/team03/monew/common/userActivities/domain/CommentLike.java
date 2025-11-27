@@ -1,4 +1,4 @@
-package com.team03.monew.common.domain;
+package com.team03.monew.common.userActivities.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
