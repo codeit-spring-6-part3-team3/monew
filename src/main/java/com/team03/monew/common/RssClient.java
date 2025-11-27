@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface RssClient {
 
-  List<RawNewsItem> fetch(NewsFeed feed);
+  List<FetchedNews> fetch(NewsFeed feed);
 }
