@@ -21,7 +21,7 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Slice<Notification> findUncheckedNotificationsWithCursor(UUID userId, LocalDateTime cursor, int size) {
+    public Slice<Notification> findNotificationsWithCursor(UUID userId, LocalDateTime cursor, int size) {
         List<Notification> notifications = queryFactory
                 .selectFrom(notification)
                 .where(
@@ -37,7 +37,7 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
     }
 
     @Override
-    public Slice<Notification> findUncheckedNotifications(UUID userId, int size) {
+    public Slice<Notification> findNotifications(UUID userId, int size) {
         List<Notification> notifications = queryFactory
                 .selectFrom(notification)
                 .where(
