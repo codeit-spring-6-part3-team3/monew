@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import java.sql.Date;
+import jakarta.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -22,7 +22,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(name = "news")
+// reosourceLink에 유니크 제약 조건을 걸어둠
+@Table(name = "news",
+  uniqueConstraints = {
+    @UniqueConstraint(columnNames = "resourceLink")
+  }
+)
 public class News {
 
   @Id
@@ -40,7 +45,7 @@ public class News {
   private String title;
 
   @Column(name = "postDate")
-  private Date postDate;
+  private LocalDateTime postDate;
 
   @Column(name = "overview")
   private String overview;
@@ -60,7 +65,7 @@ public class News {
       NewsSourceType source,
       String resourceLink,
       String title,
-      Date postDate,
+      LocalDateTime postDate,
       String overview
   )
   {
@@ -69,14 +74,11 @@ public class News {
     this.title = title;
     this.postDate = postDate;
     this.overview = overview;
-
-    // 읽은 수 0으로 디폴트
-    this.viewCount = 0;
   }
 
   // 읽은 수 증가
   public void increaseViewCount(){
-    this.viewCount++;
+
   }
 
   @PrePersist
