@@ -1,5 +1,6 @@
 package com.team03.monew.interest.domain;
 
+import com.team03.monew.interest.util.SimilarityCheck;
 import io.hypersistence.utils.hibernate.type.array.ListArrayType;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -56,8 +57,6 @@ public class Interest {
     
     //관심사 유사도 검사 메소드
     public boolean nameEquals(String name) {
-        int nameLength = this.name.length();
-        int targetLength = name.length();
-        return name.contains(this.name) && (targetLength * 0.8) <= nameLength;
+        return SimilarityCheck.isSimilar(this.name, name);
     }
 }
