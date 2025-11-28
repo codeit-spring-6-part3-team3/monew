@@ -1,5 +1,6 @@
-package com.team03.monew.common;
+package com.team03.monew.common.infrastructure.client;
 
+import com.team03.monew.common.domain.FetchedNews;
 import com.team03.monew.common.domain.NewsFeed;
 import java.util.List;
 

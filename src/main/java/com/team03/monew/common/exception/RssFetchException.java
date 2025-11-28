@@ -1,4 +1,4 @@
-package com.team03.monew.common;
+package com.team03.monew.common.exception;
 
 import com.team03.monew.common.domain.NewsFeed;
 import lombok.Getter;
