@@ -29,27 +29,38 @@ public class Notification {
     @Column(name = "resource", length = 10, nullable = false)
     private NoticeResourceType resource;
 
+    @Column(name = "resourceId", nullable = false)
+    private UUID resourceId;
+
     @Column(name = "isChecked", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean isChecked;
 
     @CreationTimestamp
-    @Column(name = "creationAt", nullable = false, updatable = false)
+    @Column(name = "creationAt", updatable = false)
     private LocalDateTime creationAt;
+
+    @UpdateTimestamp
+    @Column(name = "updatedAt")
+    private LocalDateTime updatedAt;
 
     private Notification(
             UUID id,
             UUID userId,
             String context,
             NoticeResourceType resource,
+            UUID resourceId,
             boolean isChecked,
-            LocalDateTime creationAt
+            LocalDateTime creationAt,
+            LocalDateTime updatedAt
     ) {
         this.id = id;
         this.userId = userId;
         this.context = context;
         this.resource = resource;
+        this.resourceId = resourceId;
         this.isChecked = isChecked;
         this.creationAt = creationAt;
+        this.updatedAt = updatedAt;
     }
 
     /*
@@ -61,14 +72,17 @@ public class Notification {
     private Notification(
             UUID userId,
             String context,
-            NoticeResourceType resource
+            NoticeResourceType resource,
+            UUID resourceId
     ) {
         this(
                 null,
                 userId,
                 context,
                 resource,
+                resourceId,
                 false,
+                null,
                 null
         );
     }
@@ -76,9 +90,10 @@ public class Notification {
     public static Notification from(
             UUID userId,
             String context,
-            NoticeResourceType resource
+            NoticeResourceType resource,
+            UUID resourceId
     ) {
-        return new Notification(userId, context, resource);
+        return new Notification(userId, context, resource, resourceId);
     }
 
     public boolean isExpired() {
