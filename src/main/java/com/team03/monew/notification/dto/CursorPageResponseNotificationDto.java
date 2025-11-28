@@ -7,6 +7,6 @@ public record CursorPageResponseNotificationDto(
         String nextCursor,
         String nextAfter,
         Integer size,
-        Integer totalElements,
+        Long totalElements,
         Boolean hasNext
 ) {}
