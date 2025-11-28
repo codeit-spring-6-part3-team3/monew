@@ -47,9 +47,9 @@ public class Interest {
         this.subscribeCount = 0;
     }
 
-    public void keywordAdd(String keyword) {this.keywords.add(keyword);}
-
-    public void keywordRemove(String keyword) { this.keywords.remove(keyword); }
+    public void keywordUpdate(List<String> keyword) {
+        this.keywords = keyword;
+    }
 
     public void subscribeAdd() {this.subscribeCount = this.subscribeCount + 1; }
 
