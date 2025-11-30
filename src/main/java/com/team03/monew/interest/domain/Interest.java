@@ -10,7 +10,7 @@ import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,13 +30,13 @@ public class Interest {
     private List<String> keywords;
 
     @ColumnDefault("0")
-    private int subscribeCount;
+    private Long subscribeCount;
 
     @CreatedDate
-    private Instant createdAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private Instant updatedAt;
+    private LocalDateTime updatedAt;
 
     public Interest() {}
 
@@ -44,7 +44,7 @@ public class Interest {
     public Interest(String name, List<String> keywords) {
         this.name = name;
         this.keywords = keywords;
-        this.subscribeCount = 0;
+        this.subscribeCount = 0L;
     }
 
     public void keywordUpdate(List<String> keyword) {
