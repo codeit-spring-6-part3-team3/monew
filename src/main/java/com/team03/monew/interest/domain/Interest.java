@@ -10,7 +10,7 @@ import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,10 +33,10 @@ public class Interest {
     private int subscribeCount;
 
     @CreatedDate
-    private Instant createdAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private Instant updatedAt;
+    private LocalDateTime updatedAt;
 
     public Interest() {}
 
