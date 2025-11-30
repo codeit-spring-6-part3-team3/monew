@@ -1,5 +1,6 @@
 package com.team03.monew.news.collect.domain;
 
+import com.team03.monew.news.domain.NewsSourceType;
 import lombok.Getter;
 
 @Getter
@@ -9,7 +10,7 @@ public enum NewsFeed {
   // 📌 조선일보 (CHOSUN)
   // --------------------------
   CHOSUN_ALL(
-      Press.CHOSUN,
+      NewsSourceType.chosun,
       "https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml"
   ),
 
@@ -17,7 +18,7 @@ public enum NewsFeed {
   // 📌 연합뉴스 (YONHAP)
   // --------------------------
   YONHAP_LATEST(
-      Press.YONHAP,
+      NewsSourceType.yna,
       "http://www.yonhapnewstv.co.kr/browse/feed/"
   ),
 
@@ -25,15 +26,15 @@ public enum NewsFeed {
   // 📌 한국경제 (HANKYUNG)
   // --------------------------
   HANKYUNG_ALL_NEWS(
-      Press.HANKYUNG,
+      NewsSourceType.korea,
       "https://www.hankyung.com/feed/all-news"
   );
 
-  private final Press press;
+  private final NewsSourceType source;
   private final String url;
 
-  NewsFeed(Press press, String url) {
-    this.press = press;
+  NewsFeed(NewsSourceType source, String url) {
+    this.source = source;
     this.url = url;
   }
 }

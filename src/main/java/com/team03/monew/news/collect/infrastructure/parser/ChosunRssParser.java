@@ -1,8 +1,8 @@
 package com.team03.monew.news.collect.infrastructure.parser;
 
 import com.team03.monew.news.collect.domain.FetchedNews;
-import com.team03.monew.news.collect.domain.Press;
 //import com.team03.monew.common.dto.FetchedNews;
+import com.team03.monew.news.domain.NewsSourceType;
 import org.w3c.dom.Element;
 import org.springframework.stereotype.Component;
 
@@ -14,13 +14,9 @@ public class ChosunRssParser extends BaseDomRssParser {
   private static final String DC_NS = "http://purl.org/dc/elements/1.1/";
   private static final String CONTENT_NS = "http://purl.org/rss/1.0/modules/content/";
 
-//  public ChosunRssParser() {
-//    super(Press.CHOSUN);
-//  }
-
   @Override
-  public boolean supports(Press press) {
-    return press == Press.CHOSUN;
+  public boolean supports(NewsSourceType source) {
+    return source == NewsSourceType.chosun;
   }
 
   @Override
@@ -51,7 +47,7 @@ public class ChosunRssParser extends BaseDomRssParser {
         .resourceLink(link.trim())
         .postDate(publishedAt)
         .overview(overview != null ? overview.trim() : null)
-        .source(Press.CHOSUN)
+        .source(NewsSourceType.chosun)
         .build();
   }
 

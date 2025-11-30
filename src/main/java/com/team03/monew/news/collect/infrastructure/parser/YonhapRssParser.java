@@ -2,7 +2,7 @@
 package com.team03.monew.news.collect.infrastructure.parser;
 
 import com.team03.monew.news.collect.domain.FetchedNews;
-import com.team03.monew.news.collect.domain.Press;
+import com.team03.monew.news.domain.NewsSourceType;
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Element;
@@ -17,8 +17,8 @@ public class YonhapRssParser extends BaseDomRssParser {
 //  private static final String DC_NS = "http://purl.org/dc/elements/1.1/";
 
   @Override
-  public boolean supports(Press press) {
-    return press == Press.YONHAP;
+  public boolean supports(NewsSourceType source) {
+    return source == NewsSourceType.yna;
   }
 
   @Override
@@ -53,7 +53,7 @@ public class YonhapRssParser extends BaseDomRssParser {
         .resourceLink(link.trim())
         .postDate(publishedAt)
         .overview(overview.trim())
-        .source(Press.YONHAP)
+        .source(NewsSourceType.yna)
         .build();
   }
 }

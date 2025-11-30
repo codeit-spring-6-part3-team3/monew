@@ -5,7 +5,7 @@ import com.team03.monew.news.collect.infrastructure.parser.RssParser;
 import com.team03.monew.news.collect.exception.RssParserNotFoundException;
 import com.team03.monew.news.collect.domain.FetchedNews;
 import com.team03.monew.news.collect.domain.NewsFeed;
-import com.team03.monew.news.collect.domain.Press;
+import com.team03.monew.news.domain.NewsSourceType;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
@@ -19,22 +19,22 @@ public class HttpRssClient implements RssClient {
 
   private final RestTemplate restTemplate;
   private final List<RssParser> parsers;
-  private Map<Press, RssParser> parserMap;
+  private Map<NewsSourceType, RssParser> parserMap;
 
   @PostConstruct
   void initParserMap() {
 
-    Map<Press, RssParser> map = new java.util.HashMap<>();
+    Map<NewsSourceType, RssParser> map = new java.util.HashMap<>();
 
-    for (Press press : Press.values()) {
+    for (NewsSourceType source : NewsSourceType.values()) {
       RssParser parser = parsers.stream()
-          .filter(p -> p.supports(press))
+          .filter(p -> p.supports(source))
           .findFirst()
           .orElseThrow(() ->
-              new IllegalStateException("No RssParser supports press: " + press)
+              new IllegalStateException("No RssParser supports press: " + source)
           );
 
-      map.put(press, parser);
+      map.put(source, parser);
     }
 
     this.parserMap = Map.copyOf(map); // 불변 맵으로 고정
@@ -63,7 +63,7 @@ public class HttpRssClient implements RssClient {
   }
 
   private RssParser getParser(NewsFeed feed) {
-    RssParser parser = parserMap.get(feed.getPress());
+    RssParser parser = parserMap.get(feed.getSource());
 
     if (parser == null) {
       throw new RssParserNotFoundException(feed);

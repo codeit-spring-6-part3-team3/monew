@@ -19,7 +19,7 @@
 package com.team03.monew.news.collect.infrastructure.parser;
 
 import com.team03.monew.news.collect.domain.FetchedNews;
-import com.team03.monew.news.collect.domain.Press;
+import com.team03.monew.news.domain.NewsSourceType;
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Element;
@@ -28,8 +28,8 @@ import org.w3c.dom.Element;
 public class HankyungRssParser extends BaseDomRssParser {
 
   @Override
-  public boolean supports(Press press) {
-    return press == Press.HANKYUNG;
+  public boolean supports(NewsSourceType source) {
+    return source == NewsSourceType.korea;
   }
 
   @Override
@@ -49,8 +49,7 @@ public class HankyungRssParser extends BaseDomRssParser {
         .title(title.trim())
         .resourceLink(link.trim())
         .postDate(publishedAt)
-//        .overview(overview.trim())
-        .source(Press.HANKYUNG)
+        .source(NewsSourceType.korea)
         .build();
   }
 }
