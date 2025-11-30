@@ -1,8 +1,8 @@
-package com.team03.monew.common.service;
+package com.team03.monew.news.collect.service;
 
-import com.team03.monew.common.domain.FetchedNews;
-import com.team03.monew.common.infrastructure.client.RssClient;
-import com.team03.monew.common.domain.NewsFeed;
+import com.team03.monew.news.collect.domain.FetchedNews;
+import com.team03.monew.news.collect.infrastructure.client.RssClient;
+import com.team03.monew.news.collect.domain.NewsFeed;
 import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

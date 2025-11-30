@@ -1,11 +1,11 @@
-package com.team03.monew.common.infrastructure.client;
+package com.team03.monew.news.collect.infrastructure.client;
 
-import com.team03.monew.common.exception.RssFetchException;
-import com.team03.monew.common.infrastructure.parser.RssParser;
-import com.team03.monew.common.exception.RssParserNotFoundException;
-import com.team03.monew.common.domain.FetchedNews;
-import com.team03.monew.common.domain.NewsFeed;
-import com.team03.monew.common.domain.Press;
+import com.team03.monew.news.collect.exception.RssFetchException;
+import com.team03.monew.news.collect.infrastructure.parser.RssParser;
+import com.team03.monew.news.collect.exception.RssParserNotFoundException;
+import com.team03.monew.news.collect.domain.FetchedNews;
+import com.team03.monew.news.collect.domain.NewsFeed;
+import com.team03.monew.news.collect.domain.Press;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;

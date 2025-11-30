@@ -1,7 +1,7 @@
-package com.team03.monew.common.infrastructure.parser;
+package com.team03.monew.news.collect.infrastructure.parser;
 
-import com.team03.monew.common.domain.FetchedNews;
-import com.team03.monew.common.domain.Press;
+import com.team03.monew.news.collect.domain.FetchedNews;
+import com.team03.monew.news.collect.domain.Press;
 //import com.team03.monew.common.dto.FetchedNews;
 import org.w3c.dom.Element;
 import org.springframework.stereotype.Component;

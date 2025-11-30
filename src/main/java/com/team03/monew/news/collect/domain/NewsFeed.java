@@ -1,4 +1,4 @@
-package com.team03.monew.common.domain;
+package com.team03.monew.news.collect.domain;
 
 import lombok.Getter;
 

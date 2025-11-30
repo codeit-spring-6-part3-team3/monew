@@ -1,4 +1,4 @@
-package com.team03.monew.common.service;
+package com.team03.monew.news.collect.service;
 
 public interface CollectService {
 

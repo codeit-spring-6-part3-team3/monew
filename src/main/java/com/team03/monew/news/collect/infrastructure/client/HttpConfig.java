@@ -1,4 +1,4 @@
-package com.team03.monew.common.infrastructure.client;
+package com.team03.monew.news.collect.infrastructure.client;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

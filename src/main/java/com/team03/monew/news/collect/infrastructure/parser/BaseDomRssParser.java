@@ -1,6 +1,6 @@
-package com.team03.monew.common.infrastructure.parser;
+package com.team03.monew.news.collect.infrastructure.parser;
 
-import com.team03.monew.common.domain.FetchedNews;
+import com.team03.monew.news.collect.domain.FetchedNews;
 import java.io.StringReader;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

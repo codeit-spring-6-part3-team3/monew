@@ -1,6 +1,6 @@
-package com.team03.monew.common.scheduler;
+package com.team03.monew.news.collect.scheduler;
 
-import com.team03.monew.common.service.NewsCollectService;
+import com.team03.monew.news.collect.service.NewsCollectService;
 import org.springframework.scheduling.annotation.Scheduled;
 
 public class NewsRssScheduler {

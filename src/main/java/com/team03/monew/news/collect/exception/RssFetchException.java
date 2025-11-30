@@ -1,6 +1,6 @@
-package com.team03.monew.common.exception;
+package com.team03.monew.news.collect.exception;
 
-import com.team03.monew.common.domain.NewsFeed;
+import com.team03.monew.news.collect.domain.NewsFeed;
 import lombok.Getter;
 
 @Getter
