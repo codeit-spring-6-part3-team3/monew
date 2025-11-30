@@ -30,7 +30,7 @@ public class Interest {
     private List<String> keywords;
 
     @ColumnDefault("0")
-    private int subscribeCount;
+    private Long subscribeCount;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -44,7 +44,7 @@ public class Interest {
     public Interest(String name, List<String> keywords) {
         this.name = name;
         this.keywords = keywords;
-        this.subscribeCount = 0;
+        this.subscribeCount = 0L;
     }
 
     public void keywordUpdate(List<String> keyword) {
