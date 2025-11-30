@@ -81,11 +81,6 @@ public class News {
     this.isDelete = isDelete;
   }
 
-  // 읽은 수 증가
-  public void increaseViewCount(){
-    this.viewCount++;
-  }
-
   @PrePersist
   public void onCreate() {
     this.createdAt = LocalDateTime.now();
@@ -95,6 +90,16 @@ public class News {
   @PreUpdate
   public void onUpdate() {
     this.updatedAt = LocalDateTime.now();
+  }
+
+  // 읽은 수 증가
+  public void increaseViewCount(){
+    this.viewCount++;
+  }
+
+  // 기사 논리 삭제
+  public void deleteNews(){
+    this.isDelete = true;
   }
 
 }
