@@ -92,7 +92,14 @@ public class NewsCreateTest {
     //then
     verify(newsRepository, times(1)).save(any(News.class));
     assertThat(newsResponseDto.id()).isEqualTo(id);
+    assertThat(newsResponseDto.source()).isEqualTo(newsCreateRequest.source());
+    assertThat(newsResponseDto.resourceLink()).isEqualTo(newsCreateRequest.resourceLink());
     assertThat(newsResponseDto.title()).isEqualTo(newsCreateRequest.title());
+    assertThat(newsResponseDto.postDate()).isEqualTo(newsCreateRequest.postDate());
+    assertThat(newsResponseDto.overView()).isEqualTo(newsCreateRequest.overView());
+
+
+
   }
 
 }
