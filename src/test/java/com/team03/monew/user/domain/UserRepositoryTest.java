@@ -32,6 +32,7 @@ class UserRepositoryTest {
 
         // then
         assertThat(foundUser).isPresent();
+        assertThat(foundUser.get().getId()).isNotNull();
         assertThat(foundUser.get().getEmail()).isEqualTo("test@monew.com");
         assertThat(foundUser.get().getNickname()).isEqualTo("테스터");
     }

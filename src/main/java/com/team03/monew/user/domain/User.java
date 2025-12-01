@@ -23,8 +23,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id", columnDefinition = "BINARY(16)")
-    private UUID id;  // << Long → UUID, userId → id로 변경했습니다.
+    @Column(name = "user_id", updatable = false, nullable = false)
+    private UUID id; // << Sring 에서 UUID로 바꿨습니다.
 
     @Email
     @NotBlank
@@ -62,7 +62,8 @@ public class User {
     }
 
     @Builder
-    private User(String email, String nickname, String password) {
+    private User(UUID id, String email, String nickname, String password) {
+        this.id = id;
         this.email = email;
         this.nickname = nickname;
         this.password = password;

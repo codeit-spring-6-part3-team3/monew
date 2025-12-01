@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, UUID> {  // Long → UUID로 바꿨습니다.
-
+public interface UserRepository extends JpaRepository<User, UUID> {
+    // << Sring 에서 UUID로 바꿨습니다.
     boolean existsByEmail(String email);
 
     Optional<User> findByEmail(String email);
