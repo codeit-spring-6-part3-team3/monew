@@ -1,20 +1,17 @@
-// 연합뉴스TV용 파서
 package com.team03.monew.news.collect.infrastructure.parser;
 
 import com.team03.monew.news.collect.domain.FetchedNews;
 import com.team03.monew.news.domain.NewsSourceType;
 import java.time.LocalDateTime;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Element;
 
-
-
+@Slf4j
 @Component
-public class YonhapRssParser extends BaseDomRssParser {
-
-  private static final String DC_NS = "http://purl.org/dc/elements/1.1/";
-  private static final String CONTENT_NS = "http://purl.org/rss/1.0/modules/content/";
-//  private static final String DC_NS = "http://purl.org/dc/elements/1.1/";
+public class YonhapRssParser extends StaxRssParser {
 
   @Override
   public boolean supports(NewsSourceType source) {
@@ -22,38 +19,103 @@ public class YonhapRssParser extends BaseDomRssParser {
   }
 
   @Override
-  protected FetchedNews mapItem(Element item) {
-    String title = getText(item, "title");
-    String link  = getText(item, "link");
+  protected FetchedNews readItem(XMLStreamReader reader) {
 
-    if (title == null || link == null) {
-      // 필수 필드 없으면 그냥 스킵
+    String title = null;
+    String link = null;
+    String overview = null;
+    LocalDateTime publishedAt = null;
+
+    if (log.isTraceEnabled()) {
+      log.trace("[YNA] readItem START");
+    }
+
+    try {
+      while (reader.hasNext()) {
+        int eventType = reader.next();
+
+        if (eventType == XMLStreamConstants.START_ELEMENT) {
+          String tag = reader.getLocalName();
+          String ns = reader.getNamespaceURI();
+
+          log.debug("[YNA] START_ELEMENT <{}> ns={}", tag, ns);
+
+          switch (tag) {
+            case "title":
+              title = safeElementText(reader);
+              break;
+
+            case "link":
+              link = safeElementText(reader);
+              break;
+
+            case "description":
+              overview = safeElementText(reader);
+              break;
+
+            case "encoded":
+              if (CONTENT_NS.equals(ns)) {
+                String encoded = safeElementText(reader);
+                log.debug("[YNA] encoded len={}", encoded != null ? encoded.length() : 0);
+
+                if ((overview == null || overview.isBlank()) && encoded != null) {
+                  overview = cleanHtmlText(encoded);
+                }
+              }
+              break;
+
+            case "pubDate":
+              String pubTxt = safeElementText(reader);
+              publishedAt = parsePubDate(pubTxt);
+              break;
+
+            default:
+              log.trace("[YNA] ignore tag <{}>", tag);
+              break;
+          }
+        } else if (eventType == XMLStreamConstants.END_ELEMENT) {
+          if ("item".equals(reader.getLocalName())) {
+            log.debug("[YNA] END_ELEMENT </item> → break");
+            break;
+          }
+        }
+      }
+    } catch (XMLStreamException e) {
+      log.warn("[YNA] XML parsing exception. Skip this item.", e);
       return null;
     }
 
-    // 2. 작성자: dc:creator 우선, 없으면 author
-    String author = getTextNS(item, DC_NS, "creator");
-    if (author == null || author.isBlank()) {
-      author = getText(item, "author");
+    log.info("[YNA] SUMMARY title='{}', link={}, pubDate={}, overview={}",
+        title, link, publishedAt, preview(overview, 80));
+
+    if (title == null || link == null) {
+      log.warn("[YNA] Skip item: missing title or link. title='{}', link={}", title, link);
+      return null;
     }
 
-    // 3. 요약(overview): description 우선, 없으면 content:encoded 사용
-    String overview = getText(item, "description");
-    if (overview == null || overview.isBlank()) {
-      overview = getTextNS(item, CONTENT_NS, "encoded");
-    }
-    if (overview != null) {
-      overview = overview.trim();
-    }
-
-    // 4. 날짜
-    LocalDateTime publishedAt = parsePubDate(item, "pubDate");
-    return FetchedNews.builder()
+    FetchedNews news = FetchedNews.builder()
         .title(title.trim())
         .resourceLink(link.trim())
         .postDate(publishedAt)
-        .overview(overview.trim())
+        .overview(overview != null ? overview.trim() : null)
         .source(NewsSourceType.yna)
         .build();
+
+    log.debug("[YNA] BUILT FetchedNews = {}", news);
+
+    if (log.isTraceEnabled()) {
+      log.trace("[YNA] readItem END");
+    }
+
+    return news;
+  }
+
+  private String cleanHtmlText(String html) {
+    if (html == null) {
+      return null;
+    }
+    String noTags = html.replaceAll("<[^>]+>", " ");
+    String normalized = noTags.replaceAll("\\s+", " ").trim();
+    return normalized.isEmpty() ? null : normalized;
   }
 }
