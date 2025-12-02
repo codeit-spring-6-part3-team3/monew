@@ -14,12 +14,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
+@Transactional(rollbackFor = Exception.class)
 @Service
 public class BasicNewsService implements NewsService {
 
   private final NewsRepository newsRepository;
 
   //뉴스 저장(등록)
+  @Transactional
   @Override
   public NewsResponseDto createNews(NewsCreateRequest newsCreateRequest) {
 
