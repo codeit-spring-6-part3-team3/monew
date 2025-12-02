@@ -55,7 +55,7 @@ public class InterestUpdateTest {
         // Interest 키워드 변후 Interest 값 준비
         Interest newInterest = InterestFixture.interestCreate("스포츠 뉴스",list);
         ReflectionTestUtils.setField(newInterest,"id",interestId);
-        InterestDto interestDto = InterestFixture.interestDtoCreate(newInterest);
+        InterestDto interestDto = InterestFixture.interestDtoCreate(newInterest,null);
 
 
         when(interestRepository.findById(any(UUID.class))).thenReturn(Optional.of(interest));
