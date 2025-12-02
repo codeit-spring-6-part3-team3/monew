@@ -45,4 +45,12 @@ public class BasicSubscribeService implements SubscribeService {
         return subscribeMapper.toDto(subscribe,interest);
     }
 
+    //2 구독 기능 구독 삭재
+    @Override
+    public void subscribeDelete(UUID userId, UUID interestId) throws NoSuchObjectException {
+        Subscribe subscribe = subscribeRepository.findByUserIdAndInterestId(userId, interestId)
+                .orElseThrow(() -> new NoSuchObjectException("구독 정보 없음"));
+        subscribeRepository.delete(subscribe);
+    }
+
 }
