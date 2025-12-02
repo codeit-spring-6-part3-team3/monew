@@ -4,6 +4,7 @@ import com.team03.monew.user.exception.DuplicateEmailException;
 import com.team03.monew.user.domain.User;
 import com.team03.monew.user.dto.UserRegisterRequest;
 import com.team03.monew.user.dto.UserDto;
+import com.team03.monew.user.mapper.UserMapper;
 import com.team03.monew.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Transactional
-    public UserDto signUp(UserRegisterRequest request) {
+    public UserDto register(UserRegisterRequest request) {
         // 이메일 중복 검증
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new DuplicateEmailException();
@@ -34,7 +36,7 @@ public class UserService {
         User savedUser = userRepository.save(user);
 
         // 응답 반환
-        return UserDto.from(savedUser);
+        return userMapper.toDto(savedUser);
     }
 
 }
