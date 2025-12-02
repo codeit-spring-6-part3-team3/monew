@@ -20,10 +20,11 @@ public interface NotificationService {
             int size
     );
 
-    // 알림 확인 처리
-    void markAsChecked(Long notificationId, UUID userId);
-
     // 모든 미확인 알림 일괄 확인 처리
-    void markAllAsChecked(UUID userId);
+    int markAllAsChecked(UUID userId);
+
+    // 알림 확인 처리
+    int markAsChecked(UUID notificationId, UUID userId);
+
 
 }
