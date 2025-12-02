@@ -36,7 +36,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("회원가입 API 성공")
-    void signUp_success() throws Exception {
+    void register_success() throws Exception {
         // given
         UserRegisterRequest request = new UserRegisterRequest(
                 "test@monew.com",
@@ -45,14 +45,14 @@ class UserControllerTest {
         );
 
         UUID testId = UUID.randomUUID();
-        UserDto response = UserDto.builder()
-                .id(testId)
-                .email(request.getEmail())
-                .nickname(request.getNickname())
-                .createdAt(LocalDateTime.now())
-                .build();
+        UserDto response = new UserDto(
+                testId,
+                request.getEmail(),
+                request.getNickname(),
+                LocalDateTime.now()
+        );
 
-        given(userService.signUp(any(UserRegisterRequest.class))).willReturn(response);
+        given(userService.register(any(UserRegisterRequest.class))).willReturn(response);
 
         // when ,then
         mockMvc.perform(post("/api/users/register")
@@ -67,7 +67,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("회원가입 API 실패 - 이메일 중복")
-    void signUp_fail_duplicateEmail() throws Exception {
+    void register_fail_duplicateEmail() throws Exception {
         // given
         UserRegisterRequest request = new UserRegisterRequest(
                 "test@monew.com",
@@ -75,7 +75,7 @@ class UserControllerTest {
                 "test123!@#"
         );
 
-        given(userService.signUp(any(UserRegisterRequest.class)))
+        given(userService.register(any(UserRegisterRequest.class)))
                 .willThrow(new DuplicateEmailException());
 
         // when ,then
@@ -90,7 +90,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("회원가입 API 실패 - 유효성 검사 실패 (이메일 형식)")
-    void signUp_fail_invalidEmail() throws Exception {
+    void register_fail_invalidEmail() throws Exception {
         // given
         UserRegisterRequest request = new UserRegisterRequest(
                 "faild-email",  // 잘못된 이메일 형식
@@ -110,7 +110,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("회원가입 API 실패 - 유효성 검사 실패 (닉네임 길이)")
-    void signUp_fail_invalidNickname() throws Exception {
+    void register_fail_invalidNickname() throws Exception {
         // given
         UserRegisterRequest request = new UserRegisterRequest(
                 "test@monew.com",
