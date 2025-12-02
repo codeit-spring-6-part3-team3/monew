@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface SubscribeService {
     SubscribeDto subscribeCreate(UUID userId, UUID interestId) throws NoSuchObjectException;
+    void subscribeDelete(UUID userId, UUID interestId) throws NoSuchObjectException;
 }
