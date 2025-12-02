@@ -13,4 +13,6 @@ public interface InterestService {
     InterestDto interestCreate(InterestRegisterRequest request);
 
     InterestDto interestUpdate(UUID interest, InterestUpdateRequest request) throws NoSuchObjectException;
+
+    void interestDelete(UUID interest) throws NoSuchObjectException;
 }
