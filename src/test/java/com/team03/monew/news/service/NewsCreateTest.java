@@ -44,7 +44,7 @@ public class NewsCreateTest {
     //given
 
     NewsCreateRequest newsCreateRequest = new NewsCreateRequest(
-        NewsSourceType.chosun,
+        NewsSourceType.CHOSUN,
         "https://test.com",
         "테스트 제목",
         LocalDateTime.now(),
@@ -71,7 +71,7 @@ public class NewsCreateTest {
   void createNews_Success() {
     //given
     NewsCreateRequest newsCreateRequest = new NewsCreateRequest(
-        NewsSourceType.chosun,
+        NewsSourceType.CHOSUN,
         "https://test.com",
         "테스트 제목",
         LocalDateTime.now(),
