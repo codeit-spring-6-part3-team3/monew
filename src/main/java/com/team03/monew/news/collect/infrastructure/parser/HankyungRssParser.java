@@ -77,7 +77,7 @@ public class HankyungRssParser extends StaxRssParser {
         .title(title.trim())
         .resourceLink(link.trim())
         .postDate(publishedAt)
-        .overview(null)
+        .overview(title.trim())
         .source(NewsSourceType.korea)
         .build();
 

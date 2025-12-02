@@ -19,7 +19,7 @@ public enum NewsFeed {
   // --------------------------
   YONHAP_LATEST(
       NewsSourceType.yna,
-      "http://www.yonhapnewstv.co.kr/browse/feed/"
+      "https://www.yonhapnewstv.co.kr:443/browse/feed"
   ),
 
   // --------------------------
