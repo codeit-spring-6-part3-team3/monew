@@ -59,6 +59,8 @@ public class News {
   @Column(name = "updatedAt",nullable = true)
   private LocalDateTime updatedAt;
 
+  @Column(name = "isDelete",columnDefinition = "boolean default false")
+  private boolean isDelete;
 
   @Builder
   public News(
@@ -66,7 +68,8 @@ public class News {
       String resourceLink,
       String title,
       LocalDateTime postDate,
-      String overview
+      String overview,
+      boolean isDelete
   )
   {
     this.source = source;
@@ -74,6 +77,7 @@ public class News {
     this.title = title;
     this.postDate = postDate;
     this.overview = overview;
+    this.isDelete = isDelete;
   }
 
   // 읽은 수 증가
@@ -92,4 +96,7 @@ public class News {
     this.updatedAt = LocalDateTime.now();
   }
 
+  public void deleteNews(){
+    this.isDelete = true;
+  }
 }
