@@ -87,6 +87,7 @@ public class Notification {
         );
     }
 
+    // 알림 객체 생성
     public static Notification from(
             UUID userId,
             String context,
