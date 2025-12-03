@@ -24,6 +24,8 @@ public interface NotificationService {
             int size
     );
 
+    int deleteExpiredNotifications(LocalDateTime expiredDate);
+
     // 알림 확인 처리
     void markAsChecked(Long notificationId, UUID userId);
 
