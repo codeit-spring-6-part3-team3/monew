@@ -20,7 +20,7 @@ public interface NotificationService {
     // 미확인 알림을 커서 기반 페이지네이션으로 조회 (다음 페이지)
     CursorPageResponseNotificationDto getUncheckedNotificationsWithCursor(
             UUID userId,
-            LocalDateTime cursor,
+            String cursor,
             int size
     );
 

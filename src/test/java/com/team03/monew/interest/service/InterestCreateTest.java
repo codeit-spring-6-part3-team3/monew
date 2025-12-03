@@ -40,7 +40,7 @@ public class InterestCreateTest {
         //given
         InterestRegisterRequest request = new InterestRegisterRequest("오늘에 과학", List.of("누리호", "천문학"));
         Interest interest = InterestFixture.interestCreate("오늘에 과학", List.of("누리호", "천문학"));
-        InterestDto interestDto = InterestFixture.interestDtoCreate(interest);
+        InterestDto interestDto = InterestFixture.interestDtoCreate(interest,null);
         when(interestMapper.toDto(any(Interest.class), isNull())).thenReturn(interestDto);
 
         //when

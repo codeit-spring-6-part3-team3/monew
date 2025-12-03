@@ -13,13 +13,13 @@ public class InterestFixture {
                 .keywords(keywords)
                 .build();
     }
-    public static InterestDto interestDtoCreate(Interest interest) {
+    public static InterestDto interestDtoCreate(Interest interest,Boolean subscribedByMe) {
         return InterestDto.builder()
                 .id(interest.getId())
                 .name(interest.getName())
                 .keywords(interest.getKeywords())
                 .subscriberCount(interest.getSubscribeCount())
-                .subscribedByMe(null)
+                .subscribedByMe(subscribedByMe)
                 .build();
     }
 
