@@ -38,7 +38,7 @@ public class BasicNotificationService implements NotificationService {
     @Override
     public CursorPageResponseNotificationDto getUncheckedNotificationsWithCursor(
             UUID userId,
-            LocalDateTime cursor,
+            String cursor,
             int size
     ) { return null; }
 
