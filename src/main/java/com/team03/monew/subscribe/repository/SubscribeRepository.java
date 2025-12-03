@@ -9,4 +9,6 @@ import java.util.UUID;
 public interface SubscribeRepository extends JpaRepository<Subscribe, UUID> {
 
     Optional<Subscribe> findByUserIdAndInterestId(UUID userId, UUID interestId);
+
+    Boolean existsByUserIdAndInterestId(UUID userId, UUID interestId);
 }
