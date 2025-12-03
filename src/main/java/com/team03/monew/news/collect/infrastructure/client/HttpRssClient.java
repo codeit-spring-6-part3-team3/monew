@@ -9,6 +9,7 @@ import com.team03.monew.news.domain.NewsSourceType;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -41,7 +42,7 @@ public class HttpRssClient implements RssClient {
   }
 
   @Override
-  public List<FetchedNews> fetch(NewsFeed feed) {
+  public void fetchAndParse(NewsFeed feed, Consumer<FetchedNews> sink) {
 
     RssParser parser = getParser(feed);
 
@@ -59,7 +60,7 @@ public class HttpRssClient implements RssClient {
           "Empty RSS response from " + feed.getUrl(), null);
     }
 
-    return parser.parse(xml);
+    parser.parse(xml, sink);
   }
 
   private RssParser getParser(NewsFeed feed) {

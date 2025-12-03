@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.function.Consumer;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -23,12 +24,11 @@ public abstract class StaxRssParser implements RssParser {
 
   private static final ZoneId TARGET_ZONE = ZoneId.of("Asia/Seoul");
 
-  public List<FetchedNews> parse(String xml) {
+  public void parse(String xml, Consumer<FetchedNews> sink) {
     XMLInputFactory factory = XMLInputFactory.newInstance();
     XMLStreamReader reader = null;
 
     try {
-      List<FetchedNews> result = new ArrayList<>();
       reader = factory.createXMLStreamReader(new StringReader(xml));
 
       while (reader.hasNext()) {
@@ -43,12 +43,11 @@ public abstract class StaxRssParser implements RssParser {
         if (tag.equals(getItemElementName())) {
           FetchedNews news = readItem(reader);
           if (news != null) {
-            result.add(news);
+            sink.accept(news);
           }
         }
       }
 
-      return result;
     } catch (XMLStreamException e) {
       // 여기서 try-catch로 한 번 감싸서 도메인 예외 or 런타임으로 래핑
       throw new RuntimeException("Failed to parse RSS XML with StAX", e);
