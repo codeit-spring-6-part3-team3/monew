@@ -15,7 +15,7 @@ public class YonhapRssParser extends StaxRssParser {
 
   @Override
   public boolean supports(NewsSourceType source) {
-    return source == NewsSourceType.yna;
+    return source == NewsSourceType.YNA;
   }
 
   @Override
@@ -98,7 +98,7 @@ public class YonhapRssParser extends StaxRssParser {
         .resourceLink(link.trim())
         .postDate(publishedAt)
         .overview(overview != null ? overview.trim() : null)
-        .source(NewsSourceType.yna)
+        .source(NewsSourceType.YNA)
         .build();
 
     log.debug("[YNA] BUILT FetchedNews = {}", news);

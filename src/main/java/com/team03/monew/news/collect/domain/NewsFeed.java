@@ -10,7 +10,7 @@ public enum NewsFeed {
   // 📌 조선일보 (CHOSUN)
   // --------------------------
   CHOSUN_ALL(
-      NewsSourceType.chosun,
+      NewsSourceType.CHOSUN,
       "https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml"
   ),
 
@@ -18,7 +18,7 @@ public enum NewsFeed {
   // 📌 연합뉴스 (YONHAP)
   // --------------------------
   YONHAP_LATEST(
-      NewsSourceType.yna,
+      NewsSourceType.YNA,
       "https://www.yonhapnewstv.co.kr:443/browse/feed"
   ),
 
@@ -26,7 +26,7 @@ public enum NewsFeed {
   // 📌 한국경제 (HANKYUNG)
   // --------------------------
   HANKYUNG_ALL_NEWS(
-      NewsSourceType.korea,
+      NewsSourceType.KOREA,
       "https://www.hankyung.com/feed/all-news"
   );
 

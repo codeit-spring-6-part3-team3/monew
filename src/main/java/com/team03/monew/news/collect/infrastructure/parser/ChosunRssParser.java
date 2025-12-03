@@ -16,7 +16,7 @@ public class ChosunRssParser extends StaxRssParser {
 
   @Override
   public boolean supports(NewsSourceType source) {
-    return source == NewsSourceType.chosun;
+    return source == NewsSourceType.CHOSUN;
   }
 
   @Override
@@ -101,7 +101,7 @@ public class ChosunRssParser extends StaxRssParser {
         .resourceLink(link.trim())
         .postDate(publishedAt)
         .overview(overview != null ? overview.trim() : null)
-        .source(NewsSourceType.chosun)
+        .source(NewsSourceType.CHOSUN)
         .build();
 
     log.debug("[CHOSUN] BUILT FetchedNews = {}", news);

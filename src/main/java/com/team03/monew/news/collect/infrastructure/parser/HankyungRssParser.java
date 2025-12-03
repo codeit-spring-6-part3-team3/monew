@@ -16,7 +16,7 @@ public class HankyungRssParser extends StaxRssParser {
 
   @Override
   public boolean supports(NewsSourceType source) {
-    return source == NewsSourceType.korea;
+    return source == NewsSourceType.KOREA;
   }
 
   @Override
@@ -78,7 +78,7 @@ public class HankyungRssParser extends StaxRssParser {
         .resourceLink(link.trim())
         .postDate(publishedAt)
         .overview(title.trim())
-        .source(NewsSourceType.korea)
+        .source(NewsSourceType.KOREA)
         .build();
 
     log.debug("[HANKYUNG] BUILT FetchedNews = {}", news);
