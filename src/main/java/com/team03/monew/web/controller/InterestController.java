@@ -39,4 +39,18 @@ public class InterestController {
         InterestDto response = interestService.interestCreate(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    //2 관심사 컨트롤러 업데이트 추가
+    @PatchMapping("/{interestId}")
+    public ResponseEntity<InterestDto> interestUpdate(
+            @NotNull
+            @PathVariable(name = "interestId")
+            UUID interestId,
+            @Valid
+            @RequestBody
+            InterestUpdateRequest request
+    ) throws NoSuchObjectException {
+        InterestDto response = interestService.interestUpdate(interestId,request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
