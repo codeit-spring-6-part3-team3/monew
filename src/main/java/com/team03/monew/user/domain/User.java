@@ -10,20 +10,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users", indexes = {
         @Index(name = "idx_email", columnList = "email"),
-        @Index(name = "idx_deleted_at", columnList = "deleted_at")
+        @Index(name = "idx_deletedAt", columnList = "deletedAt")
 })
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "userId", updatable = false, nullable = false)
+    private UUID id; // << Sring 에서 UUID로 바꿨습니다.
 
     @Email
     @NotBlank
@@ -36,16 +37,16 @@ public class User {
     private String nickname;
 
     @NotBlank
-    @Column(name = "password_hash", nullable = false, length = 255)
+    @Column(name = "passwordHash", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "deleted_at")
+    @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "createdAt", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updatedAt", nullable = false)
     private LocalDateTime updatedAt;
 
     @PrePersist
