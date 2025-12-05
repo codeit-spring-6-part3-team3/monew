@@ -67,4 +67,17 @@ public class InterestController {
         CursorPageResponseInterestDto response = interestService.interestList(userId,request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    //4 관심사 구독 생성 추가
+    @PostMapping("/{interestId}/subscriptions")
+    public ResponseEntity<SubscribeDto> subscribeCreate(
+            @PathVariable
+            UUID interestId,
+            @RequestParam(name = "Monew-Request-User-ID")
+            UUID userId
+    ) throws NoSuchObjectException {
+        SubscribeDto response = subscribeService.subscribeCreate(userId,interestId);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 }
