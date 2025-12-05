@@ -26,7 +26,7 @@ public class NotificationController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
+    @GetMapping(params = "cursor")
     public ResponseEntity<CursorPageResponseNotificationDto> getUncheckedNotificationWithCursor(
             @RequestParam() UUID userId,
             @RequestParam() String cursor,
@@ -50,7 +50,7 @@ public class NotificationController {
 
     @PatchMapping("/{notificationId}")
     public ResponseEntity<Void> markAsChecked(
-            @PathVariable() Long notificationId,
+            @PathVariable() UUID notificationId,
             @RequestParam() UUID userId
     ) {
         notificationService.markAsChecked(notificationId, userId);

@@ -97,13 +97,13 @@ public class Notification {
         return new Notification(userId, context, resource, resourceId);
     }
 
+    // 만료일이 지난는가
     public boolean isExpired() {
-        return isChecked && creationAt.isBefore(LocalDateTime.now().minusWeeks(1));
+        return isChecked && updatedAt.isBefore(LocalDateTime.now().minusWeeks(1));
     }
 
     // 알림 확인 수정 (지워야 하나?)
     public void check() {
         this.isChecked = true;
-        return this;
     }
 }

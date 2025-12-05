@@ -3,7 +3,6 @@ package com.team03.monew.notification.service;
 import com.team03.monew.notification.domain.Notification;
 import com.team03.monew.notification.dto.CursorPageResponseNotificationDto;
 import com.team03.monew.notification.dto.NotificationCreateDto;
-import com.team03.monew.notification.dto.NotificationDto;
 import com.team03.monew.notification.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -79,5 +77,4 @@ public class BasicNotificationService implements NotificationService {
             throw new IllegalArgumentException("[알림] 확인 : 찾을 수 없거나 없습니다. userId: " + userId);
         }
     }
-
 }
