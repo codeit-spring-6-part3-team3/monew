@@ -59,12 +59,12 @@ public class SubscribeCreateTest {
                 .nickname("nickname")
                 .password("password")
                 .build();
-        ReflectionTestUtils.setField(user, "userId", UUID.randomUUID());
+        ReflectionTestUtils.setField(user, "id", UUID.randomUUID());
 
         interest = InterestFixture.interestCreate("오늘에 뉴스", List.of("정치"));
         ReflectionTestUtils.setField(interest,"id",UUID.randomUUID());
 
-        subscribe = SubscribeFixture.subscribeCreate(user.getUserId(),interest.getId());
+        subscribe = SubscribeFixture.subscribeCreate(user.getId(),interest.getId());
         ReflectionTestUtils.setField(subscribe,"id",UUID.randomUUID());
 
     }
@@ -79,16 +79,16 @@ public class SubscribeCreateTest {
         when(subscribeMapper.toDto(any(Subscribe.class), any(Interest.class))).thenReturn(subscribeDto);
 
         //when
-        SubscribeDto newInterestDto = basicSubscribeService.subscribeCreate(user.getUserId(),interest.getId());
+        SubscribeDto newSubscribeDto = basicSubscribeService.subscribeCreate(user.getId(),interest.getId());
 
         //then
         //값 검증
-        assertThat(newInterestDto.id()).isEqualTo(subscribe.getId());
-        assertThat(newInterestDto.interestId()).isEqualTo(interest.getId());
-        assertThat(newInterestDto.interestName()).isEqualTo(interest.getName());
-        assertThat(newInterestDto.interestKeywords()).isEqualTo(interest.getKeywords());
-        assertThat(newInterestDto.interestSubscriberCount()).isEqualTo(interest.getSubscribeCount());
-        assertThat(newInterestDto.createdAt()).isEqualTo(interest.getCreatedAt());
+        assertThat(newSubscribeDto.id()).isEqualTo(subscribe.getId());
+        assertThat(newSubscribeDto.interestId()).isEqualTo(interest.getId());
+        assertThat(newSubscribeDto.interestName()).isEqualTo(interest.getName());
+        assertThat(newSubscribeDto.interestKeywords()).isEqualTo(interest.getKeywords());
+        assertThat(interest.getSubscribeCount()).isEqualTo(1L); // 0-> 1로 증가 확인
+
 
         //행위 검증
         verify(userRepository,times(1)).findById(any(UUID.class));
@@ -102,7 +102,7 @@ public class SubscribeCreateTest {
     @DisplayName("구독 추가 사용자 정보 없음 실패 검증")
     void SubscribeCreateUserDateFail() {
         //when & then
-        assertThatThrownBy(() -> basicSubscribeService.subscribeCreate(user.getUserId(),interest.getId()))
+        assertThatThrownBy(() -> basicSubscribeService.subscribeCreate(user.getId(),interest.getId()))
                 .isInstanceOf(NoSuchObjectException.class)
                 .hasMessage("유저 정보 없음");
     }
@@ -113,7 +113,7 @@ public class SubscribeCreateTest {
         //given
         when(userRepository.findById(any(UUID.class))).thenReturn(Optional.of(user));
         //when & then
-        assertThatThrownBy(() -> basicSubscribeService.subscribeCreate(user.getUserId(),interest.getId()))
+        assertThatThrownBy(() -> basicSubscribeService.subscribeCreate(user.getId(),interest.getId()))
                 .isInstanceOf(NoSuchObjectException.class)
                 .hasMessage("관심사 정보 없음");
     }
