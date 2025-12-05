@@ -33,7 +33,7 @@ public class Comment {
     private LocalDateTime creationAt;
 
     @Column(name = "likeCount", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
-    private int likeCount;
+    private Long likeCount;
 
     @UpdateTimestamp
     @Column(name = "updateAt", nullable = false)
@@ -43,7 +43,7 @@ public class Comment {
             UUID articleId,
             UUID userId,
             String content,
-            int likeCount
+            Long likeCount
     ) {
         this.articleId = articleId;
         this.userId = userId;
@@ -56,14 +56,14 @@ public class Comment {
             UUID userId,
             String content
     ) {
-        return new Comment(articleId, userId, content, 0);
+        return new Comment(articleId, userId, content, 0L);
     }
 
     public void changeContent(String content) {
         this.content = content;
     }
 
-    public void changeLikeCount(int likeCount) {
+    public void changeLikeCount(Long likeCount) {
         this.likeCount = likeCount;
     }
 
