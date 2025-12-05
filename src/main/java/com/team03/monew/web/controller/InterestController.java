@@ -80,4 +80,16 @@ public class InterestController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    //5 관심사 구독 삭제 추가
+    @DeleteMapping("/{interestId}/subscriptions")
+    public ResponseEntity<Void> subscribeDelete(
+            @PathVariable
+            UUID interestId,
+            @RequestParam(name = "Monew-Request-User-ID")
+            UUID userId
+    ) throws NoSuchObjectException {
+        subscribeService.subscribeDelete(userId,interestId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }
