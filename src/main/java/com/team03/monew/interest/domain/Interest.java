@@ -1,15 +1,16 @@
 package com.team03.monew.interest.domain;
 
-import io.hypersistence.utils.hibernate.type.array.ListArrayType;
+import com.team03.monew.interest.util.SimilarityCheck;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,18 +25,18 @@ public class Interest {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Type(ListArrayType.class)
-    @Column(columnDefinition = "varchar(50)[] NOT NULL")
+    @JdbcTypeCode(SqlTypes.ARRAY)
+    @Column(nullable = false)
     private List<String> keywords;
 
     @ColumnDefault("0")
-    private int subscribeCount;
+    private Long subscribeCount;
 
     @CreatedDate
-    private Instant createdAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private Instant updatedAt;
+    private LocalDateTime updatedAt;
 
     public Interest() {}
 
@@ -43,12 +44,12 @@ public class Interest {
     public Interest(String name, List<String> keywords) {
         this.name = name;
         this.keywords = keywords;
-        this.subscribeCount = 0;
+        this.subscribeCount = 0L;
     }
 
-    public void keywordAdd(String keyword) {this.keywords.add(keyword);}
-
-    public void keywordRemove(String keyword) { this.keywords.remove(keyword); }
+    public void keywordUpdate(List<String> keyword) {
+        this.keywords = keyword;
+    }
 
     public void subscribeAdd() {this.subscribeCount = this.subscribeCount + 1; }
 
@@ -56,8 +57,6 @@ public class Interest {
     
     //관심사 유사도 검사 메소드
     public boolean nameEquals(String name) {
-        int nameLength = this.name.length();
-        int targetLength = name.length();
-        return name.contains(this.name) && (targetLength * 0.8) <= nameLength;
+        return SimilarityCheck.isSimilar(this.name, name);
     }
 }
