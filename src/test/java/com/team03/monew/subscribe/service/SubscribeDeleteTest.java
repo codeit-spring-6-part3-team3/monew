@@ -83,7 +83,7 @@ public class SubscribeDeleteTest {
     }
 
     @Test
-    @DisplayName("구독 삭제 삭제 정보 없음 실패 검증")
+    @DisplayName("구독 삭제 삭제 유저 정보 없음 실패 검증")
     void subscribeDeleteUserNotFoundFail() {
         //when & then
         assertThatThrownBy(() -> basicSubscribeService.subscribeDelete(UUID.randomUUID(), UUID.randomUUID()))
@@ -92,7 +92,7 @@ public class SubscribeDeleteTest {
     }
 
     @Test
-    @DisplayName("구독 삭제 삭제 정보 없음 실패 검증")
+    @DisplayName("구독 삭제 삭제 관심사 정보 없음 실패 검증")
     void subscribeDeleteInterestNotFoundFail() {
         //given
         when(userRepository.findById(any(UUID.class))).thenReturn(Optional.of(user));
@@ -103,7 +103,7 @@ public class SubscribeDeleteTest {
     }
 
     @Test
-    @DisplayName("구독 삭제 삭제 정보 없음 실패 검증")
+    @DisplayName("구독 삭제 삭제 구독 정보 없음 실패 검증")
     void subscribeDeleteSubscribeNotFoundFail() {
         //given
         when(userRepository.findById(any(UUID.class))).thenReturn(Optional.of(user));
