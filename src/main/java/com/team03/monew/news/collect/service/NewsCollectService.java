@@ -3,6 +3,7 @@ package com.team03.monew.news.collect.service;
 import com.team03.monew.news.collect.domain.FetchedNews;
 import com.team03.monew.news.collect.infrastructure.client.RssClient;
 import com.team03.monew.news.collect.domain.NewsFeed;
+import com.team03.monew.news.collect.infrastructure.queue.NewsQueue;
 import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -15,18 +16,24 @@ import org.springframework.stereotype.Service;
 public class NewsCollectService implements CollectService {
 
   private final RssClient rssClient;
-//  private final NewsSaver newsSaver;
+  private final NewsQueue newsQueue;
+  private final KeywordFilterService keywordFilterService;
 
   public void fetchAllNews() {
     List<NewsFeed> feeds = Arrays.stream(NewsFeed.values()).toList();
 
     feeds.forEach(feed -> {
       try {
-        List<FetchedNews> fetched = rssClient.fetch(feed);
-//        newsSaver.saveAll(fetched);
+        rssClient.fetchAndParse(feed, this::handleOneNews);
       } catch (Exception e) {
         log.error("Failed to fetch feed: {}", feed.getUrl(), e);
       }
     });
+  }
+
+  void handleOneNews(FetchedNews news) {
+    if (keywordFilterService.matches(news)) {
+      newsQueue.publish(news);
+    }
   }
 }
