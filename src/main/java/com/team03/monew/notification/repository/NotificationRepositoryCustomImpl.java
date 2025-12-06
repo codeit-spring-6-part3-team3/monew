@@ -1,10 +1,10 @@
 
 package com.team03.monew.notification.repository;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.team03.monew.notification.domain.Notification;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Repository;
@@ -22,12 +22,13 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Slice<Notification> findNotificationsWithCursor(UUID userId, LocalDateTime cursor, int size) {
+    public Slice<Notification> findNotificationsWithCursor(UUID userId, String cursor, int size) {
         List<Notification> notifications = queryFactory
                 .selectFrom(notification)
                 .where(
                         notification.userId.eq(userId),
-                        notification.creationAt.lt(cursor)
+                        notification.isChecked.eq(false),
+                        cursorCondition(cursor)
                 )
                 .orderBy(notification.creationAt.desc())
                 .limit(size + 1)
@@ -36,18 +37,34 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
         return createSlice(notifications, size);
     }
 
+    // 위 아래 두 메서드에 notification.isChecked.eq(false) 추가. 사유: unchecked를 포함한 페이지네이션 제한이 발생
+
     @Override
     public Slice<Notification> findNotifications(UUID userId, int size) {
         List<Notification> notifications = queryFactory
                 .selectFrom(notification)
                 .where(
-                        notification.userId.eq(userId)
+                        notification.userId.eq(userId),
+                        notification.isChecked.eq(false)
                 )
                 .orderBy(notification.creationAt.desc())
                 .limit(size + 1)
                 .fetch();
 
         return createSlice(notifications, size);
+    }
+
+    private BooleanExpression cursorCondition(String cursor) {
+        if (cursor == null || cursor.isEmpty()) {
+            return null;
+        }
+        
+        try {
+            LocalDateTime cursorDateTime = LocalDateTime.parse(cursor);
+            return notification.creationAt.lt(cursorDateTime);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private Slice<Notification> createSlice(List<Notification> notifications, int size) {
