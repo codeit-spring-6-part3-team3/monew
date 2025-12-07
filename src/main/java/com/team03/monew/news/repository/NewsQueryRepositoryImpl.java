@@ -121,12 +121,12 @@ public class NewsQueryRepositoryImpl implements NewsQueryRepository {
     switch (orderBy) {
       case "commentCount" -> {
         primary = asc
-            ? qnews.commentCount.gt(subCommentCount(cursorId))
-            : qnews.commentCount.lt(subCommentCount(cursorId));
+            ? qnews.commentCount.goe(subCommentCount(cursorId))
+            : qnews.commentCount.loe(subCommentCount(cursorId));
 
         secondary = qnews.commentCount.eq(subCommentCount(cursorId))
             .and(
-                asc ? qnews.postDate.gt(after) : qnews.postDate.lt(after));
+                asc ? qnews.postDate.goe(after) : qnews.postDate.loe(after));
       }
       case "viewCount" -> {
         primary = asc
@@ -135,13 +135,13 @@ public class NewsQueryRepositoryImpl implements NewsQueryRepository {
 
         secondary = qnews.viewCount.eq(subViewCount(cursorId))
             .and(
-                asc ? qnews.postDate.gt(after) : qnews.postDate.lt(after));
+                asc ? qnews.postDate.goe(after) : qnews.postDate.loe(after));
       }
       //정렬 기본 -> 게시일
       default -> {
         return asc
-            ? qnews.postDate.gt(after)
-            : qnews.postDate.lt(after);
+            ? qnews.postDate.goe(after)
+            : qnews.postDate.loe(after);
       }
     }
     return primary.or(secondary);
