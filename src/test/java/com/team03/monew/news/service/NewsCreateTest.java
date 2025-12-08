@@ -86,7 +86,7 @@ public class NewsCreateTest {
         "뉴스 요약"
     );
 
-    // 관심사 이름, 키워드와 매칭 안됌
+    // 관심사 이름, 키워드와 매칭 안됌 -> 관심사 이름, 키워드가 기존의 title, overview와 다름
     Interest interest = new Interest();
     ReflectionTestUtils.setField(interest, "name", "다른 관심사");
     ReflectionTestUtils.setField(interest, "keywords", List.of("키워드1", "키워드2"));
@@ -98,10 +98,13 @@ public class NewsCreateTest {
     when(interestRepository.findById(interestId))
         .thenReturn(Optional.of(interest));
 
-    // when & then
-    // createNews호출했을떄 키워드 중복이니 예외 반환해라
-    assertThatThrownBy(() -> basicNewsService.createNews(newsCreateRequest, interestId))
-        .isInstanceOf(RuntimeException.class);
+    // when
+    // createNews 호출
+    NewsResponseDto result = basicNewsService.createNews(newsCreateRequest, interestId);
+
+    //then
+    // 관심사 일치하지 않으니 null 반환
+    assertThat(result).isNull();
 
     // 중복 링크 검사는 한번만
     verify(newsRepository, times(1)).findByResourceLink(anyString());

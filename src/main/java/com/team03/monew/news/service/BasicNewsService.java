@@ -85,7 +85,7 @@ public class BasicNewsService implements NewsService {
 
     // 하나도 맞는것이 없으면 저장하지 않음
     if(!matchInterest) {
-      throw new RuntimeException();
+      return null;
     }
 
     //엔티티
