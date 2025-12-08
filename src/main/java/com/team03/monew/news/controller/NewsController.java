@@ -3,6 +3,7 @@ package com.team03.monew.news.controller;
 import com.team03.monew.news.domain.NewsSourceType;
 import com.team03.monew.news.dto.CursorPageResponseArticleDto;
 import com.team03.monew.news.dto.NewsCreateRequest;
+import com.team03.monew.news.dto.NewsDeleteRequest;
 import com.team03.monew.news.dto.NewsDto;
 import com.team03.monew.news.dto.NewsResponseDto;
 import com.team03.monew.news.service.NewsService;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,5 +71,17 @@ public class NewsController {
       @RequestParam(required = true) UUID userId
   ){
     return newsService.getDetailNews(articleId, userId);
+  }
+
+  // 논리 삭제
+  @DeleteMapping("/{articleId}")
+  public void deleteNewsLogical(@PathVariable UUID articleId) {
+    newsService.deleteNews_logical(new NewsDeleteRequest(articleId));
+  }
+
+  // 물리 삭제
+  @DeleteMapping("/{articleId}/hard")
+  public void deleteNewsPhysical(@PathVariable UUID articleId) {
+    newsService.deleteNews_physical(new NewsDeleteRequest(articleId));
   }
 }
