@@ -1,6 +1,8 @@
 package com.team03.monew.news.service;
 
 import com.team03.monew.articleView.service.NewsViewsService;
+import com.team03.monew.interest.domain.Interest;
+import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.news.domain.News;
 import com.team03.monew.news.domain.NewsSourceType;
 import com.team03.monew.news.dto.CursorPageResponseArticleDto;
@@ -27,6 +29,7 @@ public class BasicNewsService implements NewsService {
 
   private final NewsRepository newsRepository;
   private final NewsViewsService newsViewsService;
+  private final InterestRepository interestRepository;
 
   @Override
   public CursorPageResponseArticleDto<NewsDto> findNews(
@@ -56,15 +59,35 @@ public class BasicNewsService implements NewsService {
   }
 
 
+  // 뉴스 제목, 요약에 특정 내용이 있는지 확인하는 메서드
+  private boolean containText(NewsCreateRequest newsCreateRequest, String text) {
+    return newsCreateRequest.title().contains(text) || newsCreateRequest.overView().contains(text);
+  }
+
   //뉴스 저장(등록)
   @Transactional
   @Override
-  public NewsResponseDto createNews(NewsCreateRequest newsCreateRequest) {
+  public NewsResponseDto createNews(NewsCreateRequest newsCreateRequest, UUID interestId) {
 
     Optional<News> existing = newsRepository.findByResourceLink(newsCreateRequest.resourceLink());
     if(existing.isPresent()) {
       throw new SameResourceLink();
     }
+
+    //관심사 조회
+    Interest interest = interestRepository.findById(interestId)
+        // 관심사 없을떄 예외 발생
+        .orElseThrow(() -> new RuntimeException());
+
+    //수집한 기사 중 관심사의 키워드를 포함하는 뉴스 기사만 저장합니다.
+    boolean matchInterest = containText(newsCreateRequest, interest.getName()) || interest.getKeywords().stream()
+        .anyMatch(keyword -> containText(newsCreateRequest, keyword));
+
+    // 하나도 맞는것이 없으면 저장하지 않음
+    if(!matchInterest) {
+      throw new RuntimeException();
+    }
+
     //엔티티
     News news = News.builder()
         .source(newsCreateRequest.source())
@@ -72,6 +95,7 @@ public class BasicNewsService implements NewsService {
         .title(newsCreateRequest.title())
         .postDate(newsCreateRequest.postDate())
         .overview(newsCreateRequest.overView())
+        .interest(interest)
         .build();
 
     //저장

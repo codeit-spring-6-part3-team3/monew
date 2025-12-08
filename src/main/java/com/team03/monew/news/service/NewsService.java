@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface NewsService {
-  NewsResponseDto createNews(NewsCreateRequest newsCreateRequest);
+  NewsResponseDto createNews(NewsCreateRequest newsCreateRequest, UUID interestId);
 
   void deleteNews_logical(NewsDeleteRequest newsDeleteRequest);
 
