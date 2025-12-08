@@ -11,16 +11,18 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.http.ResponseEntity;
 
 @Tag(name = "News", description = "뉴스 API")
 public interface NewsApi {
+
   @Operation(summary = "뉴스 목록 조회")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "조회 성공"),
       @ApiResponse(responseCode = "400", description = "잘못된 요청"),
       @ApiResponse(responseCode = "500", description = "서버 내부 오류")
   })
-  CursorPageResponseArticleDto<NewsDto> findNews(
+  ResponseEntity<CursorPageResponseArticleDto<NewsDto>> findNews(
       @Parameter(description = "검색 키워드") String keyword,
       @Parameter(description = "관심사 ID") UUID interestId,
       @Parameter(description = "출처 목록") List<NewsSourceType> sourceIn,
@@ -40,7 +42,7 @@ public interface NewsApi {
       @ApiResponse(responseCode = "404", description = "뉴스 기사 정보 없음"),
       @ApiResponse(responseCode = "500", description = "서버 내부 오류")
   })
-  NewsDto getNewsDetails(
+  ResponseEntity<NewsDto> getNewsDetails(
       @Parameter(description = "뉴스 기사 ID") UUID articleId,
       @Parameter(description = "요청자 ID", required = true) UUID userId
   );
@@ -52,8 +54,8 @@ public interface NewsApi {
       @ApiResponse(responseCode = "404", description = "뉴스 기사 정보 없음"),
       @ApiResponse(responseCode = "500", description = "서버 내부 오류")
   })
-  void deleteNewsLogical(
-      @Parameter(description = "뉴스 기사 ID") UUID articleId
+  ResponseEntity<Void> deleteNewsLogical(
+      @Parameter(description = "삭제 할 뉴스 기사 ID") UUID articleId
   );
 
   // 뉴스 물리 삭제
@@ -63,8 +65,8 @@ public interface NewsApi {
       @ApiResponse(responseCode = "404", description = "뉴스 기사 정보 없음"),
       @ApiResponse(responseCode = "500", description = "서버 내부 오류")
   })
-  void deleteNewsPhysical(
-      @Parameter(description = "뉴스 기사 ID") UUID articleId
+  ResponseEntity<Void> deleteNewsPhysical(
+      @Parameter(description = "삭제 할 뉴스 기사 ID") UUID articleId
   );
 
   // 뉴스 복구
@@ -84,5 +86,5 @@ public interface NewsApi {
       @ApiResponse(responseCode = "200", description = "조회 성공"),
       @ApiResponse(responseCode = "500", description = "서버 내부 오류")
   })
-  NewsSourceType[] getAllSources();
+  ResponseEntity<NewsSourceType[]> getAllSources();
 }
