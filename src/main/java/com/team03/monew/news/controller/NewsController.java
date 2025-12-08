@@ -1,5 +1,6 @@
 package com.team03.monew.news.controller;
 
+import com.team03.monew.news.controller.api.NewsApi;
 import com.team03.monew.news.domain.NewsSourceType;
 import com.team03.monew.news.dto.CursorPageResponseArticleDto;
 import com.team03.monew.news.dto.NewsCreateRequest;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/articles")
-public class NewsController {
+public class NewsController implements NewsApi {
 
   private final NewsService newsService;
 
@@ -38,18 +39,19 @@ public class NewsController {
 
   // 뉴스 목록 조회
   @GetMapping
+  @Override
   public CursorPageResponseArticleDto<NewsDto> findNews(
-      @RequestParam(required = false) String keyword,
-      @RequestParam(required = false) UUID interestId,
-      @RequestParam(required = false) List<NewsSourceType> sourceIn,
-      @RequestParam(required = false) LocalDateTime publishDateFrom,
-      @RequestParam(required = false) LocalDateTime publishDateTo,
-      @RequestParam(defaultValue = "date") String orderBy,
-      @RequestParam(defaultValue = "ASC")String direction,
-      @RequestParam(required = false) String cursor,
-      @RequestParam(required = false) LocalDateTime after,
-      @RequestParam(defaultValue = "50") int limit
-      ){
+      String keyword,
+      UUID interestId,
+      List<NewsSourceType> sourceIn,
+      LocalDateTime publishDateFrom,
+      LocalDateTime publishDateTo,
+      String orderBy,
+      String direction,
+      String cursor,
+      LocalDateTime after,
+      int limit
+  ) {
     return newsService.findNews(
         keyword,
         interestId,
@@ -66,6 +68,7 @@ public class NewsController {
 
   // 뉴스 기사 단편 조회
   @GetMapping("/{articleId}")
+  @Override
   public NewsDto getNewsDetails(
       @PathVariable UUID articleId,
       @RequestParam(required = true) UUID userId
@@ -75,14 +78,21 @@ public class NewsController {
 
   // 논리 삭제
   @DeleteMapping("/{articleId}")
+  @Override
   public void deleteNewsLogical(@PathVariable UUID articleId) {
     newsService.deleteNews_logical(new NewsDeleteRequest(articleId));
   }
 
   // 물리 삭제
   @DeleteMapping("/{articleId}/hard")
+  @Override
   public void deleteNewsPhysical(@PathVariable UUID articleId) {
     newsService.deleteNews_physical(new NewsDeleteRequest(articleId));
+  }
+
+  @Override
+  public List<Object> restoreNews(LocalDateTime from, LocalDateTime to) {
+    return List.of();
   }
 
   // 출처 목록 조회
