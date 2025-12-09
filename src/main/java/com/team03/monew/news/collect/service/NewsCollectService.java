@@ -1,11 +1,14 @@
 package com.team03.monew.news.collect.service;
 
+import com.team03.monew.interest.domain.Interest;
 import com.team03.monew.news.collect.domain.FetchedNews;
+import com.team03.monew.news.collect.domain.FilteredNewsTask;
 import com.team03.monew.news.collect.infrastructure.client.RssClient;
 import com.team03.monew.news.collect.domain.NewsFeed;
 import com.team03.monew.news.collect.infrastructure.queue.NewsQueue;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,8 +35,10 @@ public class NewsCollectService implements CollectService {
   }
 
   void handleOneNews(FetchedNews news) {
-    if (keywordFilterService.matches(news)) {
-      newsQueue.publish(news);
+    Set<Interest> matched = keywordFilterService.matchingInterests(news);
+
+    if (!matched.isEmpty()) {
+      newsQueue.publish(new FilteredNewsTask(news, matched));
     }
   }
 }
