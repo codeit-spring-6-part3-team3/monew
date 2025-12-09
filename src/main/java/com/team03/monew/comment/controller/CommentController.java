@@ -1,11 +1,8 @@
 package com.team03.monew.comment.controller;
 
-import com.team03.monew.comment.dto.CommentDto;
-import com.team03.monew.comment.dto.CommentRegisterRequest;
-import com.team03.monew.comment.dto.CommentUpdateRequest;
-import com.team03.monew.comment.dto.CommentUserIdRequest;
-import com.team03.monew.comment.dto.CursorPageRequestCommentDto;
+import com.team03.monew.comment.dto.*;
 import com.team03.monew.comment.service.CommentService;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +15,16 @@ public class CommentController {
 
     private final CommentService commentService;
 
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
+
     @GetMapping
-    public ResponseEntity<CommentDto> listRead(
+    public ResponseEntity<CursorPageResponseCommentDto> listRead(
             @RequestParam CursorPageRequestCommentDto request
     ) {
-        return null;
+        CursorPageResponseCommentDto response = commentService.getCommentList(request);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
