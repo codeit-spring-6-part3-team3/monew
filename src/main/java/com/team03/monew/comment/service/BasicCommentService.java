@@ -72,4 +72,21 @@ public class BasicCommentService implements CommentService{
                 hasNext
         );
     }
+
+    // 논리 삭제
+    @Transactional
+    public void deleteComment(UUID commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("댓글 찾을 수 없음"));
+
+        comment.softDelete();
+    }
+
+    @Transactional
+    public void deleteCommentHard(UUID commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("댓글 찾을 수 없음"));
+
+        commentRepository.deleteById(commentId);
+    }
 }

@@ -39,6 +39,10 @@ public class Comment {
     @Column(name = "updateAt", nullable = false)
     private LocalDateTime updateAt;
 
+    // 논리 삭제용 필드 추가
+    @Column(name = "deletedAt", nullable = true)
+    private LocalDateTime deletedAt;
+
     private Comment(
             UUID articleId,
             UUID userId,
@@ -75,4 +79,11 @@ public class Comment {
         this.likeCount--;
     }
 
+    public void softDelete() {
+        this.deletedAt = LocalDateTime.now();
+    }
+
+    public boolean isDeleted() {
+        return deletedAt != null;
+    }
 }
