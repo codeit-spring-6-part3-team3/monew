@@ -8,5 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface InterestMapper {
     @Mapping(source = "subscribedByMe", target = "subscribedByMe")
+    @Mapping(source = "interest.subscribeCount" , target = "subscriberCount")
     InterestDto toDto(Interest interest, Boolean subscribedByMe);
 }

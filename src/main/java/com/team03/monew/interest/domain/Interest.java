@@ -1,12 +1,12 @@
 package com.team03.monew.interest.domain;
 
 import com.team03.monew.interest.util.SimilarityCheck;
-import io.hypersistence.utils.hibernate.type.array.ListArrayType;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -25,8 +25,8 @@ public class Interest {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Type(ListArrayType.class)
-    @Column(columnDefinition = "varchar(50)[] NOT NULL")
+    @JdbcTypeCode(SqlTypes.ARRAY)
+    @Column(nullable = false)
     private List<String> keywords;
 
     @ColumnDefault("0")

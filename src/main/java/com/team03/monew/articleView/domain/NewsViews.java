@@ -1,10 +1,14 @@
-package com.team03.monew.articleView;
+package com.team03.monew.articleView.domain;
 
+import com.team03.monew.news.domain.News;
+import com.team03.monew.user.domain.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -21,9 +25,9 @@ import lombok.NoArgsConstructor;
  *  중복된 결과가 나오지않도록 함으로
  *  같은사용자가 여러번 조회해도 조회수 증가하지 않고자함
  *  **/
-@Table(name = "articleViews",
+@Table(name = "article_views",
     uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"viewedBy","articleId"})
+    @UniqueConstraint(columnNames = {"userId","articleId"})
   }
 )
 public class NewsViews {
@@ -31,18 +35,21 @@ public class NewsViews {
   @GeneratedValue(strategy = GenerationType.UUID)
   UUID id;
 
-  @Column(name = "viewedBy",updatable = false)
-  UUID userId;
+  @ManyToOne
+  @JoinColumn(name = "userId")
+  private User user;
 
   @Column(name = "creationAt",updatable = false)
   LocalDateTime creationAt;
 
-  @Column(name = "articleId",updatable = false)
-  UUID articleId;
+  @ManyToOne
+  @JoinColumn(name = "articleId")
+  private News news;
 
-  public NewsViews(UUID userId, UUID articleId) {
-    this.userId = userId;
-    this.articleId = articleId;
+
+  public NewsViews(User  user, News news) {
+    this.user = user;
+    this.news = news;
   }
 
   @PrePersist

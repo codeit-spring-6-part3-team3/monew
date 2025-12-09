@@ -87,6 +87,7 @@ public class Notification {
         );
     }
 
+    // 알림 객체 생성
     public static Notification from(
             UUID userId,
             String context,
@@ -96,12 +97,13 @@ public class Notification {
         return new Notification(userId, context, resource, resourceId);
     }
 
+    // 만료일이 지난는가
     public boolean isExpired() {
-        return isChecked && creationAt.isBefore(LocalDateTime.now().minusWeeks(1));
+        return isChecked && updatedAt.isBefore(LocalDateTime.now().minusWeeks(1));
     }
 
-    public Notification check() {
+    // 알림 확인 수정 (지워야 하나?)
+    public void check() {
         this.isChecked = true;
-        return this;
     }
 }

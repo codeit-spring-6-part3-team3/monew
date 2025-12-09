@@ -12,7 +12,7 @@ public interface NotificationRepositoryCustom {
     // 커서 페이지네이션, 알림 조회, QueryDSL 사용
     Slice<Notification> findNotificationsWithCursor(
             UUID userId,
-            LocalDateTime cursor,
+            String cursor,
             int size
     );
 

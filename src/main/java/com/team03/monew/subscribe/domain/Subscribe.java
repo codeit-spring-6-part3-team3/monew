@@ -1,6 +1,7 @@
 package com.team03.monew.subscribe.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -24,6 +25,8 @@ public class Subscribe {
     private LocalDateTime createdAt;
 
     public Subscribe() {}
+
+    @Builder
     public Subscribe(UUID userId, UUID interestId) {
         this.userId = userId;
         this.interestId = interestId;
