@@ -51,9 +51,12 @@ public class CommentController {
     }
 
     @DeleteMapping("{commentId}")
-    public void delete(
+    public ResponseEntity<Void> delete(
             @PathVariable UUID commentId
-    ) {}
+    ) {
+        commentService.deleteComment(commentId);
+        return ResponseEntity.noContent().build();
+    }
 
     @PatchMapping("{commentId}")
     public void update(
@@ -63,7 +66,10 @@ public class CommentController {
     ) {}
 
     @DeleteMapping("{commentId}/hard")
-    public void deleteHard(
+    public ResponseEntity<Void> deleteHard(
             @PathVariable UUID commentId
-    ) {}
+    ) {
+        commentService.deleteCommentHard(commentId);
+        return ResponseEntity.noContent().build();
+    }
 }
