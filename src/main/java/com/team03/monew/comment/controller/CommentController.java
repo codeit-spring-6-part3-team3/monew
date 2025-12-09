@@ -2,11 +2,11 @@ package com.team03.monew.comment.controller;
 
 import com.team03.monew.comment.dto.*;
 import com.team03.monew.comment.service.CommentService;
-import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.UUID;
 
 @Controller
@@ -31,7 +31,8 @@ public class CommentController {
     public ResponseEntity<CommentDto> create(
             @RequestBody CommentRegisterRequest request
     ) {
-        return null;
+        CommentDto response = commentService.createComment(request);
+        return ResponseEntity.created(URI.create("/api/comments/" + response.id())).body(response);
     }
 
     @PostMapping("{commentId}/comment-likes")

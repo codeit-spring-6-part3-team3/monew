@@ -22,6 +22,31 @@ public class BasicCommentService implements CommentService{
     private final CommentRepository commentRepository;
 
     @Override
+    @Transactional
+    public CommentDto createComment(CommentRegisterRequest request) {
+        Comment comment = Comment.of(
+                request.articleId(),
+                request.userId(),
+                request.content()
+        );
+
+        Comment savedComment = commentRepository.save(comment);
+
+        CommentDto convertComment = new CommentDto(
+                savedComment.getId(),
+                savedComment.getArticleId(),
+                savedComment.getUserId(),
+                null,
+                savedComment.getContent(),
+                savedComment.getLikeCount(),
+                false,
+                savedComment.getCreationAt()
+        );
+
+        return convertComment;
+    }
+
+    @Override
     public CursorPageResponseCommentDto getCommentList(CursorPageRequestCommentDto request) {
         int limit = request.limit() != null ? request.limit() : 20;
 
