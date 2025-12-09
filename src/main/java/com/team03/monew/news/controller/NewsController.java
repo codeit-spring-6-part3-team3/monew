@@ -1,5 +1,6 @@
 package com.team03.monew.news.controller;
 
+import com.team03.monew.news.controller.api.NewsApi;
 import com.team03.monew.news.domain.NewsSourceType;
 import com.team03.monew.news.dto.CursorPageResponseArticleDto;
 import com.team03.monew.news.dto.NewsCreateRequest;
@@ -11,6 +12,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,22 +26,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/articles")
-public class NewsController {
+public class NewsController implements NewsApi {
 
   private final NewsService newsService;
 
   // 뉴스 등록
   @PostMapping
-  public NewsResponseDto createNews(
+  public ResponseEntity<NewsResponseDto> createNews(
       @RequestBody NewsCreateRequest newsCreateRequest,
       @RequestParam UUID interestId
       ) {
-    return newsService.createNews(newsCreateRequest, interestId);
+    NewsResponseDto response = newsService.createNews(newsCreateRequest, interestId);
+    return ResponseEntity
+        .status(HttpStatus.CREATED)
+        .body(response);
   }
 
   // 뉴스 목록 조회
   @GetMapping
-  public CursorPageResponseArticleDto<NewsDto> findNews(
+  @Override
+  public ResponseEntity<CursorPageResponseArticleDto<NewsDto>> findNews(
       @RequestParam(required = false) String keyword,
       @RequestParam(required = false) UUID interestId,
       @RequestParam(required = false) List<NewsSourceType> sourceIn,
@@ -49,8 +56,8 @@ public class NewsController {
       @RequestParam(required = false) String cursor,
       @RequestParam(required = false) LocalDateTime after,
       @RequestParam(defaultValue = "50") int limit
-      ){
-    return newsService.findNews(
+  ) {
+    CursorPageResponseArticleDto<NewsDto> result =  newsService.findNews(
         keyword,
         interestId,
         sourceIn,
@@ -62,26 +69,56 @@ public class NewsController {
         after,
         limit
     );
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(result);
   }
 
   // 뉴스 기사 단편 조회
   @GetMapping("/{articleId}")
-  public NewsDto getNewsDetails(
+  @Override
+  public ResponseEntity<NewsDto> getNewsDetails(
       @PathVariable UUID articleId,
       @RequestParam(required = true) UUID userId
   ){
-    return newsService.getDetailNews(articleId, userId);
+    NewsDto dto  = newsService.getDetailNews(articleId, userId);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(dto);
   }
 
   // 논리 삭제
   @DeleteMapping("/{articleId}")
-  public void deleteNewsLogical(@PathVariable UUID articleId) {
+  @Override
+  public ResponseEntity<Void> deleteNewsLogical(@PathVariable UUID articleId) {
     newsService.deleteNews_logical(new NewsDeleteRequest(articleId));
+    return ResponseEntity
+        .status(HttpStatus.NO_CONTENT)
+        .build();
   }
 
   // 물리 삭제
   @DeleteMapping("/{articleId}/hard")
-  public void deleteNewsPhysical(@PathVariable UUID articleId) {
+  @Override
+  public ResponseEntity<Void> deleteNewsPhysical(@PathVariable UUID articleId) {
     newsService.deleteNews_physical(new NewsDeleteRequest(articleId));
+    return ResponseEntity
+        .status(HttpStatus.NO_CONTENT)
+        .build();
+  }
+
+  @Override
+  public List<Object> restoreNews(LocalDateTime from, LocalDateTime to) {
+    return List.of();
+  }
+
+  // 출처 목록 조회
+  // 이것은 어떤 기능을 하는지 잘 모르겠습니다.
+  // 스웨거 상 작성되어있어 추가 했습니다.
+  @GetMapping("/source")
+  public ResponseEntity<NewsSourceType[]> getAllSources() {
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(NewsSourceType.values());
   }
 }
