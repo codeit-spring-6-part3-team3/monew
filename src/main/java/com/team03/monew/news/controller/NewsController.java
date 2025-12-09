@@ -46,16 +46,16 @@ public class NewsController implements NewsApi {
   @GetMapping
   @Override
   public ResponseEntity<CursorPageResponseArticleDto<NewsDto>> findNews(
-      String keyword,
-      UUID interestId,
-      List<NewsSourceType> sourceIn,
-      LocalDateTime publishDateFrom,
-      LocalDateTime publishDateTo,
-      String orderBy,
-      String direction,
-      String cursor,
-      LocalDateTime after,
-      int limit
+      @RequestParam(required = false) String keyword,
+      @RequestParam(required = false) UUID interestId,
+      @RequestParam(required = false) List<NewsSourceType> sourceIn,
+      @RequestParam(required = false) LocalDateTime publishDateFrom,
+      @RequestParam(required = false) LocalDateTime publishDateTo,
+      @RequestParam(defaultValue = "date") String orderBy,
+      @RequestParam(defaultValue = "ASC")String direction,
+      @RequestParam(required = false) String cursor,
+      @RequestParam(required = false) LocalDateTime after,
+      @RequestParam(defaultValue = "50") int limit
   ) {
     CursorPageResponseArticleDto<NewsDto> result =  newsService.findNews(
         keyword,
