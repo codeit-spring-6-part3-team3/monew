@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Table(
-        name = "commentLikes",
+        name = "comment_likes",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"liked_by", "comment_id"})
         }
