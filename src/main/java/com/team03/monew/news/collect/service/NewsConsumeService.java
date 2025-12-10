@@ -8,12 +8,14 @@ import com.team03.monew.news.collect.mapper.NewsMapper;
 import com.team03.monew.news.dto.NewsCreateRequest;
 import com.team03.monew.news.service.NewsService;
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -25,43 +27,68 @@ public class NewsConsumeService {
   private final NewsService newsService;
   private final NewsMapper newsMapper;
   private final ApplicationEventPublisher eventPublisher;
+  private final AsyncTaskExecutor asyncTaskExecutor;
+
+  private java.util.concurrent.Future<?> consumerFuture;
+  private volatile boolean running = true;
 
   @PostConstruct
   public void startConsumerThread() {
-    Thread consumer = new Thread(this::consumeLoop, "news-consumer-thread");
-    consumer.setDaemon(true); // 앱 종료 시 자동 종료되도록
-    consumer.start();
-    log.info("News consumer thread started.");
+    consumerFuture = asyncTaskExecutor.submit(this::consumeLoop);
+    log.info("News consumer started on async executor.");
+  }
+
+  @PreDestroy
+  public void stopConsumerThread() {
+    running = false;
+    if (consumerFuture != null) {
+      consumerFuture.cancel(true);
+    }
   }
 
   private void consumeLoop() {
-    while (true) {
+    while (running) {
       try {
         FilteredNewsTask task = newsQueue.take();
 
         // 1) 뉴스 저장
         NewsCreateRequest req = newsMapper.toCreateRequest(task.news());
-        var savedNews = newsService.createNews(req); // NewsResponseDto 라고 가정 (id, title 포함)
+        var savedNews = newsService.createNews(req);
 
+        log.debug("뉴스 저장 완료: {}", savedNews);
         // 2) 매칭된 관심사에서 id만 추출
         Set<UUID> interestIds = task.matchedInterests().stream()
             .map(Interest::getId)
             .collect(Collectors.toSet());
 
-        // 3) 이벤트 발행
+        var event = new NewsCollectedEvent(
+            savedNews.id(),
+            interestIds
+        );
+
+        log.debug("뉴스 수집 이벤트 발행: {}", event);
+
         eventPublisher.publishEvent(
-            new NewsCollectedEvent(
-                savedNews.id(),
-                interestIds
-            )
+           event
         );
 
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
+        running = false;
         return;
       } catch (Exception e) {
-        log.error("뉴스 처리 중 오류 발생", e);
+        log.error("뉴스 처리 중 오류 발생: {}", e.getMessage(), e);
+        sleepQuietly(200); // 짧은 백오프로 과도한 루프 방지
       }
+    }
+  }
+
+  private void sleepQuietly(long millis) {
+    try {
+      Thread.sleep(millis);
+    } catch (InterruptedException ie) {
+      Thread.currentThread().interrupt();
+      running = false;
     }
   }
 }
