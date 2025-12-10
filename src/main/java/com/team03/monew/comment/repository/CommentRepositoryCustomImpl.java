@@ -10,6 +10,9 @@ import com.team03.monew.comment.dto.CursorPageRequestCommentDto;
 import com.team03.monew.commentlike.domain.QCommentLike;
 import com.team03.monew.user.domain.QUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -26,8 +29,10 @@ public class CommentRepositoryCustomImpl implements CommentRepositoryCustom{
     private final QCommentLike commentLike = QCommentLike.commentLike;
 
     @Override
-    public List<CommentDto> findByCursor(CursorPageRequestCommentDto request) {
-        return queryFactory
+    public Slice<CommentDto> findByCursor(CursorPageRequestCommentDto request) {
+        int limit = request.limit() != null ? request.limit() : 20;
+
+        List<CommentDto> comments = queryFactory
                 .select(Projections.constructor(CommentDto.class,
                         comment.id,
                         comment.articleId,
@@ -35,23 +40,31 @@ public class CommentRepositoryCustomImpl implements CommentRepositoryCustom{
                         user.nickname,
                         comment.content,
                         comment.likeCount,
-                        commentLike.userId.eq(request.userId()),
+                        commentLike.likedBy.eq(request.userId()),
                         comment.createdAt
                 ))
                 .from(comment)
-                .leftJoin(user)
-                    .on(comment.userId.eq(user.id))
-                .leftJoin(commentLike)
-                    .on(commentLike.commentId.eq(comment.id)
-                        .and(commentLike.userId.eq(request.userId())))
+                .leftJoin(user).on(comment.userId.eq(user.id))
+                .leftJoin(commentLike).on(
+                        commentLike.commentId.eq(comment.id)
+                                .and(commentLike.likedBy.eq(request.userId()))
+                )
                 .where(
                         articleIdEq(request.articleId()),
                         cursorCondition(request),
-                        afterCondition(request.after())
+                        afterCondition(request.after()),
+                        comment.deletedAt.isNull()
                 )
                 .orderBy(getOrderSpecifier(request))
-                .limit(request.limit() != null ? request.limit() : 20)
+                .limit(limit + 1)
                 .fetch();
+
+        boolean hasNext = comments.size() > limit;
+        if (hasNext) {
+            comments.remove(comments.size() - 1);
+        }
+
+        return new SliceImpl<>(comments, PageRequest.of(0, limit), hasNext);
     }
 
     private BooleanExpression articleIdEq(UUID articleId) {
@@ -85,12 +98,10 @@ public class CommentRepositoryCustomImpl implements CommentRepositoryCustom{
         String orderBy = request.orderBy() != null ? request.orderBy() : "created_at";
         boolean isAsc = "asc".equalsIgnoreCase(request.direction());
 
-        // 좋아요 정렬
         if ("like_count".equals(orderBy)) {
             return isAsc ? comment.likeCount.asc() : comment.likeCount.desc();
         }
 
-        // 날짜 정렬 (기본값)
         return isAsc ? comment.createdAt.asc() : comment.createdAt.desc();
     }
 }
