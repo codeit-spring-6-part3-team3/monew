@@ -9,18 +9,18 @@ import java.util.UUID;
 
 public record NotificationDto(
         UUID id,
-        @JsonProperty("createdAt") LocalDateTime creationAt,
+        @JsonProperty("created_at") LocalDateTime createdAt,
         LocalDateTime updatedAt,
         @JsonProperty("confirmed") Boolean isChecked,
         UUID userId,
         @JsonProperty("content") String context,
-        @JsonProperty("resourceType") NoticeResourceType resource,
+        @JsonProperty("resource_type") NoticeResourceType resource,
         UUID resourceId
 ) {
     public static NotificationDto from(Notification notification) {
         return new NotificationDto(
                 notification.getId(),
-                notification.getCreationAt(),
+                notification.getCreatedAt(),
                 notification.getUpdatedAt(),
                 notification.isChecked(),
                 notification.getUserId(),

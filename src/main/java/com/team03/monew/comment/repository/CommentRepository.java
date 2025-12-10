@@ -14,8 +14,8 @@ import java.util.UUID;
 public interface CommentRepository extends JpaRepository<Comment, UUID>, CommentRepositoryCustom {
     Long countByArticleIdAndDeletedAtIsNull(UUID articleId);
 
-    @Query("SELECT c FROM Comment c WHERE c.userId = :userId ORDER BY c.creationAt DESC LIMIT 10")
-    List<CommentActivityDto> findTopTenByUserIdOrderByCreationAtDesc(
-            @Param("userId") UUID userId
+    @Query("SELECT c FROM Comment c WHERE c.user_id = :user_id ORDER BY c.created_at DESC LIMIT 10")
+    List<CommentActivityDto> findTopTenByUserIdOrderByCreatedAtDesc(
+            @Param("user_id") UUID userId
     );
 }

@@ -7,6 +7,7 @@ import com.team03.monew.interest.dto.InterestDto;
 import com.team03.monew.interest.dto.InterestSearchRequest;
 import com.team03.monew.interest.mapper.InterestMapper;
 import com.team03.monew.interest.repository.InterestRepository;
+import com.team03.monew.subscribe.domain.Subscribe;
 import com.team03.monew.subscribe.repository.SubscribeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,7 +44,8 @@ public class InterestListTest {
     private UUID userId;
     private Interest interest1;
     private Interest interest2;
-    private InterestDto interestDto;
+    private final ArrayList<Subscribe> subscribeList = new ArrayList<>();
+    private final ArrayList<InterestDto> interestDtoList = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -55,7 +58,19 @@ public class InterestListTest {
         ReflectionTestUtils.setField(interest2,"id",UUID.randomUUID());
         ReflectionTestUtils.setField(interest1,"createdAt",LocalDateTime.now());
 
-        interestDto = InterestFixture.interestDtoCreate(interest1,true);
+
+
+        Subscribe subscribe1 = new Subscribe(userId,interest1.getId());
+        Subscribe subscribe2 = new Subscribe(userId,interest2.getId());
+        subscribeList.add(subscribe1);
+        subscribeList.add(subscribe2);
+
+
+        InterestDto interestDto1 = InterestFixture.interestDtoCreate(interest1,true);
+        InterestDto interestDto2 = InterestFixture.interestDtoCreate(interest2,false);
+        interestDtoList.add(interestDto1);
+        interestDtoList.add(interestDto2);
+
 
     }
 
@@ -71,15 +86,16 @@ public class InterestListTest {
                 .after(null)
                 .limit(1)
                 .build();
+
         when(interestRepository.search(any(InterestSearchRequest.class))).thenReturn(List.of(interest1,interest2));
         when(interestRepository.totalElements(any(InterestSearchRequest.class))).thenReturn(2L);
-        when(subscribeRepository.existsByUserIdAndInterestId(any(UUID.class), any(UUID.class))).thenReturn(true);
-        when(interestMapper.toDto(any(Interest.class),any(Boolean.class))).thenReturn(interestDto);
+        when(subscribeRepository.findByUserIdAndInterestIdIn(any(UUID.class), anyList())).thenReturn(subscribeList);
+        when(interestMapper.toDtoList(anyList(),anyList())).thenReturn(interestDtoList);
         //when
         CursorPageResponseInterestDto response = basicInterestService.interestList(userId,req);
         //then
         //값 검증
-        assertThat(response.content()).isEqualTo(List.of(interestDto));
+        assertThat(response.content()).isEqualTo(List.of(interestDtoList.get(0)));
         assertThat(response.nextCursor()).isEqualTo(interest1.getName());
         assertThat(response.nextAfter()).isEqualTo(interest1.getCreatedAt().toString());
         assertThat(response.size()).isEqualTo(1);
@@ -89,8 +105,8 @@ public class InterestListTest {
         //행위 검증
         verify(interestRepository,times(1)).search(any(InterestSearchRequest.class));
         verify(interestRepository,times(1)).totalElements(any(InterestSearchRequest.class));
-        verify(subscribeRepository,times(1)).existsByUserIdAndInterestId(any(UUID.class), any(UUID.class));
-        verify(interestMapper,times(1)).toDto(any(Interest.class),any(Boolean.class));
+        verify(subscribeRepository,times(1)).findByUserIdAndInterestIdIn(any(UUID.class), anyList());
+        verify(interestMapper,times(1)).toDtoList(anyList(),anyList());
     }
 
     @Test
@@ -105,16 +121,16 @@ public class InterestListTest {
                 .after(LocalDateTime.now().toString())
                 .limit(1)
                 .build();
-        when(interestRepository.search(any(InterestSearchRequest.class))).thenReturn(List.of(interest2));
+
+        when(interestRepository.search(any(InterestSearchRequest.class))).thenReturn(List.of(interest1));
         when(interestRepository.totalElements(any(InterestSearchRequest.class))).thenReturn(1L);
-        when(subscribeRepository.existsByUserIdAndInterestId(any(UUID.class), any(UUID.class))).thenReturn(true);
-        when(interestMapper.toDto(any(Interest.class),any(Boolean.class))).thenReturn(interestDto);
+        when(subscribeRepository.findByUserIdAndInterestIdIn(any(UUID.class), anyList())).thenReturn(subscribeList);
+        when(interestMapper.toDtoList(anyList(),anyList())).thenReturn(interestDtoList);
         //when
         CursorPageResponseInterestDto response = basicInterestService.interestList(userId,req);
         //then
         //값 검증
-        //값 검증
-        assertThat(response.content()).isEqualTo(List.of(interestDto));
+        assertThat(response.content()).isEqualTo(List.of(interestDtoList.get(0)));
         assertThat(response.nextCursor()).isNull();
         assertThat(response.nextAfter()).isNull();
         assertThat(response.size()).isEqualTo(1);
@@ -124,7 +140,7 @@ public class InterestListTest {
         //행위 검증
         verify(interestRepository,times(1)).search(any(InterestSearchRequest.class));
         verify(interestRepository,times(1)).totalElements(any(InterestSearchRequest.class));
-        verify(subscribeRepository,times(1)).existsByUserIdAndInterestId(any(UUID.class), any(UUID.class));
-        verify(interestMapper,times(1)).toDto(any(Interest.class),any(Boolean.class));
+        verify(subscribeRepository,times(1)).findByUserIdAndInterestIdIn(any(UUID.class), anyList());
+        verify(interestMapper,times(1)).toDtoList(anyList(),anyList());
     }
 }

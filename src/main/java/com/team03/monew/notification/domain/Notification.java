@@ -19,7 +19,7 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "userId", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private UUID userId;
 
     @Column(name = "context", nullable = false)
@@ -29,18 +29,18 @@ public class Notification {
     @Column(name = "resource", length = 10, nullable = false)
     private NoticeResourceType resource;
 
-    @Column(name = "resourceId", nullable = false)
+    @Column(name = "resource_id", nullable = false)
     private UUID resourceId;
 
-    @Column(name = "isChecked", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    @Column(name = "is_checked", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean isChecked;
 
     @CreationTimestamp
-    @Column(name = "creationAt", updatable = false)
-    private LocalDateTime creationAt;
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     private Notification(
@@ -50,7 +50,7 @@ public class Notification {
             NoticeResourceType resource,
             UUID resourceId,
             boolean isChecked,
-            LocalDateTime creationAt,
+            LocalDateTime createdAt,
             LocalDateTime updatedAt
     ) {
         this.id = id;
@@ -59,7 +59,7 @@ public class Notification {
         this.resource = resource;
         this.resourceId = resourceId;
         this.isChecked = isChecked;
-        this.creationAt = creationAt;
+        this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
@@ -95,15 +95,5 @@ public class Notification {
             UUID resourceId
     ) {
         return new Notification(userId, context, resource, resourceId);
-    }
-
-    // 만료일이 지난는가
-    public boolean isExpired() {
-        return isChecked && updatedAt.isBefore(LocalDateTime.now().minusWeeks(1));
-    }
-
-    // 알림 확인 수정 (지워야 하나?)
-    public void check() {
-        this.isChecked = true;
     }
 }

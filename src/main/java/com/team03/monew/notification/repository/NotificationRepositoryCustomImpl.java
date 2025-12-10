@@ -30,7 +30,7 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
                         notification.isChecked.eq(false),
                         cursorCondition(cursor)
                 )
-                .orderBy(notification.creationAt.desc())
+                .orderBy(notification.createdAt.desc())
                 .limit(size + 1)
                 .fetch();
 
@@ -47,7 +47,7 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
                         notification.userId.eq(userId),
                         notification.isChecked.eq(false)
                 )
-                .orderBy(notification.creationAt.desc())
+                .orderBy(notification.createdAt.desc())
                 .limit(size + 1)
                 .fetch();
 
@@ -61,7 +61,7 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
         
         try {
             LocalDateTime cursorDateTime = LocalDateTime.parse(cursor);
-            return notification.creationAt.lt(cursorDateTime);
+            return notification.createdAt.lt(cursorDateTime);
         } catch (Exception e) {
             return null;
         }

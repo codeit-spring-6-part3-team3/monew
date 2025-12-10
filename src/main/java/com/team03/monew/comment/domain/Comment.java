@@ -19,31 +19,31 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "articleId", nullable = false)
+    @Column(name = "article_id", nullable = false)
     private UUID articleId;
 
-    @Column(name = "userId", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private UUID userId;
 
     @Column(name = "content", nullable = false, length = 500)
     private String content;
 
     @CreationTimestamp
-    @Column(name = "creationAt", nullable = false, updatable = false)
-    private LocalDateTime creationAt;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "likeCount", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    @Column(name = "like_count", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Long likeCount;
 
-    @Column(name = "likedByMe", nullable = false, columnDefinition = "FALSE")
+    @Column(name = "liked_by_me", nullable = false, columnDefinition = "FALSE")
     private boolean likedByMe;
 
     @UpdateTimestamp
-    @Column(name = "updateAt", nullable = false)
-    private LocalDateTime updateAt;
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
 
     // 논리 삭제용 필드 추가
-    @Column(name = "deletedAt", nullable = true)
+    @Column(name = "deleted_at", nullable = true)
     private LocalDateTime deletedAt;
 
     private Comment(
