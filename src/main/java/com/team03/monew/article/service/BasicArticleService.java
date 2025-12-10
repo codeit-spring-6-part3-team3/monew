@@ -1,8 +1,11 @@
 package com.team03.monew.article.service;
 
 import com.team03.monew.article.domain.Article;
+import com.team03.monew.article.exception.ArticleErrorCode;
 import com.team03.monew.articleviews.service.ArticleViewsService;
+import com.team03.monew.common.customerror.MonewException;
 import com.team03.monew.interest.domain.Interest;
+import com.team03.monew.interest.exception.InterestErrorCode;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.article.domain.ArticleSourceType;
 import com.team03.monew.article.dto.CursorPageResponseArticleDto;
@@ -10,9 +13,6 @@ import com.team03.monew.article.dto.ArticleCreateRequest;
 import com.team03.monew.article.dto.ArticleDeleteRequest;
 import com.team03.monew.article.dto.ArticleDto;
 import com.team03.monew.article.dto.ArticleResponseDto;
-import com.team03.monew.article.exception.CustomException.ArticleCanNotDelete;
-import com.team03.monew.article.exception.CustomException.ArticleNotFound;
-import com.team03.monew.article.exception.CustomException.SameResourceLink;
 import com.team03.monew.article.repository.ArticleRepository;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -71,13 +71,13 @@ public class BasicArticleService implements ArticleService {
 
     Optional<Article> existing = articleRepository.findByResourceLink(articleCreateRequest.resourceLink());
     if(existing.isPresent()) {
-      throw new SameResourceLink();
+      throw new MonewException(ArticleErrorCode.ARTICLE_DUPLICATE_LINK);
     }
 
     //관심사 조회
     Interest interest = interestRepository.findById(interestId)
         // 관심사 없을떄 예외 발생
-        .orElseThrow(() -> new RuntimeException());
+        .orElseThrow(() -> new MonewException(InterestErrorCode.INTERESTS_NOT_FOUND));
 
     //수집한 기사 중 관심사의 키워드를 포함하는 뉴스 기사만 저장합니다.
     boolean matchInterest = containText(articleCreateRequest, interest.getName()) || interest.getKeywords().stream()
@@ -110,7 +110,7 @@ public class BasicArticleService implements ArticleService {
   @Override
   public void deleteArticle_logical(ArticleDeleteRequest articleDeleteRequest) {
     Article article = articleRepository.findById(articleDeleteRequest.articleId())
-        .orElseThrow(ArticleNotFound::new);
+        .orElseThrow ( () -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
 
     article.deleteArticle();
     articleRepository.save(article);
@@ -121,10 +121,9 @@ public class BasicArticleService implements ArticleService {
   @Override
   public void deleteArticle_physical(ArticleDeleteRequest articleDeleteRequest) {
     Article article = articleRepository.findById(articleDeleteRequest.articleId())
-        .orElseThrow(ArticleNotFound::new);
-
+        .orElseThrow ( () -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
     if(!article.isDelete()){
-      throw new ArticleCanNotDelete();
+      throw new MonewException(ArticleErrorCode.ARTICLE_CANNOT_DELETE);
     }
     articleRepository.delete(article);
   }
@@ -137,7 +136,7 @@ public class BasicArticleService implements ArticleService {
 
     // 뉴스 기사 없을시 에러 처리
     Article article =  articleRepository.findById(articleId)
-        .orElseThrow(ArticleNotFound::new);
+        .orElseThrow ( () -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
 
     //초기 읽은 여부
     boolean viewedByMe = articleViewsService.isRead(article,userId);
