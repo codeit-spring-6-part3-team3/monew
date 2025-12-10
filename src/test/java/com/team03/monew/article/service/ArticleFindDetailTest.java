@@ -7,7 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.team03.monew.article.domain.Article;
-import com.team03.monew.articleView.service.ArticleViewsService;
+import com.team03.monew.articleviews.service.ArticleViewsService;
 import com.team03.monew.article.dto.ArticleDto;
 import com.team03.monew.article.exception.CustomException.ArticleNotFound;
 import com.team03.monew.article.repository.ArticleRepository;
