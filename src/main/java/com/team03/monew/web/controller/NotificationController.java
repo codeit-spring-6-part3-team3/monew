@@ -1,4 +1,4 @@
-package com.team03.monew.notification.controller;
+package com.team03.monew.web.controller;
 
 import com.team03.monew.notification.dto.CursorPageResponseNotificationDto;
 import com.team03.monew.notification.service.NotificationService;
@@ -22,22 +22,10 @@ public class NotificationController {
             @RequestParam(defaultValue = "50") int limit,
             @RequestParam() UUID userId
     ) {
-        CursorPageResponseNotificationDto response = notificationService.getUncheckedNotifications(userId, limit);
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping(params = "cursor")
-    public ResponseEntity<CursorPageResponseNotificationDto> getUncheckedNotificationWithCursor(
-            @RequestParam() UUID userId,
-            @RequestParam() String cursor,
-            @RequestParam(defaultValue = "50") int limit
-    ) {
-        CursorPageResponseNotificationDto response = notificationService.getUncheckedNotificationsWithCursor(
-                userId,
-                cursor,
-                limit
-        );
-        return ResponseEntity.ok(response);
+        if (cursor == null) {
+            return ResponseEntity.ok(notificationService.getUncheckedNotifications(userId, limit));
+        }
+        return ResponseEntity.ok(notificationService.getUncheckedNotificationsWithCursor(userId, cursor, limit));
     }
 
     @PatchMapping
