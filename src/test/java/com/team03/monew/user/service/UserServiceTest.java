@@ -33,7 +33,7 @@ class UserServiceTest {
     private UserMapper userMapper;
 
     @InjectMocks
-    private UserService userService;
+    private BasicUserService userService;
 
     @Test
     @DisplayName("회원가입 성공")
