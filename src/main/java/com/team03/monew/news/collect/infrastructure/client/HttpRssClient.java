@@ -32,7 +32,7 @@ public class HttpRssClient implements RssClient {
           .filter(p -> p.supports(source))
           .findFirst()
           .orElseThrow(() ->
-              new IllegalStateException("No RssParser supports press: " + source)
+              new RssParserNotFoundException(source)
           );
 
       map.put(source, parser);
