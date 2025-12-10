@@ -49,7 +49,7 @@ class HankyungRssParserTest {
     assertNotNull(news.postDate());
     // Hankyung 은 overview 를 title 로 사용
     assertEquals("테스트 기사 제목", news.overview());
-    assertEquals(NewsSourceType.korea, news.source());
+    assertEquals(NewsSourceType.KOREA, news.source());
   }
 
   @Test

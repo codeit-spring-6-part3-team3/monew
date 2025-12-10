@@ -47,7 +47,7 @@ class ChosunRssParserTest {
     assertNotNull(news);
     assertEquals("조선 기사", news.title());
     assertEquals("요약 내용입니다.", news.overview());
-    assertEquals(NewsSourceType.chosun, news.source());
+    assertEquals(NewsSourceType.CHOSUN, news.source());
   }
 
   @Test

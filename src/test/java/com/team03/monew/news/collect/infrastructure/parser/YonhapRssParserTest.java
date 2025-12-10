@@ -46,7 +46,7 @@ class YonhapRssParserTest {
 
     assertNotNull(news);
     assertEquals("요약 내용 A", news.overview());
-    assertEquals(NewsSourceType.yna, news.source());
+    assertEquals(NewsSourceType.YNA, news.source());
   }
 
   @Test
