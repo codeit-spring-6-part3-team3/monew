@@ -15,23 +15,23 @@ public interface NotificationRepository extends JpaRepository<Notification, UUID
 
     // 만료 알림 삭제 (배치 처리)
     @Modifying
-    @Query("DELETE FROM Notification n WHERE n.isChecked = true AND n.updatedAt < :expiredDate")
+    @Query("DELETE FROM Notification n WHERE n.is_checked = true AND n.updated_at < :expiredDate")
     int deleteExpiredNotifications(
-            @Param("expiredDate") LocalDateTime expiredDate
+            @Param("expired_date") LocalDateTime expiredDate
     );
 
     // 미확인 알림 한 번에 확인 처리
     @Modifying
-    @Query("UPDATE Notification n SET n.isChecked = true WHERE n.userId = :userId AND n.isChecked = false")
+    @Query("UPDATE Notification n SET n.is_checked = true WHERE n.user_id = :userId AND n.is_checked = false")
     int markAllAsChecked(
-            @Param("userId") UUID userId
+            @Param("user_id") UUID userId
     );
 
     // 미확인 알림 한 번에 확인 처리
     @Modifying
-    @Query("UPDATE Notification n SET n.isChecked = true WHERE n.userId = :userId AND n.id = :id AND n.isChecked = false")
+    @Query("UPDATE Notification n SET n.is_checked = true WHERE n.user_id = :userId AND n.id = :id AND n.is_checked = false")
     int markAsChecked(
             @Param("id") UUID id,
-            @Param("userId") UUID userId
+            @Param("user_id") UUID userId
     );
 }
