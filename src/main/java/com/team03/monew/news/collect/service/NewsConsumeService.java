@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -27,22 +26,23 @@ public class NewsConsumeService {
   private final NewsService newsService;
   private final NewsMapper newsMapper;
   private final ApplicationEventPublisher eventPublisher;
-  private final AsyncTaskExecutor asyncTaskExecutor;
 
-  private java.util.concurrent.Future<?> consumerFuture;
+  private Thread consumerThread;
   private volatile boolean running = true;
 
   @PostConstruct
   public void startConsumerThread() {
-    consumerFuture = asyncTaskExecutor.submit(this::consumeLoop);
-    log.info("News consumer started on async executor.");
+    consumerThread = new Thread(this::consumeLoop, "news-consumer-thread");
+    consumerThread.setDaemon(true);
+    consumerThread.start();
+    log.info("News consumer thread started.");
   }
 
   @PreDestroy
   public void stopConsumerThread() {
     running = false;
-    if (consumerFuture != null) {
-      consumerFuture.cancel(true);
+    if (consumerThread != null) {
+      consumerThread.interrupt();
     }
   }
 
