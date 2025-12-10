@@ -80,40 +80,46 @@ public class BasicInterestService implements InterestService {
 
         //CursorPageResponseInterestDto 값
         List<Interest> interestList = interestRepository.search(request);
+        Long totalElements = interestRepository.totalElements(request);
+        CursorPagingInfo nextCursor = extractCursorInfo(interestList,request.orderBy(),request.limit());
+
+        //사용자가 구독한 관심사 아이디 추출
+        List<UUID> interestIds = interestList.stream()
+                .map(Interest::getId)
+                .toList();
+        List<UUID> userInterestIds = subscribeRepository.findByUserIdAndInterestIdIn(userId,interestIds).stream()
+                .map(Subscribe::getInterestId)
+                .toList();
+
+        // Interest -> InterestDto 변환
+        List<InterestDto> interestDtoList = interestMapper.toDtoList(interestList,userInterestIds);
+
+        //반환형 조립
+        return CursorPageResponseInterestDto.builder().
+                content(interestDtoList.subList(0,request.limit()))
+                .nextCursor(nextCursor.nextCursor())
+                .nextAfter(nextCursor.nextAfter())
+                .size(interestDtoList.size()-1)
+                .totalElements(totalElements)
+                .hasNext(nextCursor.hasNext())
+                .build();
+    }
+
+    private CursorPagingInfo extractCursorInfo(List<Interest> interestList , String orderBy, int limit) {
+
+        boolean hasNext = interestList.size() == limit+1;
         String nextCursor = null;
         String nextAfter= null;
-        Long totalElements = interestRepository.totalElements(request);
-        boolean hasNext = interestList.size() == request.limit()+1;
-
-        // hasNext가 true 면 마지막 확인 요소 제거
-        // nextCursor, nextAfter 설정
         if (hasNext) {
-            interestList = interestList.subList(0, request.limit());
-            if(request.orderBy().equalsIgnoreCase("name")){
+            interestList = interestList.subList(0, limit);
+            if(orderBy.equalsIgnoreCase("name")){
                 nextCursor = interestList.get(interestList.size()-1).getName();
             }else {
                 nextCursor = interestList.get(interestList.size()-1).getSubscribeCount().toString();
             }
             nextAfter = interestList.get(interestList.size()-1).getCreatedAt().toString();
         }
-
-
-        // Interest -> InterestDto 변환
-        List<InterestDto> interestDtoList = new ArrayList<>();
-        for (Interest interest : interestList) {
-            Boolean subscribedByMe = subscribeRepository.existsByUserIdAndInterestId(userId, interest.getId());
-            interestDtoList.add(interestMapper.toDto(interest,subscribedByMe));
-        }
-
-        //반환형 조립
-        return CursorPageResponseInterestDto.builder().
-                content(interestDtoList)
-                .nextCursor(nextCursor)
-                .nextAfter(nextAfter)
-                .size(interestDtoList.size())
-                .totalElements(totalElements)
-                .hasNext(hasNext)
-                .build();
+        return new CursorPagingInfo(nextCursor,nextAfter,hasNext);
     }
 
 }

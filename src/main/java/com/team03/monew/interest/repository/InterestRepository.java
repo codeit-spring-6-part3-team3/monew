@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface InterestRepository extends JpaRepository<Interest, UUID>, InterestRepositoryCustom {
 
-    List<Interest> findByIdIn(List<UUID> userId);
+    List<Interest> findByIdIn(List<UUID> interestId);
 }
