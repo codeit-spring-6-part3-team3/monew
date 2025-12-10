@@ -1,4 +1,4 @@
-package com.team03.monew.articleView.service;
+package com.team03.monew.articleviews.service;
 
 import com.team03.monew.article.domain.Article;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.team03.monew.articleView.domain;
+package com.team03.monew.articleviews.domain;
 
 import com.team03.monew.article.domain.Article;
 import com.team03.monew.user.domain.User;

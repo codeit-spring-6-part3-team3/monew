@@ -1,6 +1,6 @@
 package com.team03.monew.article.repository;
 
-import static com.team03.monew.articleView.domain.QArticleViews.articleViews;
+import static com.team03.monew.articleviews.domain.QArticleViews.articleViews;
 
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;

@@ -1,4 +1,4 @@
-package com.team03.monew.articleView.service;
+package com.team03.monew.articleviews.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -7,8 +7,8 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.team03.monew.articleView.domain.ArticleViews;
-import com.team03.monew.articleView.repository.ArticleViewsRepository;
+import com.team03.monew.articleviews.domain.ArticleViews;
+import com.team03.monew.articleviews.repository.ArticleViewsRepository;
 import com.team03.monew.article.domain.Article;
 import com.team03.monew.user.domain.User;
 import com.team03.monew.user.repository.UserRepository;
