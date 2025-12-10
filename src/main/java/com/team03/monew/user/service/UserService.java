@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class UserService {
+public class UserService implements UserServiceInterface {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
@@ -64,6 +64,28 @@ public class UserService {
         }
 
         // 로그인 응답 반환
+        return userMapper.toDto(user);
+    }
+
+    /**
+     * 사용자 ID로 사용자 정보를 조회합니다.
+     * 다른 도메인에서 사용자 정보를 조회할 때 사용합니다.
+     * 
+     * @param userId 사용자 ID
+     * @return UserDto 사용자 정보
+     * @throws UserNotFoundException 사용자를 찾을 수 없거나 논리 삭제된 경우
+     */
+    public UserDto findById(UUID userId) {
+        // 사용자 조회
+        User user = userRepository.findById(userId)
+                .orElseThrow(UserNotFoundException::new);
+
+        // 논리 삭제된 사용자 체크
+        if (user.isDeleted()) {
+            throw new UserNotFoundException();
+        }
+
+        // DTO로 변환하여 반환
         return userMapper.toDto(user);
     }
 
