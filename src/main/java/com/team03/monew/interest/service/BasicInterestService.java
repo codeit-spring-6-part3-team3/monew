@@ -1,8 +1,9 @@
 package com.team03.monew.interest.service;
 
-import com.sun.jdi.request.DuplicateRequestException;
 import com.team03.monew.interest.domain.Interest;
 import com.team03.monew.interest.dto.*;
+import com.team03.monew.interest.exception.DuplicateInterestNameException;
+import com.team03.monew.interest.exception.InterestsNotFoundException;
 import com.team03.monew.interest.mapper.InterestMapper;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.subscribe.domain.Subscribe;
@@ -10,11 +11,8 @@ import com.team03.monew.subscribe.repository.SubscribeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import java.rmi.NoSuchObjectException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,7 +35,8 @@ public class BasicInterestService implements InterestService {
         //관심사 이름 유사도 80% 이상 관심사 이름 중복으로 409코드 반환
         if(NameDuplication){
             // 커스텀 에러 추가 예정
-            throw new DuplicateKeyException("이미 비슷한 관심사 이름있음");
+            log.error("관심사 중복 이름 오류: 중복 이름={}", request.name());
+            throw new DuplicateInterestNameException();
         }
 
         //관심사 생성
@@ -53,9 +52,9 @@ public class BasicInterestService implements InterestService {
     }
 
     @Override
-    public InterestDto interestUpdate(UUID interest,InterestUpdateRequest request) throws NoSuchObjectException {
+    public InterestDto interestUpdate(UUID interest,InterestUpdateRequest request) {
         Interest interestUpdate = interestRepository.findById(interest)
-                .orElseThrow(() -> new NoSuchObjectException("해당 관심사 없음"));
+                .orElseThrow(InterestsNotFoundException::new);
 
         interestUpdate.keywordUpdate(request.keywords());
 
@@ -63,9 +62,9 @@ public class BasicInterestService implements InterestService {
         return interestMapper.toDto(interestUpdate,null);
     }
 
-    public void interestDelete(UUID interest) throws NoSuchObjectException {
+    public void interestDelete(UUID interest) {
         Interest interestDelete = interestRepository.findById(interest)
-                .orElseThrow(()-> new NoSuchObjectException("관심사 정보 없음"));
+                .orElseThrow(InterestsNotFoundException::new);
 
         List<Subscribe> subscribeList = subscribeRepository.findAll().stream()
                 .filter(subscribe -> subscribe.getInterestId().equals(interestDelete.getId()))
@@ -82,6 +81,11 @@ public class BasicInterestService implements InterestService {
         List<Interest> interestList = interestRepository.search(request);
         Long totalElements = interestRepository.totalElements(request);
         CursorPagingInfo nextCursor = extractCursorInfo(interestList,request.orderBy(),request.limit());
+
+        //interestList 비어 있으면 비어있는 CursorPageResponseInterestDto 반환
+        if (interestList.isEmpty()) {
+            return new CursorPageResponseInterestDto();
+        }
 
         //사용자가 구독한 관심사 아이디 추출
         List<UUID> interestIds = interestList.stream()
