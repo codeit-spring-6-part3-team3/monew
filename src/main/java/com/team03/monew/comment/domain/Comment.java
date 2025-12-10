@@ -72,6 +72,16 @@ public class Comment {
         this.likeCount = likeCount;
     }
 
+    public void increaseLikeCount() {
+        this.likeCount++;
+    }
+
+    public void decreaseLikeCount() {
+        if (this.likeCount > 0) {
+            this.likeCount--;
+        }
+    }
+
     public void changeLikedByMe(boolean likedByMe) {
         this.likedByMe = likedByMe;
     }
