@@ -12,7 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.rmi.NoSuchObjectException;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -63,4 +65,18 @@ public class BasicSubscribeService implements SubscribeService {
         subscribeRepository.delete(subscribe);
     }
 
+    @Override
+    public List<SubscribeDto> subscribeUser(UUID userId) throws NoSuchObjectException {
+        userRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchObjectException("유저 정보 없음"));
+
+        List<Subscribe> subscribes = subscribeRepository.findTop10ByUserIdOrderByCreatedAtDesc(userId);
+
+        List<UUID> interestId = subscribes.stream()
+                .map(Subscribe::getInterestId)
+                .toList();
+
+        List<Interest> interests = interestRepository.findByIdIn(interestId);
+        return subscribeMapper.toDtos(subscribes, interests);
+    }
 }
