@@ -35,6 +35,9 @@ public class Comment {
     @Column(name = "likeCount", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Long likeCount;
 
+    @Column(name = "likedByMe", nullable = false, columnDefinition = "FALSE")
+    private boolean likedByMe;
+
     @UpdateTimestamp
     @Column(name = "updateAt", nullable = false)
     private LocalDateTime updateAt;
@@ -46,13 +49,11 @@ public class Comment {
     private Comment(
             UUID articleId,
             UUID userId,
-            String content,
-            Long likeCount
+            String content
     ) {
         this.articleId = articleId;
         this.userId = userId;
         this.content = content;
-        this.likeCount = likeCount;
     }
 
     public static Comment of(
@@ -60,7 +61,7 @@ public class Comment {
             UUID userId,
             String content
     ) {
-        return new Comment(articleId, userId, content, 0L);
+        return new Comment(articleId, userId, content);
     }
 
     public void changeContent(String content) {
@@ -71,12 +72,8 @@ public class Comment {
         this.likeCount = likeCount;
     }
 
-    public void incrementLikeCount() {
-        this.likeCount++;
-    }
-
-    public void decrementLikeCount() {
-        this.likeCount--;
+    public void changeLikedByMe(boolean likedByMe) {
+        this.likedByMe = likedByMe;
     }
 
     public void softDelete() {

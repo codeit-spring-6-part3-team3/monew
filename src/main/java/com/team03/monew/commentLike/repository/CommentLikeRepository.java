@@ -19,6 +19,10 @@ public interface CommentLikeRepository extends JpaRepository<CommentLike, UUID> 
             @Param("userId") UUID userId
     );
 
+    boolean existsByCommentIdAndUserId(UUID commentId, UUID userId);
+
     // 좋아요 취소
     void deleteByCommentIdAndUserId(UUID commentId, UUID userId);
+
+    Long countCommentLikeByCommentId(UUID commentId);
 }

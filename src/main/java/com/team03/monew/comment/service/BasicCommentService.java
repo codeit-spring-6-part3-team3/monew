@@ -3,6 +3,9 @@ package com.team03.monew.comment.service;
 import com.team03.monew.comment.domain.Comment;
 import com.team03.monew.comment.dto.*;
 import com.team03.monew.comment.repository.CommentRepository;
+import com.team03.monew.commentLike.service.CommentLikeService;
+import com.team03.monew.user.dto.UserDto;
+import com.team03.monew.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -20,6 +23,8 @@ import java.util.UUID;
 public class BasicCommentService implements CommentService{
 
     private final CommentRepository commentRepository;
+    private final CommentLikeService commentLikeService;
+    private final UserService userService;
 
     @Override
     @Transactional
@@ -100,8 +105,7 @@ public class BasicCommentService implements CommentService{
 
     @Transactional
     public void updateComment(UUID commentId, CommentUserIdRequest userId, CommentUpdateRequest content) {
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new IllegalArgumentException("댓글 찾을 수 없음"));
+        Comment comment = findById(commentId);
 
         if (comment.isDeleted()) {
             throw new IllegalArgumentException("삭제된 댓글");
@@ -117,17 +121,58 @@ public class BasicCommentService implements CommentService{
     // 논리 삭제
     @Transactional
     public void deleteComment(UUID commentId) {
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new IllegalArgumentException("댓글 찾을 수 없음"));
+        Comment comment = findById(commentId);
 
         comment.softDelete();
     }
 
     @Transactional
     public void deleteCommentHard(UUID commentId) {
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new IllegalArgumentException("댓글 찾을 수 없음"));
+        Comment comment = findById(commentId);
 
-        commentRepository.deleteById(commentId);
+        commentRepository.delete(comment);
+    }
+
+    private Comment findById(UUID commentId) {
+        return commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 댓글 없음"));
+    }
+
+    @Override
+    public CommentDto findByIdAndUserId(UUID commentId, UUID userId) {
+        Comment comment = findById(commentId);
+        UserDto user = userService.findById(userId);
+
+        return new CommentDto(
+                comment.getId(),
+                comment.getArticleId(),
+                comment.getUserId(),
+                user.nickname(),
+                comment.getContent(),
+                comment.getLikeCount(),
+                commentLikeService.isLiked(commentId, userId),
+                comment.getCreationAt());
+    }
+
+    @Override
+    @Transactional
+    public void likeComment(UUID commentId, UUID userId) {
+        Comment comment = findById(commentId);
+
+        commentLikeService.like(commentId, userId);
+        comment.changeLikeCount(commentLikeService.countByCommentId(commentId));
+        comment.changeLikedByMe(commentLikeService.isLiked(commentId, userId));
+        commentRepository.save(comment);
+    }
+
+    @Override
+    @Transactional
+    public void unlikeComment(UUID commentId, UUID userId) {
+        Comment comment = findById(commentId);
+
+        commentLikeService.unlike(commentId, userId);
+        comment.changeLikeCount(commentLikeService.countByCommentId(commentId));
+        comment.changeLikedByMe(commentLikeService.isLiked(commentId, userId));
+        commentRepository.save(comment);
     }
 }
