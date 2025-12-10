@@ -36,21 +36,22 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Getter
 @Table(name = "news",
   uniqueConstraints = {
-    @UniqueConstraint(columnNames = "resourceLink")
+    @UniqueConstraint(columnNames = "resource_link")
   }
 )
 public class News {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private UUID articleId;
+  @Column(name = "article_id")
+  private UUID id;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "source")
   private NewsSourceType source;
 
   // 크기 늘리는것이 필요할것 같음
-  @Column(name = "resourceLink",length = 300)
+  @Column(name = "resource_link",length = 300)
   private String resourceLink;
 
 
@@ -60,32 +61,32 @@ public class News {
 
   //* -> 현재 동사형이고 나머지는 과거로 되어있어서 일관성이 없다 -> 확인해보아라
   // postedAt으로 표기. ->  컨벤션들이 일관
-  @Column(name = "postDate")
-  private LocalDateTime postDate;
+  @Column(name = "posted_at")
+  private LocalDateTime postedAt;
 
   @Column(name = "overview", length = 1000)
   private String overview;
 
-  @Column(name = "viewCount",columnDefinition = "INTEGER DEFAULT 0")
+  @Column(name = "view_count",columnDefinition = "INTEGER DEFAULT 0")
   private long viewCount;
 
-  @Column(name = "commentCount",columnDefinition = "INTEGER DEFAULT 0")
+  @Column(name = "comment_count",columnDefinition = "INTEGER DEFAULT 0")
   private long commentCount;
 
   // * 컬럼명은 동사 과거형으로 써 두는것이 디폴트
-  @Column(name = "creationAt", updatable = false)
+  @Column(name = "created_at", updatable = false)
   @CreatedDate
   private LocalDateTime createdAt;
 
-  @Column(name = "updatedAt",nullable = true)
+  @Column(name = "updated_at",nullable = true)
   @LastModifiedDate
   private LocalDateTime updatedAt;
 
-  @Column(name = "isDelete",columnDefinition = "boolean default false")
+  @Column(name = "is_delete",columnDefinition = "boolean default false")
   private boolean isDelete;
 
   @ManyToOne
-  @JoinColumn(name = "interestId")
+  @JoinColumn(name = "interest_id")
   private Interest interest;
 
   @Builder
@@ -93,7 +94,7 @@ public class News {
       NewsSourceType source,
       String resourceLink,
       String title,
-      LocalDateTime postDate,
+      LocalDateTime postedAt,
       String overview,
       long viewCount,
       long commentCount,
@@ -104,7 +105,7 @@ public class News {
     this.source = source;
     this.resourceLink = resourceLink;
     this.title = title;
-    this.postDate = postDate;
+    this.postedAt = postedAt;
     this.overview = overview;
     this.viewCount = viewCount;
     this.commentCount = commentCount;

@@ -18,11 +18,11 @@ public record NewsDto(
 ) {
   public static NewsDto from(News news, boolean viewedByMe) {
     return new NewsDto(
-        news.getArticleId(),
+        news.getId(),
         news.getSource(),
         news.getResourceLink(),
         news.getTitle(),
-        news.getPostDate(),
+        news.getPostedAt(),
         news.getOverview(),
         news.getCommentCount(),
         news.getViewCount(),

@@ -93,7 +93,7 @@ public class BasicNewsService implements NewsService {
         .source(newsCreateRequest.source())
         .resourceLink(newsCreateRequest.resourceLink())
         .title(newsCreateRequest.title())
-        .postDate(newsCreateRequest.postDate())
+        .postedAt(newsCreateRequest.postDate())
         .overview(newsCreateRequest.overView())
         .interest(interest)
         .build();

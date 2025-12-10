@@ -15,11 +15,11 @@ public record NewsResponseDto (
 ) {
   public static NewsResponseDto from(News news) {
     return new NewsResponseDto(
-        news.getArticleId(),
+        news.getId(),
         news.getSource(),
         news.getResourceLink(),
         news.getTitle(),
-        news.getPostDate(),
+        news.getPostedAt(),
         news.getOverview()
     );
   }

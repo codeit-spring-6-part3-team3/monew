@@ -18,7 +18,7 @@ public class BasicNewsViewsService implements NewsViewsService {
       return false;
     }
 
-    boolean alreadyRead = newsViewsRepository.existsByArticleIdAndUserId(news.getArticleId(), userId);
+    boolean alreadyRead = newsViewsRepository.existsByArticleIdAndUserId(news.getId(), userId);
     //이미 뉴스를 읽었는지 확인
     if(alreadyRead){
       return true;
