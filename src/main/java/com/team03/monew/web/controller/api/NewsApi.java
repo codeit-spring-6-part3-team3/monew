@@ -1,4 +1,4 @@
-package com.team03.monew.news.controller.api;
+package com.team03.monew.web.controller.api;
 
 import com.team03.monew.news.domain.NewsSourceType;
 import com.team03.monew.news.dto.CursorPageResponseArticleDto;
