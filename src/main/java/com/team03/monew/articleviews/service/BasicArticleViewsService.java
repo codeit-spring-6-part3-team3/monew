@@ -1,16 +1,22 @@
-package com.team03.monew.articleView.service;
+package com.team03.monew.articleviews.service;
 
-import com.team03.monew.articleView.domain.ArticleViews;
-import com.team03.monew.articleView.repository.ArticleViewsRepository;
+import com.team03.monew.articleviews.domain.ArticleViews;
+import com.team03.monew.articleviews.repository.ArticleViewsRepository;
 import com.team03.monew.article.domain.Article;
 import com.team03.monew.user.domain.User;
 import com.team03.monew.user.repository.UserRepository;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@RequiredArgsConstructor
+@Transactional
 public class BasicArticleViewsService implements ArticleViewsService {
 
-  private ArticleViewsRepository articleViewsRepository;
-  private UserRepository userRepository;
+  private final ArticleViewsRepository articleViewsRepository;
+  private final UserRepository userRepository;
 
   @Override
   public boolean isRead(Article article, UUID userId) {
