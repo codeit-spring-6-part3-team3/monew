@@ -13,7 +13,8 @@ public interface CommentService {
     void deleteComment(UUID commentId);
     void deleteCommentHard(UUID commentId);
     CommentDto findByIdAndUserId(UUID commentId, UUID userId);
-    void likeComment(UUID commentId, UUID userId);
-    void unlikeComment(UUID commentId, UUID userId);
     List<CommentActivityDto> topTenByUserId(UUID userId);
+    Comment findById(UUID commentId);
+    void increaseLikeCount(UUID commentId);
+    void decreaseLikeCount(UUID commentId);
 }
