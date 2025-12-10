@@ -1,20 +1,22 @@
 package com.team03.monew.subscribe.service;
 
 import com.team03.monew.interest.domain.Interest;
+import com.team03.monew.interest.exception.InterestsNotFoundException;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.subscribe.domain.Subscribe;
 import com.team03.monew.subscribe.dto.SubscribeDto;
 import com.team03.monew.subscribe.mapper.SubscribeMapper;
 import com.team03.monew.subscribe.repository.SubscribeRepository;
+import com.team03.monew.user.exception.UserNotFoundException;
 import com.team03.monew.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.rmi.NoSuchObjectException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -29,13 +31,13 @@ public class BasicSubscribeService implements SubscribeService {
 
     //1 구독 기능 구독 생성
     @Override
-    public SubscribeDto subscribeCreate(UUID userId, UUID interestId) throws NoSuchObjectException {
+    public SubscribeDto subscribeCreate(UUID userId, UUID interestId) {
 
         userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchObjectException("유저 정보 없음"));
+                .orElseThrow(UserNotFoundException::new);
 
         Interest interest = interestRepository.findById(interestId)
-                .orElseThrow(() -> new NoSuchObjectException("관심사 정보 없음"));
+                .orElseThrow(InterestsNotFoundException::new);
 
         Subscribe subscribe = Subscribe.builder()
                 .userId(userId)
@@ -49,16 +51,20 @@ public class BasicSubscribeService implements SubscribeService {
 
     //2 구독 기능 구독 삭재
     @Override
-    public void subscribeDelete(UUID userId, UUID interestId) throws NoSuchObjectException {
+    public void subscribeDelete(UUID userId, UUID interestId) {
 
         userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchObjectException("유저 정보 없음"));
+                .orElseThrow(UserNotFoundException::new);
 
         Interest interest = interestRepository.findById(interestId)
-                .orElseThrow(() -> new NoSuchObjectException("관심사 정보 없음"));
+                .orElseThrow(InterestsNotFoundException::new);
 
         Subscribe subscribe = subscribeRepository.findByUserIdAndInterestId(userId, interestId)
-                .orElseThrow(() -> new NoSuchObjectException("구독 정보 없음"));
+                .orElse(null);
+
+        if (subscribe == null) {
+            return;
+        }
 
         interest.subscribeRemove();
         interestRepository.save(interest);
@@ -66,11 +72,15 @@ public class BasicSubscribeService implements SubscribeService {
     }
 
     @Override
-    public List<SubscribeDto> subscribeUser(UUID userId) throws NoSuchObjectException {
+    public List<SubscribeDto> subscribeUser(UUID userId) {
         userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchObjectException("유저 정보 없음"));
+                .orElseThrow(UserNotFoundException::new);
 
         List<Subscribe> subscribes = subscribeRepository.findTop10ByUserIdOrderByCreatedAtDesc(userId);
+
+        if (subscribes.isEmpty()) {
+            return new ArrayList<>();
+        }
 
         List<UUID> interestId = subscribes.stream()
                 .map(Subscribe::getInterestId)

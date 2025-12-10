@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SubscribeService {
-    SubscribeDto subscribeCreate(UUID userId, UUID interestId) throws NoSuchObjectException;
-    void subscribeDelete(UUID userId, UUID interestId) throws NoSuchObjectException;
-    List<SubscribeDto> subscribeUser(UUID userId) throws NoSuchObjectException;
+    SubscribeDto subscribeCreate(UUID userId, UUID interestId);
+    void subscribeDelete(UUID userId, UUID interestId);
+    List<SubscribeDto> subscribeUser(UUID userId);
 }
