@@ -46,7 +46,7 @@ public class InterestController implements InterestApi {
             @Valid
             @RequestBody
             InterestUpdateRequest request
-    ) throws NoSuchObjectException {
+    ) {
         InterestDto response = interestService.interestUpdate(interestId,request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -81,7 +81,7 @@ public class InterestController implements InterestApi {
             UUID interestId,
             @RequestParam(name = "Monew-Request-User-ID")
             UUID userId
-    ) throws NoSuchObjectException {
+    ) {
         SubscribeDto response = subscribeService.subscribeCreate(userId,interestId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -103,7 +103,7 @@ public class InterestController implements InterestApi {
     public ResponseEntity<Void> interestDelete(
             @PathVariable
             UUID interestId
-    ) throws NoSuchObjectException {
+    ){
         interestService.interestDelete(interestId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
