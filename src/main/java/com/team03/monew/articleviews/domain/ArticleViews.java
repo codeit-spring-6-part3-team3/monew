@@ -27,8 +27,8 @@ import lombok.NoArgsConstructor;
  *  **/
 @Table(name = "article_views",
     uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"viewed_by","article_id"})
-  }
+        @UniqueConstraint(columnNames = {"viewed_by","article_id"})
+    }
 )
 public class ArticleViews {
   @Id
@@ -57,7 +57,5 @@ public class ArticleViews {
   public void OnCreate() {
     this.createdAt = LocalDateTime.now();
   }
-
-
 
 }
