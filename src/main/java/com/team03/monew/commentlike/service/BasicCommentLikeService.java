@@ -1,10 +1,10 @@
-package com.team03.monew.commentLike.service;
+package com.team03.monew.commentlike.service;
 
 import com.team03.monew.comment.dto.CommentDto;
 import com.team03.monew.comment.service.CommentService;
-import com.team03.monew.commentLike.domain.CommentLike;
-import com.team03.monew.commentLike.dto.CommentLikeActivityDto;
-import com.team03.monew.commentLike.repository.CommentLikeRepository;
+import com.team03.monew.commentlike.domain.CommentLike;
+import com.team03.monew.commentlike.dto.CommentLikeActivityDto;
+import com.team03.monew.commentlike.repository.CommentLikeRepository;
 import com.team03.monew.notification.domain.NoticeResourceType;
 import com.team03.monew.notification.dto.NotificationCreateDto;
 import com.team03.monew.notification.service.NotificationService;
@@ -19,6 +19,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class BasicCommentLikeService implements CommentLikeService{
 
     private final CommentLikeRepository commentLikeRepository;
@@ -91,6 +92,6 @@ public class BasicCommentLikeService implements CommentLikeService{
 
     @Override
     public List<CommentLikeActivityDto> topTenByUserId(UUID userId) {
-        return commentLikeRepository.findTopTenByUserIdOrderByCreationAtDesc(userId);
+        return commentLikeRepository.findTopTenByUserIdOrderByCreatedAtDesc(userId);
     }
 }

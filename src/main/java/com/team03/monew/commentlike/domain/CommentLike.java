@@ -1,4 +1,4 @@
-package com.team03.monew.commentLike.domain;
+package com.team03.monew.commentlike.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -18,32 +18,32 @@ public class CommentLike {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "likedBy", nullable = false)
+    @Column(name = "liked_by", nullable = false)
     private UUID likedBy;
 
     @CreationTimestamp
-    @Column(name = "creationAt", nullable = false, updatable = false)
-    private LocalDateTime creationAt;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "commentId", nullable = false)
+    @Column(name = "comment_id", nullable = false)
     private UUID commentId;
 
-    @Column(name = "articleId", nullable = false)
+    @Column(name = "article_id", nullable = false)
     private UUID articleId;
 
-    @Column(name = "commentUserId", nullable = false)
+    @Column(name = "comment_user_id", nullable = false)
     private UUID commentUserId;
 
-    @Column(name = "commentUserNickname", nullable = false)
+    @Column(name = "comment_user_nickname", nullable = false)
     private String commentUserNickname;
 
-    @Column(name = "commentContent", nullable = false)
+    @Column(name = "comment_content", nullable = false)
     private String commentContent;
 
-    @Column(name = "commentLikeCount", nullable = false)
+    @Column(name = "comment_like_count", nullable = false)
     private Long commentLikeCount;
 
-    @Column(name = "commentCreatedAt", nullable = false)
+    @Column(name = "comment_created_at", nullable = false)
     private LocalDateTime commentCreatedAt;
 
     private CommentLike(

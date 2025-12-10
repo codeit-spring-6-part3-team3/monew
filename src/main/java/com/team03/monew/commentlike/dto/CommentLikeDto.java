@@ -1,4 +1,4 @@
-package com.team03.monew.commentLike.dto;
+package com.team03.monew.commentlike.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

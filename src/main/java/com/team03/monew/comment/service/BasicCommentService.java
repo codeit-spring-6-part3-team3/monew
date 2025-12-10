@@ -3,7 +3,7 @@ package com.team03.monew.comment.service;
 import com.team03.monew.comment.domain.Comment;
 import com.team03.monew.comment.dto.*;
 import com.team03.monew.comment.repository.CommentRepository;
-import com.team03.monew.commentLike.service.CommentLikeService;
+import com.team03.monew.commentlike.service.CommentLikeService;
 import com.team03.monew.user.dto.UserDto;
 import com.team03.monew.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +45,7 @@ public class BasicCommentService implements CommentService{
                 savedComment.getContent(),
                 savedComment.getLikeCount(),
                 false,
-                savedComment.getCreationAt()
+                savedComment.getCreatedAt()
         );
 
         return convertComment;
@@ -151,7 +151,7 @@ public class BasicCommentService implements CommentService{
                 comment.getContent(),
                 comment.getLikeCount(),
                 commentLikeService.isLiked(commentId, userId),
-                comment.getCreationAt());
+                comment.getCreatedAt());
     }
 
     @Override
@@ -178,6 +178,6 @@ public class BasicCommentService implements CommentService{
 
     @Override
     public List<CommentActivityDto> topTenByUserId(UUID userId) {
-        return commentRepository.findTopTenByUserIdOrderByCreationAtDesc(userId);
+        return commentRepository.findTopTenByUserIdOrderByCreatedAtDesc(userId);
     }
 }

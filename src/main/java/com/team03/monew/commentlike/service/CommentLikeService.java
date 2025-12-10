@@ -1,7 +1,6 @@
-package com.team03.monew.commentLike.service;
+package com.team03.monew.commentlike.service;
 
-import com.team03.monew.commentLike.domain.CommentLike;
-import com.team03.monew.commentLike.dto.CommentLikeActivityDto;
+import com.team03.monew.commentlike.dto.CommentLikeActivityDto;
 
 import java.util.List;
 import java.util.UUID;

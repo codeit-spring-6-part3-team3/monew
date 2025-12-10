@@ -1,7 +1,7 @@
-package com.team03.monew.commentLike.repository;
+package com.team03.monew.commentlike.repository;
 
-import com.team03.monew.commentLike.domain.CommentLike;
-import com.team03.monew.commentLike.dto.CommentLikeActivityDto;
+import com.team03.monew.commentlike.domain.CommentLike;
+import com.team03.monew.commentlike.dto.CommentLikeActivityDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,9 +14,9 @@ import java.util.UUID;
 public interface CommentLikeRepository extends JpaRepository<CommentLike, UUID> {
 
     // 최근 좋아요 조회 (최대 10개)
-    @Query("SELECT cl FROM CommentLike cl WHERE cl.userId = :userId ORDER BY cl.creationAt DESC LIMIT 10")
-    List<CommentLikeActivityDto> findTopTenByUserIdOrderByCreationAtDesc(
-            @Param("userId") UUID userId
+    @Query("SELECT cl FROM CommentLike cl WHERE cl.user_id = :userId ORDER BY cl.created_at DESC LIMIT 10")
+    List<CommentLikeActivityDto> findTopTenByUserIdOrderByCreatedAtDesc(
+            @Param("user_id") UUID userId
     );
 
     boolean existsByCommentIdAndUserId(UUID commentId, UUID userId);

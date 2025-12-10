@@ -9,7 +9,7 @@ import java.util.UUID;
 @Builder
 public record CursorPageRequestCommentDto(
         UUID articleId,
-        @DefaultValue("creationAt") String orderBy,
+        @DefaultValue("created_at") String orderBy,
         @DefaultValue("DESC") String direction,
         String cursor,
         LocalDateTime after,
