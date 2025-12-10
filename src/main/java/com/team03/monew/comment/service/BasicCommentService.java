@@ -125,7 +125,7 @@ public class BasicCommentService implements CommentService{
                 user.nickname(),
                 comment.getContent(),
                 comment.getLikeCount(),
-                commentLikeService.isLiked(commentId, userId),
+                comment.isLikedByMe(),
                 comment.getCreatedAt());
     }
 
