@@ -1,7 +1,7 @@
 package com.team03.monew.article.service;
 
 import com.team03.monew.article.domain.Article;
-import com.team03.monew.articleView.service.ArticleViewsService;
+import com.team03.monew.articleviews.service.ArticleViewsService;
 import com.team03.monew.interest.domain.Interest;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.article.domain.ArticleSourceType;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
-@Transactional(rollbackFor = Exception.class)
+@Transactional(readOnly = true)
 @Service
 public class BasicArticleService implements ArticleService {
 
@@ -130,7 +130,9 @@ public class BasicArticleService implements ArticleService {
   }
 
   // 뉴스 단건 조회
+
   @Override
+  @Transactional // 내부에서 조회수 증가하기에 read only는 안씀
   public ArticleDto getDetailArticle(UUID articleId, UUID userId) {
 
     // 뉴스 기사 없을시 에러 처리
