@@ -175,4 +175,9 @@ public class BasicCommentService implements CommentService{
         comment.changeLikedByMe(commentLikeService.isLiked(commentId, userId));
         commentRepository.save(comment);
     }
+
+    @Override
+    public List<CommentActivityDto> topTenByUserId(UUID userId) {
+        return commentRepository.findTopTenByUserIdOrderByCreationAtDesc(userId);
+    }
 }

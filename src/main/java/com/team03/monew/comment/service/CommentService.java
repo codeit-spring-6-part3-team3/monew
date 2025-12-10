@@ -3,6 +3,7 @@ package com.team03.monew.comment.service;
 import com.team03.monew.comment.domain.Comment;
 import com.team03.monew.comment.dto.*;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface CommentService {
@@ -14,4 +15,5 @@ public interface CommentService {
     CommentDto findByIdAndUserId(UUID commentId, UUID userId);
     void likeComment(UUID commentId, UUID userId);
     void unlikeComment(UUID commentId, UUID userId);
+    List<CommentActivityDto> topTenByUserId(UUID userId);
 }
