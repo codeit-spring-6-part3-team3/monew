@@ -91,7 +91,7 @@ public class CommentRepositoryCustomImpl implements CommentRepositoryCustom{
     }
 
     private BooleanExpression afterCondition(LocalDateTime after) {
-        return after != null ? comment.createdAt.after(after) : null;
+        return after != null ? comment.createdAt.gt(after) : null;
     }
 
     private OrderSpecifier<?> getOrderSpecifier(CursorPageRequestCommentDto request) {

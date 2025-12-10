@@ -33,9 +33,7 @@ public class BasicCommentLikeService implements CommentLikeService{
         CommentDto comment = commentService.findByIdAndUserId(commentId, userId);
         UserDto user = userService.findById(userId);
 
-        if (commentLikeRepository.existsByCommentIdAndUserId(commentId, userId)) {
-            throw new IllegalArgumentException("이미 누름");
-        }
+        Long currentLikeCount = commentLikeRepository.countCommentLikeByCommentId(commentId);
 
         CommentLike commentLike = CommentLike.create(
                 userId,
@@ -44,7 +42,7 @@ public class BasicCommentLikeService implements CommentLikeService{
                 comment.userId(),
                 user.nickname(),
                 comment.content(),
-                commentLikeRepository.countCommentLikeByCommentId(commentId),
+                currentLikeCount,
                 comment.createdAt()
         );
 
