@@ -23,9 +23,9 @@ public class NotificationController {
             @RequestParam() UUID userId
     ) {
         if (cursor == null) {
-            return ResponseEntity.ok(notificationService.getUncheckedNotifications(userId, limit));
+            return ResponseEntity.ok(notificationService.getUncheckedNotifications(userId, limit, after));
         }
-        return ResponseEntity.ok(notificationService.getUncheckedNotificationsWithCursor(userId, cursor, limit));
+        return ResponseEntity.ok(notificationService.getUncheckedNotificationsWithCursor(userId, cursor, limit, after));
     }
 
     @PatchMapping

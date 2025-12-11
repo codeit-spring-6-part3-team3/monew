@@ -22,7 +22,7 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Slice<Notification> findNotificationsWithCursor(UUID userId, String cursor, int size) {
+    public Slice<Notification> findNotificationsWithCursor(UUID userId, String cursor, int size, String after) {
         List<Notification> notifications = queryFactory
                 .selectFrom(notification)
                 .where(
@@ -34,13 +34,11 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
                 .limit(size + 1)
                 .fetch();
 
-        return createSlice(notifications, size);
+        return createSlice(notifications, size, after);
     }
 
-    // 위 아래 두 메서드에 notification.isChecked.eq(false) 추가. 사유: unchecked를 포함한 페이지네이션 제한이 발생
-
     @Override
-    public Slice<Notification> findNotifications(UUID userId, int size) {
+    public Slice<Notification> findNotifications(UUID userId, int size, String after) {
         List<Notification> notifications = queryFactory
                 .selectFrom(notification)
                 .where(
@@ -51,7 +49,7 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
                 .limit(size + 1)
                 .fetch();
 
-        return createSlice(notifications, size);
+        return createSlice(notifications, size, after);
     }
 
     private BooleanExpression cursorCondition(String cursor) {
@@ -67,8 +65,8 @@ public class NotificationRepositoryCustomImpl implements NotificationRepositoryC
         }
     }
 
-    private Slice<Notification> createSlice(List<Notification> notifications, int size) {
-        boolean hasNext = notifications.size() > size;
+    private Slice<Notification> createSlice(List<Notification> notifications, int size, String after) {
+        boolean hasNext = after == null || notifications.size() <= size;
 
         if (hasNext) {
             notifications.remove(notifications.size() - 1);
