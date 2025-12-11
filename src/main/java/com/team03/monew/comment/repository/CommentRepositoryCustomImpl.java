@@ -76,10 +76,10 @@ public class CommentRepositoryCustomImpl implements CommentRepositoryCustom{
             return null;
         }
 
-        String orderBy = request.orderBy() != null ? request.orderBy() : "created_at";
+        String orderBy = request.orderBy() != null ? request.orderBy() : "createdAt";
         boolean isAsc = "asc".equalsIgnoreCase(request.direction());
 
-        if ("like_count".equals(orderBy)) {
+        if ("likeCount".equals(orderBy)) {
             Long cursorLikeCount = Long.parseLong(request.cursor());
             return isAsc ? comment.likeCount.gt(cursorLikeCount)
                     : comment.likeCount.lt(cursorLikeCount);
@@ -95,10 +95,10 @@ public class CommentRepositoryCustomImpl implements CommentRepositoryCustom{
     }
 
     private OrderSpecifier<?> getOrderSpecifier(CursorPageRequestCommentDto request) {
-        String orderBy = request.orderBy() != null ? request.orderBy() : "created_at";
+        String orderBy = request.orderBy() != null ? request.orderBy() : "createdAt";
         boolean isAsc = "asc".equalsIgnoreCase(request.direction());
 
-        if ("like_count".equals(orderBy)) {
+        if ("likeCount".equals(orderBy)) {
             return isAsc ? comment.likeCount.asc() : comment.likeCount.desc();
         }
 

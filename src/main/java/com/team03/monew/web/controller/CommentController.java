@@ -2,6 +2,7 @@ package com.team03.monew.web.controller;
 
 import com.team03.monew.comment.dto.*;
 import com.team03.monew.comment.service.CommentService;
+import com.team03.monew.commentlike.service.CommentLikeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,11 @@ import java.util.UUID;
 public class CommentController {
 
     private final CommentService commentService;
+    private final CommentLikeService commentLikeService;
 
-    public CommentController(CommentService commentService) {
+    public CommentController(CommentService commentService, CommentLikeService commentLikeService) {
         this.commentService = commentService;
+        this.commentLikeService = commentLikeService;
     }
 
     @GetMapping
@@ -57,7 +60,7 @@ public class CommentController {
             @PathVariable UUID commentId,
             @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ) {
-        commentService.increaseLikeCount(commentId);
+        commentLikeService.like(commentId, userId);
         return ResponseEntity.ok().build();
     }
 
@@ -66,7 +69,7 @@ public class CommentController {
             @PathVariable UUID commentId,
             @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ) {
-        commentService.decreaseLikeCount(commentId);
+        commentLikeService.unlike(commentId, userId);
         return ResponseEntity.noContent().build();
     }
 
