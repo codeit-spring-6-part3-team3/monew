@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Controller
@@ -21,8 +22,24 @@ public class CommentController {
 
     @GetMapping
     public ResponseEntity<CursorPageResponseCommentDto> listRead(
-            @RequestParam CursorPageRequestCommentDto request
+            @RequestParam(required = false) UUID articleId,
+            @RequestParam String orderBy,
+            @RequestParam String direction,
+            @RequestParam(required = false) String cursor,
+            @RequestParam(required = false) LocalDateTime after,
+            @RequestParam Integer limit,
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ) {
+
+        CursorPageRequestCommentDto request = CursorPageRequestCommentDto.builder()
+                .articleId(articleId)
+                .orderBy(orderBy)
+                .direction(direction)
+                .cursor(cursor)
+                .after(after)
+                .limit(limit)
+                .userId(userId)
+                .build();
         CursorPageResponseCommentDto response = commentService.getCommentList(request);
         return ResponseEntity.ok(response);
     }
@@ -38,7 +55,7 @@ public class CommentController {
     @PostMapping("{commentId}/comment-likes")
     public ResponseEntity<Void> like(
             @PathVariable UUID commentId,
-            @RequestParam CommentUserIdRequest request
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ) {
         commentService.increaseLikeCount(commentId);
         return ResponseEntity.ok().build();
@@ -47,7 +64,7 @@ public class CommentController {
     @DeleteMapping("{commentId}/comment-likes")
     public ResponseEntity<Void> unlike(
             @PathVariable UUID commentId,
-            @RequestParam CommentUserIdRequest request
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ) {
         commentService.decreaseLikeCount(commentId);
         return ResponseEntity.noContent().build();
@@ -64,10 +81,11 @@ public class CommentController {
     @PatchMapping("{commentId}")
     public ResponseEntity<Void> update(
             @PathVariable UUID commentId,
-            @RequestParam CommentUserIdRequest requestParam,
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId,
             @RequestBody CommentUpdateRequest requestBody
     ) {
-        commentService.updateComment(commentId, requestParam, requestBody);
+        CommentUserIdRequest commentUserIdRequest = new CommentUserIdRequest(userId);
+        commentService.updateComment(commentId, commentUserIdRequest, requestBody);
         return ResponseEntity.noContent().build();
     }
 

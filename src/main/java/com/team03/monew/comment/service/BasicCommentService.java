@@ -80,8 +80,13 @@ public class BasicCommentService implements CommentService{
             totalElements = commentRepository.countByArticleIdAndDeletedAtIsNull(request.articleId());
         }
 
+        List<CommentDto> content = new ArrayList<>();
+        if (!slice.getContent().isEmpty()) {
+            content = slice.getContent();
+        }
+
         return new CursorPageResponseCommentDto(
-                slice,
+                content,
                 nextCursor,
                 nextAfter,
                 slice.getContent().size(),
@@ -173,6 +178,7 @@ public class BasicCommentService implements CommentService{
     public void increaseLikeCount(UUID commentId) {
         Comment comment = findById(commentId);
         comment.increaseLikeCount();
+        comment.changeLikedByMe(true);
         commentRepository.save(comment);
     }
 
@@ -181,6 +187,7 @@ public class BasicCommentService implements CommentService{
     public void decreaseLikeCount(UUID commentId) {
         Comment comment = findById(commentId);
         comment.decreaseLikeCount();
+        comment.changeLikedByMe(false);
         commentRepository.save(comment);
     }
 
