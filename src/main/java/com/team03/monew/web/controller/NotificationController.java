@@ -17,7 +17,7 @@ public class NotificationController {
 
     @GetMapping
     public ResponseEntity<CursorPageResponseNotificationDto> getUncheckedNotifications(
-            @RequestParam() String cursor,
+            @RequestParam(required = false) String cursor,
             @RequestParam() String after,
             @RequestParam(defaultValue = "50") int limit,
             @RequestParam() UUID userId
