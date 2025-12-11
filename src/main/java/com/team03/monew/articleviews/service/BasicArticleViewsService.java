@@ -1,15 +1,21 @@
 package com.team03.monew.articleviews.service;
 
+import com.team03.monew.article.exception.ArticleErrorCode;
+import com.team03.monew.article.repository.ArticleRepository;
 import com.team03.monew.articleviews.domain.ArticleViews;
+import com.team03.monew.articleviews.dto.ArticleViewDto;
 import com.team03.monew.articleviews.dto.ArticleViewsActivityDto;
 import com.team03.monew.articleviews.repository.ArticleViewsRepository;
 import com.team03.monew.article.domain.Article;
+import com.team03.monew.common.customerror.MonewException;
 import com.team03.monew.user.domain.User;
+import com.team03.monew.user.exception.UserErrorCode;
 import com.team03.monew.user.exception.UserNotFoundException;
 import com.team03.monew.user.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +28,7 @@ public class BasicArticleViewsService implements ArticleViewsService {
 
   private final ArticleViewsRepository articleViewsRepository;
   private final UserRepository userRepository;
+  private final ArticleRepository articleRepository;
 
   @Override
   public boolean isRead(Article article, UUID userId) {
@@ -55,6 +62,45 @@ public class BasicArticleViewsService implements ArticleViewsService {
       return toDtoList(articleViewsList);
 
   }
+
+  @Override
+  @Transactional
+  public ArticleViewDto registerArticleViews(UUID articleId, UUID viewedBy) {
+
+    Article article = articleRepository.findById(articleId)
+        .orElseThrow(() -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
+
+    User user = userRepository.findById(viewedBy)
+        .orElseThrow(() -> new MonewException(UserErrorCode.USER_NOT_FOUND));
+
+    Optional<ArticleViews> existing =
+        articleViewsRepository.findByArticleAndUser(article, user);
+
+    ArticleViews articleViews;
+
+    if (existing.isPresent()) {
+      articleViews = existing.get();
+    } else {
+
+      articleViews = new ArticleViews(user, article);
+      articleViewsRepository.save(articleViews);
+    }
+
+    return new ArticleViewDto(
+        articleViews.getId(),
+        user.getId(),
+        articleViews.getCreatedAt(),
+        article.getId(),
+        article.getSource().name(),
+        article.getResourceLink(),
+        article.getTitle(),
+        article.getPostedAt(),
+        article.getOverview(),
+        article.getCommentCount(),
+        article.getViewCount()
+    );
+  }
+
 
   private List<ArticleViewsActivityDto> toDtoList(List<ArticleViews> articleViewsList) {
       List<ArticleViewsActivityDto> articleViewsActivityDtoList = new ArrayList<>();
