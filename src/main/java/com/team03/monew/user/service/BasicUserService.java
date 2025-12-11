@@ -87,14 +87,22 @@ public class BasicUserService implements UserService {
     @Transactional
     @Override
     public UserDto update(UUID userId, UserUpdateRequest request) {
+        log.debug("사용자 업데이트 요청: userId={}", userId);
+        
         // 사용자 조회
         User user = userRepository.findById(userId)
-                .orElseThrow(UserNotFoundException::new);
+                .orElseThrow(() -> {
+                    log.warn("사용자를 찾을 수 없음: userId={}", userId);
+                    return new UserNotFoundException();
+                });
 
         // 논리 삭제된 사용자 체크
         if (user.isDeleted()) {
+            log.warn("논리 삭제된 사용자 업데이트 시도: userId={}, deletedAt={}", userId, user.getDeletedAt());
             throw new UserNotFoundException();
         }
+        
+        log.debug("사용자 조회 성공: userId={}, nickname={}", userId, user.getNickname());
 
         // 닉네임이 변경되는 경우에만 중복 체크
         if (!user.getNickname().equals(request.nickname())) {
