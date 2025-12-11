@@ -122,6 +122,13 @@ public class Article {
     this.commentCount++;
   }
 
+  // 댓글 수 감소
+  public void decreaseCommentCount(){
+   if(this.commentCount > 0){
+     this.commentCount--;
+   }
+  }
+
   // 뉴스 논리 삭제
   public void deleteArticle(){
     this.isDelete = true;
