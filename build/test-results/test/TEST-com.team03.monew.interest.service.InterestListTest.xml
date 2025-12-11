@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.interest.service.InterestListTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.973Z" hostname="ichihoui-MacBookPro.local" time="0.003">
+  <properties/>
+  <testcase name="관심사 커서 없을때 목록 조회 성공 검증" classname="com.team03.monew.interest.service.InterestListTest" time="0.002"/>
+  <testcase name="관심사 커서 있을때 목록 조회 성공 검증" classname="com.team03.monew.interest.service.InterestListTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: monew
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  profiles:
+    active:
+      - ${SPRING_PROFILES_ACTIVE:dev}
+logging:
+  level:
+    root: info

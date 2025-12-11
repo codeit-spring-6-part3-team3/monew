@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.interest.controller.InterestListTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.504Z" hostname="ichihoui-MacBookPro.local" time="0.018">
+  <properties/>
+  <testcase name="관심사 목록 커서 있을 떄 조회 성공 검증" classname="com.team03.monew.interest.controller.InterestListTest" time="0.011"/>
+  <testcase name="관심사 목록 커서 없을 떄 조회 성공 검증" classname="com.team03.monew.interest.controller.InterestListTest" time="0.003"/>
+  <testcase name="괸심사 목록 필수 요청값 없음 실패 검증" classname="com.team03.monew.interest.controller.InterestListTest" time="0.003"/>
+  <system-out><![CDATA[25-12-12 07:05:25.500 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.interest.controller.InterestListTest]: InterestListTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 07:05:25.504 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.interest.controller.InterestListTest
+25-12-12 07:05:25.522 [Test worker] [c9992f50-c081-4678-b081-c5666a05477f] [127.0.0.1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'direction' for method parameter type String is not present]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.user.domain.UserRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:26.239Z" hostname="ichihoui-MacBookPro.local" time="0.015">
+  <properties/>
+  <testcase name="이메일 중복 확인" classname="com.team03.monew.user.domain.UserRepositoryTest" time="0.01"/>
+  <testcase name="사용자 저장 및 조회 성공" classname="com.team03.monew.user.domain.UserRepositoryTest" time="0.004"/>
+  <system-out><![CDATA[25-12-12 07:05:26.229 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.user.domain.UserRepositoryTest]: UserRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 07:05:26.238 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.user.domain.UserRepositoryTest
+25-12-12 07:05:26.246 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        users
+        (created_at, deleted_at, email, nickname, password_hash, updated_at, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (created_at, deleted_at, email, nickname, password_hash, updated_at, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:26.247 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    select
+        u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+25-12-12 07:05:26.249 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    select
+        u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
