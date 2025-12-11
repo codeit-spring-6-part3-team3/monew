@@ -67,9 +67,7 @@ public class InterestListTest {
 
 
         InterestDto interestDto1 = InterestFixture.interestDtoCreate(interest1,true);
-        InterestDto interestDto2 = InterestFixture.interestDtoCreate(interest2,false);
         interestDtoList.add(interestDto1);
-        interestDtoList.add(interestDto2);
 
 
     }

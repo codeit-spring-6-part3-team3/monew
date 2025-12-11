@@ -21,9 +21,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BasicInterestService implements InterestService {
 
-    private InterestRepository interestRepository;
-    private SubscribeRepository subscribeRepository;
-    private InterestMapper interestMapper;
+    private final InterestRepository interestRepository;
+    private final SubscribeRepository subscribeRepository;
+    private final InterestMapper interestMapper;
 
     @Override
     public InterestDto interestCreate(InterestRegisterRequest request) {
@@ -50,6 +50,7 @@ public class BasicInterestService implements InterestService {
 
         return interestMapper.toDto(interest,null);
     }
+
 
     @Override
     public InterestDto interestUpdate(UUID interest,InterestUpdateRequest request) {
@@ -87,6 +88,10 @@ public class BasicInterestService implements InterestService {
             return new CursorPageResponseInterestDto();
         }
 
+        if (nextCursor.hasNext()){
+            interestList = interestList.subList(0,request.limit());
+        }
+
         //사용자가 구독한 관심사 아이디 추출
         List<UUID> interestIds = interestList.stream()
                 .map(Interest::getId)
@@ -100,10 +105,10 @@ public class BasicInterestService implements InterestService {
 
         //반환형 조립
         return CursorPageResponseInterestDto.builder().
-                content(interestDtoList.subList(0,request.limit()))
+                content(interestDtoList)
                 .nextCursor(nextCursor.nextCursor())
                 .nextAfter(nextCursor.nextAfter())
-                .size(interestDtoList.size()-1)
+                .size(interestDtoList.size())
                 .totalElements(totalElements)
                 .hasNext(nextCursor.hasNext())
                 .build();

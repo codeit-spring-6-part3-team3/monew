@@ -16,6 +16,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
     private static final String USER_ID_HEADER = "MoNew-Request-User-ID";
     private static final Set<String> EXCLUDED_PATHS = Set.of(
+            "/",
             "/api/users",
             "/api/users/login",
             "/swagger-ui",
