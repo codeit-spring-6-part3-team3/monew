@@ -22,7 +22,7 @@ public class NotificationController {
             @RequestParam(required = false) String cursor,
             @RequestParam(required = false) LocalDateTime after,
             @RequestParam(defaultValue = "50") int limit,
-            @RequestParam() UUID userId
+            @RequestHeader(name="Monew-Request-User-ID") UUID userId
     ) {
         if (cursor == null) {
             return ResponseEntity.ok(notificationService.getUncheckedNotifications(userId, limit, after));
@@ -32,7 +32,7 @@ public class NotificationController {
 
     @PatchMapping
     public ResponseEntity<Void> markAllAsChecked(
-            @RequestParam() UUID userId
+            @RequestHeader(name="Monew-Request-User-ID") UUID userId
     ) {
         notificationService.markAllAsChecked(userId);
         return ResponseEntity.noContent().build();
@@ -41,7 +41,7 @@ public class NotificationController {
     @PatchMapping("/{notificationId}")
     public ResponseEntity<Void> markAsChecked(
             @PathVariable() UUID notificationId,
-            @RequestParam() UUID userId
+            @RequestHeader(name="Monew-Request-User-ID") UUID userId
     ) {
         notificationService.markAsChecked(notificationId, userId);
         return ResponseEntity.noContent().build();
