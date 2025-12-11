@@ -4,6 +4,7 @@ import com.team03.monew.interest.domain.Interest;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.notification.domain.NoticeResourceType;
 import com.team03.monew.notification.dto.NotificationCreateDto;
+import com.team03.monew.subscribe.domain.Subscribe;
 import com.team03.monew.subscribe.repository.SubscribeRepository;
 import java.time.Duration;
 import java.time.Instant;
@@ -11,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class ArticlesNotificationBatchAggregator {
   private final ApplicationEventPublisher publisher;
 
   // 관심사별 뉴스 건수 버퍼
-  private final Map<UUID, Integer> interestCountBuffer = new ConcurrentHashMap<>();
+  private final Map<UUID, Integer> interestCountBuffer = new HashMap<>();
   private final Object lock = new Object();
   private Instant lastFlush = Instant.now();
 
@@ -80,7 +80,21 @@ public class ArticlesNotificationBatchAggregator {
     Map<UUID, String> nameMap = interestRepository.findAllById(snapshot.keySet()).stream()
         .collect(Collectors.toMap(Interest::getId, Interest::getName));
 
-    snapshot.forEach((interestId, count) -> processInterest(interestId, count, nameMap));
+    // 구독자 배치 조회 후 interestId별로 그룹핑
+    Map<UUID, List<UUID>> subscribersByInterest = subscribeRepository.findByInterestIdIn(
+            snapshot.keySet().stream().toList())
+        .stream()
+        .collect(Collectors.groupingBy(
+            Subscribe::getInterestId,
+            Collectors.mapping(Subscribe::getUserId, Collectors.toList())
+        ));
+
+    snapshot.forEach((interestId, count) -> processInterest(
+        interestId,
+        count,
+        nameMap.getOrDefault(interestId, "관심사"),
+        subscribersByInterest.getOrDefault(interestId, List.of())
+    ));
 
     log.info("ArticlesNotificationBatchAggregator flush 완료");
   }
@@ -88,16 +102,13 @@ public class ArticlesNotificationBatchAggregator {
   /**
    * 관심사 하나에 대한 알림 DTO를 생성해 이벤트로 발행.
    */
-  private void processInterest(UUID interestId, int count, Map<UUID, String> nameMap) {
+  private void processInterest(UUID interestId, int count, String interestName, List<UUID> userIds) {
     if (count <= 0) {
       return;
     }
 
-    String interestName = nameMap.getOrDefault(interestId, "관심사");
-    String context = "%s에 대한 새 뉴스 %d건이 있어요.".formatted(interestName, count);
+    String context = "%s에 대한 새 기사 %d건이 있어요.".formatted(interestName, count);
 
-    // 관심사 구독자 조회
-    List<UUID> userIds = subscribeRepository.findUserIdsByInterestId(interestId);
     if (userIds.isEmpty()) {
       log.info("관심사 {} 구독자 없음 → 알림 생략", interestId);
       return;

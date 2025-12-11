@@ -16,8 +16,7 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, UUID> {
 
     List<Subscribe> findTop10ByUserIdOrderByCreatedAtDesc(UUID userId);
 
-    @Query("select s.userId from Subscribe s where s.interestId = :interestId")
-    List<UUID> findUserIdsByInterestId(@Param("interestId") UUID interestId);
-
     List<Subscribe> findByUserIdAndInterestIdIn(UUID userId, List<UUID> interestIds);
+
+    List<Subscribe> findByInterestIdIn(List<UUID> interestIds);
 }

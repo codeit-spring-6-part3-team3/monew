@@ -10,47 +10,64 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class KeywordFilterService {
 
   private final InterestRepository interestRepository;
-  private Map<String, Set<Interest>> keywordToInterests = Map.of();
+  private volatile Map<String, Set<Interest>> keywordToInterests = Map.of();
 
   @PostConstruct
   public void init() {
     refresh();
   }
 
+  @Scheduled(cron = "0 50 * * * *")
+  public void refreshHourly() {
+    refresh();
+  }
+
   public void refresh() {
-    Map<String, Set<Interest>> index = new HashMap<>();
-    List<Interest> interests = interestRepository.findAll();
+    try {
+      Map<String, Set<Interest>> index = new HashMap<>();
+      List<Interest> interests = interestRepository.findAll();
 
-    for (Interest interest : interests) {
-      List<String> keywords = interest.getKeywords();
-      if (keywords == null) {
-        continue;
-      }
-
-      for (String keyword : keywords) {
-        if (keyword == null) {
-          continue;
-        }
-        String normalized = keyword.trim();
-        if (normalized.isEmpty()) {
+      for (Interest interest : interests) {
+        List<String> keywords = interest.getKeywords();
+        if (keywords == null) {
           continue;
         }
 
-        index
-            .computeIfAbsent(normalized, k -> new HashSet<>())
-            .add(interest);
+        for (String keyword : keywords) {
+          String normalized = normalize(keyword);
+          if (normalized == null) {
+            continue;
+          }
+
+          index
+              .computeIfAbsent(normalized, k -> new HashSet<>())
+              .add(interest);
+        }
       }
+
+      this.keywordToInterests = Map.copyOf(
+          index.entrySet().stream()
+              .collect(Collectors.toMap(
+                  Map.Entry::getKey,
+                  e -> Set.copyOf(e.getValue())
+              )));
+
+      log.info("Keyword index refreshed. {} keywords loaded.", keywordToInterests.size());
+    } catch (Exception e) {
+      log.error("Failed to refresh keyword index", e);
     }
-
-    this.keywordToInterests = index;
   }
 
   public Set<Interest> matchingInterests(FetchedArticles article) {
@@ -58,8 +75,8 @@ public class KeywordFilterService {
       return Set.of();
     }
 
-    String title = Objects.toString(article.title(), "");
-    String overview = Objects.toString(article.overview(), "");
+    String title = normalize(Objects.toString(article.title(), ""));
+    String overview = normalize(Objects.toString(article.overview(), ""));
 
     Set<Interest> result = new HashSet<>();
 
@@ -71,5 +88,13 @@ public class KeywordFilterService {
     }
 
     return result;
+  }
+
+  private String normalize(String value) {
+    if (value == null) {
+      return null;
+    }
+    String trimmed = value.trim().toLowerCase();
+    return trimmed.isEmpty() ? null : trimmed;
   }
 }

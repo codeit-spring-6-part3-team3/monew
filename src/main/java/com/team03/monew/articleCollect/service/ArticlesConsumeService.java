@@ -9,6 +9,7 @@ import com.team03.monew.articleCollect.infrastructure.queue.ArticlesQueue;
 import com.team03.monew.articleCollect.mapper.ArticlesMapper;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -51,9 +52,26 @@ public class ArticlesConsumeService {
       try {
         FilteredArticlesTask task = articlesQueue.take();
 
-        // 1) 기사 저장
+        // 1) 기사 저장 (매칭된 관심사 중 하나로 저장 시도)
         ArticleCreateRequest req = articlesMapper.toCreateRequest(task.article());
-        var savedArticle = articlesService.createArticle(req);
+        var savedArticle = task.matchedInterests().stream()
+            .map(Interest::getId)
+            .map(interestId -> {
+              try {
+                return articlesService.createArticle(req, interestId);
+              } catch (Exception e) {
+                log.debug("기사 저장 스킵 (interestId={}): {}", interestId, e.getMessage());
+                return null;
+              }
+            })
+            .filter(Objects::nonNull)
+            .findFirst()
+            .orElse(null);
+
+        if (savedArticle == null) {
+          log.debug("저장된 기사 없음 → 다음 작업으로 넘어갑니다");
+          continue;
+        }
 
         log.debug("기사 저장 완료: {}", savedArticle);
         // 2) 매칭된 관심사에서 id만 추출
