@@ -67,7 +67,7 @@ public class BasicCommentService implements CommentService{
             List<CommentDto> content = slice.getContent();
             CommentDto lastComment = content.get(content.size() - 1);
 
-            if ("like_count".equals(request.orderBy())) {
+            if ("likeCount".equals(request.orderBy())) {
                 nextCursor = String.valueOf(lastComment.likeCount());
             } else {
                 nextCursor = lastComment.createdAt().toString();
@@ -178,7 +178,6 @@ public class BasicCommentService implements CommentService{
     public void increaseLikeCount(UUID commentId) {
         Comment comment = findById(commentId);
         comment.increaseLikeCount();
-        comment.changeLikedByMe(true);
         commentRepository.save(comment);
     }
 
@@ -187,7 +186,6 @@ public class BasicCommentService implements CommentService{
     public void decreaseLikeCount(UUID commentId) {
         Comment comment = findById(commentId);
         comment.decreaseLikeCount();
-        comment.changeLikedByMe(false);
         commentRepository.save(comment);
     }
 
