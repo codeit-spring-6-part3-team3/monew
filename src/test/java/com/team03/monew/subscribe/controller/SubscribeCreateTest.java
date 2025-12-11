@@ -88,8 +88,7 @@ public class SubscribeCreateTest {
     @DisplayName("구독 생성 필수 요청값 없음 실패 검증")
     public void subscribeCreateTestFail() throws Exception {
         // When & Then
-        mockMvc.perform(post("/api/interests/{interestId}/subscriptions",interest.getId())
-                        .header("Monew-Request-User-ID", UUID.randomUUID().toString()))
+        mockMvc.perform(post("/api/interests/{interestId}/subscriptions",interest.getId()))
                 .andExpect(status().isBadRequest());
     }
 }

@@ -21,6 +21,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -135,12 +136,17 @@ class ArticlesNotificationBatchAggregatorTest {
     UUID aUser1 = UUID.randomUUID();
     UUID aUser2 = UUID.randomUUID();
     UUID bUser1 = UUID.randomUUID();
-    when(subscribeRepository.findByInterestIdIn(List.of(interestA, interestB)))
-        .thenReturn(List.of(
-            Subscribe.builder().userId(aUser1).interestId(interestA).build(),
-            Subscribe.builder().userId(aUser2).interestId(interestA).build(),
-            Subscribe.builder().userId(bUser1).interestId(interestB).build()
-        ));
+
+    //[수정 후] 순서 상관없이 interestA와 interestB가 모두 포함되어 있는지 확인
+    when(subscribeRepository.findByInterestIdIn(argThat(ids ->
+              ids != null &&
+                      ids.size() == 2 &&
+                      ids.containsAll(List.of(interestA, interestB))
+      ))).thenReturn(List.of(
+                      Subscribe.builder().userId(aUser1).interestId(interestA).build(),
+                      Subscribe.builder().userId(aUser2).interestId(interestA).build(),
+                      Subscribe.builder().userId(bUser1).interestId(interestB).build()
+              ));
 
     ArgumentCaptor<NotificationCreateDto> captor = ArgumentCaptor.forClass(NotificationCreateDto.class);
 
