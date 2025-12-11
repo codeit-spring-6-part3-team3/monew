@@ -32,16 +32,17 @@ public class ArticleViewController implements ArticleViewApi {
       @PathVariable UUID articleId,
       @RequestHeader("Monew-Request-User-ID") UUID viewedBy
   ) {
+
+    log.info("기사 뷰 등록 요청. articleId: {}, viewedBy: {}", articleId, viewedBy);
+
     ArticleViewDto response = articleViewsService.registerArticleViews(articleId,viewedBy);
+
+    log.info("기사 뷰 등록 응답. articleId: {}, viewedBy: {}, viewRecordId: {}",
+        articleId, viewedBy, response.id());
+
     return ResponseEntity
         .status(HttpStatus.CREATED)
         .build();
 
   }
-
-
-
-
-
-
 }

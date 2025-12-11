@@ -18,11 +18,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Slf4j
 @RequiredArgsConstructor
+@Service
 @Transactional
 public class BasicArticleViewsService implements ArticleViewsService {
 
@@ -67,23 +69,44 @@ public class BasicArticleViewsService implements ArticleViewsService {
   @Transactional
   public ArticleViewDto registerArticleViews(UUID articleId, UUID viewedBy) {
 
+    log.info(" 기사 뷰 등록  요청. articleId={}, viewedBy={}", articleId, viewedBy);
+
+    // 기사 존재 확인
     Article article = articleRepository.findById(articleId)
-        .orElseThrow(() -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
+        .orElseThrow(() -> {
+          log.warn(" 기사 없음. articleId={}", articleId);
+          return new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND);
+        });
+    log.debug("기사 조회 완료. title={}, source={}",
+        article.getTitle(), article.getSource());
 
+    // 사용자 존재 확인
     User user = userRepository.findById(viewedBy)
-        .orElseThrow(() -> new MonewException(UserErrorCode.USER_NOT_FOUND));
+        .orElseThrow(() -> {
+          log.warn("사용자 없음. viewedBy={}", viewedBy);
+          return new MonewException(UserErrorCode.USER_NOT_FOUND);
+        });
+    log.debug("사용자 조회 완료. userId={}", user.getId());
 
+    // 이전에 해당 기사 조회 했냐
     Optional<ArticleViews> existing =
         articleViewsRepository.findByArticleAndUser(article, user);
 
     ArticleViews articleViews;
 
     if (existing.isPresent()) {
+
       articleViews = existing.get();
-    } else {
+      log.info("기존에 조회 완료. articleViewId={}", articleViews.getId());
+
+    }
+    else {
 
       articleViews = new ArticleViews(user, article);
       articleViewsRepository.save(articleViews);
+
+      log.info("기사 뷰 등록 완료. articleViewId={}, articleId={}, viewedBy={}",
+          articleViews.getId(), articleId, viewedBy);
     }
 
     return new ArticleViewDto(
