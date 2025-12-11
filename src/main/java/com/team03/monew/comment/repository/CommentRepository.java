@@ -22,4 +22,6 @@ public interface CommentRepository extends JpaRepository<Comment, UUID>, Comment
      */
 
     List<Comment> findTop10ByUserIdOrderByCreatedAtDesc(UUID userId);
+
+    UUID findArticleIdById(UUID commentId);
 }

@@ -1,8 +1,10 @@
 package com.team03.monew.articleviews.repository;
 
+import com.team03.monew.article.domain.Article;
 import com.team03.monew.articleviews.domain.ArticleViews;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.team03.monew.articleviews.dto.ArticleViewsActivityDto;
@@ -24,4 +26,6 @@ public interface ArticleViewsRepository extends JpaRepository<ArticleViews, UUID
   );
    */
     List<ArticleViews> findTop10ByUserOrderByCreatedAtDesc(User user);
+
+  Optional<ArticleViews> findByArticleAndUser(Article article, User user);
 }

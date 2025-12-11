@@ -1,11 +1,13 @@
 package com.team03.monew.comment.service;
 
 import com.team03.monew.article.domain.Article;
+import com.team03.monew.article.exception.ArticleErrorCode;
 import com.team03.monew.article.repository.ArticleRepository;
 import com.team03.monew.comment.domain.Comment;
 import com.team03.monew.comment.dto.*;
 import com.team03.monew.comment.repository.CommentRepository;
 import com.team03.monew.commentlike.service.CommentLikeService;
+import com.team03.monew.common.customerror.MonewException;
 import com.team03.monew.user.domain.User;
 import com.team03.monew.user.dto.UserDto;
 import com.team03.monew.user.repository.UserRepository;
@@ -33,6 +35,10 @@ public class BasicCommentService implements CommentService{
     @Override
     @Transactional
     public CommentDto createComment(CommentRegisterRequest request) {
+
+      Article article = articleRepository.findById(request.articleId())
+          .orElseThrow(() -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
+
         Comment comment = Comment.of(
                 request.articleId(),
                 request.userId(),
@@ -40,6 +46,8 @@ public class BasicCommentService implements CommentService{
         );
 
         Comment savedComment = commentRepository.save(comment);
+
+        article.increaseCommentCount();
 
         CommentDto convertComment = new CommentDto(
                 savedComment.getId(),
@@ -115,7 +123,12 @@ public class BasicCommentService implements CommentService{
     public void deleteComment(UUID commentId) {
         Comment comment = findById(commentId);
 
+        Article article = articleRepository.findById(commentRepository.findArticleIdById(commentId))
+            .orElseThrow(() -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
+
         comment.softDelete();
+
+        article.decreaseCommentCount();
     }
 
     @Transactional
