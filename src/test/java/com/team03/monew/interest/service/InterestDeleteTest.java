@@ -2,6 +2,7 @@ package com.team03.monew.interest.service;
 
 import com.team03.monew.interest.Fixture.InterestFixture;
 import com.team03.monew.interest.domain.Interest;
+import com.team03.monew.interest.exception.InterestsNotFoundException;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.subscribe.domain.Subscribe;
 import com.team03.monew.subscribe.fixture.SubscribeFixture;
@@ -60,7 +61,7 @@ public class InterestDeleteTest {
     public void interestDeleteInterestDateFail() {
         //when & then
         assertThatThrownBy(() -> basicInterestService.interestDelete(UUID.randomUUID()))
-                .isInstanceOf(NoSuchObjectException.class)
+                .isInstanceOf(InterestsNotFoundException.class)
                 .hasMessage("관심사 정보 없음");
     }
 }

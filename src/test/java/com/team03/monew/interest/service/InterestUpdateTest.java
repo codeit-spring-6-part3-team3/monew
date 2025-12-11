@@ -4,6 +4,7 @@ import com.team03.monew.interest.Fixture.InterestFixture;
 import com.team03.monew.interest.domain.Interest;
 import com.team03.monew.interest.dto.InterestDto;
 import com.team03.monew.interest.dto.InterestUpdateRequest;
+import com.team03.monew.interest.exception.InterestsNotFoundException;
 import com.team03.monew.interest.mapper.InterestMapper;
 import com.team03.monew.interest.repository.InterestRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -86,8 +87,8 @@ public class InterestUpdateTest {
         InterestUpdateRequest request = new  InterestUpdateRequest(list);
 
         assertThatThrownBy(() -> basicInterestService.interestUpdate(interestId,request))
-                .isInstanceOf(NoSuchObjectException.class)
-                .hasMessage("해당 관심사 없음");
+                .isInstanceOf(InterestsNotFoundException.class)
+                .hasMessage("관심사 정보 없음");
     }
 
 }

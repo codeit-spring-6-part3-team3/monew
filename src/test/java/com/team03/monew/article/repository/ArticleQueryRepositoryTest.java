@@ -34,7 +34,7 @@ class ArticleQueryRepositoryTest {
   void setUp() {
     for (int i = 1; i <= 10; i++) {
       Article article = Article.builder()
-          .source(ArticleSourceType.NAVER)
+          .source(ArticleSourceType.YNA)
           .resourceLink("https://article.com/" + i)
           .title("뉴스 제목 " + i)
           .overview("뉴스 요약 " + i)

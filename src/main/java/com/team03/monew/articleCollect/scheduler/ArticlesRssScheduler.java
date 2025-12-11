@@ -13,7 +13,7 @@ public class ArticlesRssScheduler {
 
   private final CollectService articlesCollectService;
 
-  @Scheduled(cron = "0 0 * * * *")
+  @Scheduled(cron = "0 1 * * * *")
   public void collectArticles() {
     articlesCollectService.fetchAllArticles();
   }

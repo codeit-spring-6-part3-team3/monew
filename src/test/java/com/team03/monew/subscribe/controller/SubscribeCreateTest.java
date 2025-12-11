@@ -74,7 +74,8 @@ public class SubscribeCreateTest {
 
         // When & Then
         mockMvc.perform(post("/api/interests/{interestId}/subscriptions",interest.getId())
-        .param("Monew-Request-User-ID",user.getId().toString()))
+        .param("Monew-Request-User-ID",user.getId().toString())
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(subscribeDto.id().toString()))
                 .andExpect(jsonPath("$.interestId").value(interest.getId().toString()))
@@ -87,7 +88,8 @@ public class SubscribeCreateTest {
     @DisplayName("구독 생성 필수 요청값 없음 실패 검증")
     public void subscribeCreateTestFail() throws Exception {
         // When & Then
-        mockMvc.perform(post("/api/interests/{interestId}/subscriptions",interest.getId()))
+        mockMvc.perform(post("/api/interests/{interestId}/subscriptions",interest.getId())
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString()))
                 .andExpect(status().isBadRequest());
     }
 }

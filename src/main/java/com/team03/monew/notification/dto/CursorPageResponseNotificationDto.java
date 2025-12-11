@@ -23,8 +23,8 @@ public record CursorPageResponseNotificationDto(
 
         if (slice.hasNext() && !content.isEmpty()) {
             NotificationDto lastDto = content.get(content.size() - 1);
-            nextCursor = lastDto.creationAt().toString();
-            nextAfter = lastDto.creationAt().toString();
+            nextCursor = lastDto.createdAt().toString();
+            nextAfter = lastDto.createdAt().toString();
         }
 
         return new CursorPageResponseNotificationDto(

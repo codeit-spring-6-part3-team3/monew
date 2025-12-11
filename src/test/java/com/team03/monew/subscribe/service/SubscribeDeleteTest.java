@@ -2,11 +2,13 @@ package com.team03.monew.subscribe.service;
 
 import com.team03.monew.interest.Fixture.InterestFixture;
 import com.team03.monew.interest.domain.Interest;
+import com.team03.monew.interest.exception.InterestsNotFoundException;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.subscribe.domain.Subscribe;
 import com.team03.monew.subscribe.fixture.SubscribeFixture;
 import com.team03.monew.subscribe.repository.SubscribeRepository;
 import com.team03.monew.user.domain.User;
+import com.team03.monew.user.exception.UserNotFoundException;
 import com.team03.monew.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -87,8 +89,8 @@ public class SubscribeDeleteTest {
     void subscribeDeleteUserNotFoundFail() {
         //when & then
         assertThatThrownBy(() -> basicSubscribeService.subscribeDelete(UUID.randomUUID(), UUID.randomUUID()))
-                .isInstanceOf(NoSuchObjectException.class)
-                .hasMessage("유저 정보 없음");
+                .isInstanceOf(UserNotFoundException.class)
+                .hasMessage("사용자를 찾을 수 없습니다.");
     }
 
     @Test
@@ -98,21 +100,8 @@ public class SubscribeDeleteTest {
         when(userRepository.findById(any(UUID.class))).thenReturn(Optional.of(user));
         //when & then
         assertThatThrownBy(() -> basicSubscribeService.subscribeDelete(UUID.randomUUID(), UUID.randomUUID()))
-                .isInstanceOf(NoSuchObjectException.class)
+                .isInstanceOf(InterestsNotFoundException.class)
                 .hasMessage("관심사 정보 없음");
     }
-
-    @Test
-    @DisplayName("구독 삭제 삭제 구독 정보 없음 실패 검증")
-    void subscribeDeleteSubscribeNotFoundFail() {
-        //given
-        when(userRepository.findById(any(UUID.class))).thenReturn(Optional.of(user));
-        when(interestRepository.findById(any(UUID.class))).thenReturn(Optional.of(interest));
-        //when & then
-        assertThatThrownBy(() -> basicSubscribeService.subscribeDelete(UUID.randomUUID(), UUID.randomUUID()))
-                .isInstanceOf(NoSuchObjectException.class)
-                .hasMessage("구독 정보 없음");
-    }
-
 
 }

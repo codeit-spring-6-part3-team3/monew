@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 
 import java.rmi.NoSuchObjectException;
@@ -43,6 +44,7 @@ public interface InterestApi {
             )
     })
     ResponseEntity<InterestDto> interestCreate(
+            @Valid
             @RequestBody(required = true,content = @Content(
                     schema = @Schema(implementation = InterestRegisterRequest.class)))
             InterestRegisterRequest interestRegisterRequest
@@ -74,7 +76,7 @@ public interface InterestApi {
                     schema = @Schema(implementation = InterestUpdateRequest.class)))
             InterestUpdateRequest interestUpdateRequest
 
-    ) throws NoSuchObjectException;
+    );
 
     @Operation(summary = "관심사 목록 조회")
     @ApiResponses(value = {
@@ -98,7 +100,7 @@ public interface InterestApi {
             @Parameter(description = "정렬 방향 (ASC, DESC)",required = true,
                 schema = @Schema(allowableValues = {"ASC", "DESC"})) String direction,
             @Parameter(description = "커서 값") String cursor,
-            @Parameter(description = "보조 커서(createdAt) 값")LocalDateTime after,
+            @Parameter(description = "보조 커서(createdAt) 값")String after,
             @Parameter(description = "커서 페이지 크기",required = true,example = "50") int limit,
             @Parameter(name ="Monew-Request-User-ID",description = "요청자 ID",required = true) UUID userId
             );

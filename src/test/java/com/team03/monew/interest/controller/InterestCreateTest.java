@@ -59,6 +59,7 @@ public class InterestCreateTest {
         given(interestService.interestCreate(any(InterestRegisterRequest.class))).willReturn(interestDto);
         // When & Then
         mockMvc.perform(post("/api/interests")
+                .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(interestDto)))
                 .andExpect(status().isCreated())
@@ -79,6 +80,7 @@ public class InterestCreateTest {
 
         // When & Then
         mockMvc.perform(post("/api/interests")
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest());
@@ -92,6 +94,7 @@ public class InterestCreateTest {
 
         // When & Then
         mockMvc.perform(post("/api/interests")
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest());
