@@ -36,7 +36,7 @@ public class HankyungRssParser extends StaxRssParser {
         if (eventType == XMLStreamConstants.START_ELEMENT) {
           String tag = reader.getLocalName();
 
-          log.debug("[HANKYUNG] START_ELEMENT <{}>", tag);
+          log.trace("[HANKYUNG] START_ELEMENT <{}>", tag);
 
           switch (tag) {
             case "title":
@@ -56,7 +56,7 @@ public class HankyungRssParser extends StaxRssParser {
 
         if (eventType == XMLStreamConstants.END_ELEMENT &&
             "item".equals(reader.getLocalName())) {
-          log.debug("[HANKYUNG] END_ELEMENT </item> → break");
+          log.trace("[HANKYUNG] END_ELEMENT </item> → break");
           break;
         }
       }
@@ -65,7 +65,7 @@ public class HankyungRssParser extends StaxRssParser {
       return null;
     }
 
-    log.info("[HANKYUNG] SUMMARY title='{}', link={}, pubDate={}",
+    log.debug("[HANKYUNG] SUMMARY title='{}', link={}, pubDate={}",
         title, link, publishedAt);
 
     if (title == null || link == null) {
@@ -81,7 +81,7 @@ public class HankyungRssParser extends StaxRssParser {
         .source(ArticleSourceType.KOREA)
         .build();
 
-    log.debug("[HANKYUNG] BUILT FetchedArticles = {}", article);
+    log.trace("[HANKYUNG] BUILT FetchedArticles = {}", article);
 
     if (log.isTraceEnabled()) {
       log.trace("[HANKYUNG] readItem END");

@@ -38,7 +38,7 @@ public class YonhapRssParser extends StaxRssParser {
           String tag = reader.getLocalName();
           String ns = reader.getNamespaceURI();
 
-          log.debug("[YNA] START_ELEMENT <{}> ns={}", tag, ns);
+          log.trace("[YNA] START_ELEMENT <{}> ns={}", tag, ns);
 
           switch (tag) {
             case "title":
@@ -56,7 +56,7 @@ public class YonhapRssParser extends StaxRssParser {
             case "encoded":
               if (CONTENT_NS.equals(ns)) {
                 String encoded = safeElementText(reader);
-                log.debug("[YNA] encoded len={}", encoded != null ? encoded.length() : 0);
+                log.trace("[YNA] encoded len={}", encoded != null ? encoded.length() : 0);
 
                 if ((overview == null || overview.isBlank()) && encoded != null) {
                   overview = cleanHtmlText(encoded);
@@ -75,7 +75,7 @@ public class YonhapRssParser extends StaxRssParser {
           }
         } else if (eventType == XMLStreamConstants.END_ELEMENT) {
           if ("item".equals(reader.getLocalName())) {
-            log.debug("[YNA] END_ELEMENT </item> → break");
+            log.trace("[YNA] END_ELEMENT </item> → break");
             break;
           }
         }
@@ -85,7 +85,7 @@ public class YonhapRssParser extends StaxRssParser {
       return null;
     }
 
-    log.info("[YNA] SUMMARY title='{}', link={}, pubDate={}, overview={}",
+    log.debug("[YNA] SUMMARY title='{}', link={}, pubDate={}, overview={}",
         title, link, publishedAt, preview(overview, 80));
 
     if (title == null || link == null) {
@@ -101,7 +101,7 @@ public class YonhapRssParser extends StaxRssParser {
         .source(ArticleSourceType.YNA)
         .build();
 
-    log.debug("[YNA] BUILT FetchedArticles = {}", article);
+    log.trace("[YNA] BUILT FetchedArticles = {}", article);
 
     if (log.isTraceEnabled()) {
       log.trace("[YNA] readItem END");
