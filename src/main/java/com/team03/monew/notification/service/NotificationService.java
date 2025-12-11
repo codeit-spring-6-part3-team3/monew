@@ -15,7 +15,7 @@ public interface NotificationService {
     CursorPageResponseNotificationDto getUncheckedNotifications(
             UUID userId,
             int size,
-            String after
+            LocalDateTime after
     );
 
     // 미확인 알림을 커서 기반 페이지네이션으로 조회 (다음 페이지)
@@ -23,7 +23,7 @@ public interface NotificationService {
             UUID userId,
             String cursor,
             int size,
-            String after
+            LocalDateTime after
     );
 
     int deleteExpiredNotifications(LocalDateTime expiredDate);
