@@ -1,0 +1,20 @@
+# Git
+.git
+.gitignore
+
+# Gradle 캐시
+.gradle
+build/
+
+# IDE 설정
+.idea/
+*.iml
+
+# 로컬 환경 변수
+.env
+# 로컬 업로드 폴더
+uploads/
+
+# Dockerfile 및 스크립트
+../monew-main/Dockerfile
+build-and-copy-fe.sh
