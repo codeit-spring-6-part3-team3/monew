@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.interest.service.InterestCreateTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.952Z" hostname="ichihoui-MacBookPro.local" time="0.018">
+  <properties/>
+  <testcase name="관심사_이름_중복_실패_검증" classname="com.team03.monew.interest.service.InterestCreateTest" time="0.017"/>
+  <testcase name="관심사_등록_성공_검증" classname="com.team03.monew.interest.service.InterestCreateTest" time="0.0"/>
+  <system-out><![CDATA[25-12-12 07:05:25.970 [Test worker] [] [] ERROR c.t.m.i.service.BasicInterestService - 관심사 중복 이름 오류: 중복 이름=오늘에 과학뉴스
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

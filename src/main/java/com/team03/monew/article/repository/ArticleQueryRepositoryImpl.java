@@ -15,9 +15,6 @@ import com.team03.monew.article.dto.ArticleDto;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
-import com.team03.monew.interest.domain.Interest;
-import com.team03.monew.interest.repository.InterestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -190,7 +187,7 @@ public class ArticleQueryRepositoryImpl implements ArticleQueryRepository {
   // 다음의 속성으로 조회할 수 있습니다.
   // 1. 관심사
   private BooleanExpression filterByInterest(UUID interestId) {
-    return (interestId == null) ? null : InterestRepository.(interestId);
+    return (interestId == null) ? null : qarticle.interest.id.eq(interestId);
   }
 
   // 2. 출처

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - ArticlesNotificationBatchAggregatorTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>ArticlesNotificationBatchAggregatorTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.team03.monew.articleCollect.event.html">com.team03.monew.articleCollect.event</a> &gt; ArticlesNotificationBatchAggregatorTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">5</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.051s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">버퍼 크기가 임계값 이상이면 즉시 flush하여 알림 이벤트를 발행한다</td>
+<td class="success">flushBySize()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">시간 조건이 충족되면 버퍼 크기와 상관없이 flush한다</td>
+<td class="success">flushByTime()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">여러 관심사에 대한 누적 건수를 각 관심사별로 나눠서 발행한다</td>
+<td class="success">flushMultipleInterests()</td>
+<td class="success">0.044s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">시간/사이즈 조건 모두 미충족 시 플러시하지 않는다</td>
+<td class="success">noFlushWhenBelowThreshold()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">구독자가 없으면 알림을 발행하지 않는다</td>
+<td class="success">skipWhenNoSubscribers()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>25-12-12 07:05:24.876 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=size&gt;=10, interests=2, total=10
+25-12-12 07:05:24.877 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 9b6f7646-ccc9-439f-93d0-a32e937c825c 알림 2건 발행 완료 (count=6)
+25-12-12 07:05:24.877 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 4477f2ba-3484-4f6f-99e2-82e674f896d9 알림 1건 발행 완료 (count=4)
+25-12-12 07:05:24.878 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
+25-12-12 07:05:24.880 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=size&gt;=10, interests=1, total=10
+25-12-12 07:05:24.881 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 cfd2e8ce-591c-4b7b-b15a-b4e792023e0d 알림 2건 발행 완료 (count=10)
+25-12-12 07:05:24.881 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
+25-12-12 07:05:24.882 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=time&gt;=3s, interests=1, total=1
+25-12-12 07:05:24.883 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 eca12e9c-d253-487e-ace6-4545d283cf02 알림 1건 발행 완료 (count=1)
+25-12-12 07:05:24.883 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
+25-12-12 07:05:24.884 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=time&gt;=3s, interests=1, total=1
+25-12-12 07:05:24.884 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 ad425296-a9fd-4f61-94c1-fba27199bf27 구독자 없음 → 알림 생략
+25-12-12 07:05:24.885 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2025. 12. 12. 오전 7:05:26</p>
+</div>
+</div>
+</body>
+</html>
