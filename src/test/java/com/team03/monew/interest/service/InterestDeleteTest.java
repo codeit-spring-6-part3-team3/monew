@@ -1,8 +1,10 @@
 package com.team03.monew.interest.service;
 
+import com.team03.monew.article.repository.ArticleRepository;
 import com.team03.monew.interest.Fixture.InterestFixture;
 import com.team03.monew.interest.domain.Interest;
 import com.team03.monew.interest.exception.InterestsNotFoundException;
+import com.team03.monew.interest.mapper.InterestMapper;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.subscribe.domain.Subscribe;
 import com.team03.monew.subscribe.fixture.SubscribeFixture;
@@ -32,6 +34,12 @@ public class InterestDeleteTest {
     @Mock
     private SubscribeRepository subscribeRepository;
 
+    @Mock
+    private ArticleRepository articleRepository;
+
+    @Mock
+    private InterestMapper interestMapper;
+
     @InjectMocks
     private BasicInterestService basicInterestService;
 
@@ -46,12 +54,16 @@ public class InterestDeleteTest {
         Subscribe subscribe = SubscribeFixture.subscribeCreate(userId, interestId);
 
         when(interestRepository.findById(any(UUID.class))).thenReturn(Optional.of(interest));
-        when(subscribeRepository.findAll()).thenReturn(List.of(subscribe));
+        when(articleRepository.existsByInterestId(any(UUID.class))).thenReturn(false);
+        when(subscribeRepository.findByInterestIdIn(anyList())).thenReturn(List.of(subscribe));
+        
         //when
         basicInterestService.interestDelete(interestId);
+        
         //then
         verify(interestRepository, times(1)).findById(any(UUID.class));
-        verify(subscribeRepository, times(1)).findAll();
+        verify(articleRepository, times(1)).existsByInterestId(any(UUID.class));
+        verify(subscribeRepository, times(1)).findByInterestIdIn(anyList());
         verify(subscribeRepository, times(1)).deleteAll(anyList());
         verify(interestRepository, times(1)).delete(any(Interest.class));
     }

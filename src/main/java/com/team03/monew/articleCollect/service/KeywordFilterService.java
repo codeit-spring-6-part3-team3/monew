@@ -29,7 +29,7 @@ public class KeywordFilterService {
     refresh();
   }
 
-  @Scheduled(cron = "50 * * * * *")
+  @Scheduled(cron = "0 */5 * * * *")
   public void refreshHourly() {
     refresh();
   }

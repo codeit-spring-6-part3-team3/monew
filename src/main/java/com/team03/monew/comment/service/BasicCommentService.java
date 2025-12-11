@@ -123,6 +123,8 @@ public class BasicCommentService implements CommentService{
     public void deleteComment(UUID commentId) {
         Comment comment = findById(commentId);
 
+        UUID articleId = comment.getArticleId();
+
         Article article = articleRepository.findById(commentRepository.findArticleIdById(commentId))
             .orElseThrow(() -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
 
