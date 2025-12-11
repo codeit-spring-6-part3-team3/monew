@@ -35,8 +35,8 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag image-post:latest ${{env.ECR_REGISTRY}}/${{env.ECR_REPOSITORY}}:${{env.IMAGE_TAG}}
-          docker tag image-post:latest ${{env.ECR_REGISTRY}}/${{env.ECR_REPOSITORY}}:latest
+          docker tag monew:latest ${{env.ECR_REGISTRY}}/${{env.ECR_REPOSITORY}}:${{env.IMAGE_TAG}}
+          docker tag monew:latest ${{env.ECR_REGISTRY}}/${{env.ECR_REPOSITORY}}:latest
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5.1.0
