@@ -37,7 +37,7 @@ public class BasicNotificationService implements NotificationService {
     public CursorPageResponseNotificationDto getUncheckedNotifications(
             UUID userId,
             int size,
-            String after
+            LocalDateTime after
     ) {
         Slice<Notification> slice = notificationRepository.findNotifications(
                 userId,
@@ -54,7 +54,7 @@ public class BasicNotificationService implements NotificationService {
             UUID userId,
             String cursor,
             int size,
-            String after
+            LocalDateTime after
     ) {
         Slice<Notification> slice = notificationRepository.findNotificationsWithCursor(
                 userId,
