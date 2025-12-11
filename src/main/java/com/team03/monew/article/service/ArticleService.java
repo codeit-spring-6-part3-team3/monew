@@ -32,4 +32,6 @@ public interface ArticleService {
 
   // 뉴스 단건 조회
   ArticleDto getDetailArticle(UUID articleId, UUID userId);
+
+  ArticleSourceType[] getAllSources();
 }

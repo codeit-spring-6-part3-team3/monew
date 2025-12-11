@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,11 +61,12 @@ public class ArticleController implements ArticleApi {
       @RequestParam(required = false) List<ArticleSourceType> sourceIn,
       @RequestParam(required = false) LocalDateTime publishDateFrom,
       @RequestParam(required = false) LocalDateTime publishDateTo,
-      @RequestParam(defaultValue = "date") String orderBy,
-      @RequestParam(defaultValue = "ASC")String direction,
+      @RequestParam(defaultValue = "publishDate") String orderBy,
+      @RequestParam(defaultValue = "ASC") String direction,
       @RequestParam(required = false) String cursor,
       @RequestParam(required = false) LocalDateTime after,
-      @RequestParam(defaultValue = "50") int limit
+      @RequestParam(defaultValue = "50") int limit,
+      @RequestHeader("Monew-Request-User-ID") UUID userId
   ) {
 
     log.debug("GET /api/articles 뉴스 목록 조회 요청. orderBy : {}, direction : {}",  orderBy, direction);
@@ -152,7 +154,7 @@ public class ArticleController implements ArticleApi {
   // 출처 목록 조회
   // 이것은 어떤 기능을 하는지 잘 모르겠습니다.
   // 스웨거 상 작성되어있어 추가 했습니다.
-  @GetMapping("/source")
+  @GetMapping("/sources")
   public ResponseEntity<ArticleSourceType[]> getAllSources() {
 
     log.debug("GET /api/articles/source");
