@@ -47,3 +47,4 @@ build
 
 ### Environment Variables ###
 .env
+monew.env

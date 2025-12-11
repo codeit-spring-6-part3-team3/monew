@@ -12,6 +12,7 @@ build/
 
 # 로컬 환경 변수
 .env
+monew.env
 # 로컬 업로드 폴더
 uploads/
 

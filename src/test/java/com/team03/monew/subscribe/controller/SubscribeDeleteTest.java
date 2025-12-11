@@ -46,8 +46,7 @@ public class SubscribeDeleteTest {
         UUID interestId = UUID.randomUUID();
         UUID userId = UUID.randomUUID();
         // When & Then
-        mockMvc.perform(delete("/api/interests/{interestId}/subscriptions",interestId)
-                        .header("Monew-Request-User-ID", UUID.randomUUID().toString()))
+        mockMvc.perform(delete("/api/interests/{interestId}/subscriptions",interestId))
                 .andExpect(status().isBadRequest());
     }
 
