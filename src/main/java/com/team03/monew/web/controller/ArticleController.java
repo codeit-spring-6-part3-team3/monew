@@ -100,7 +100,8 @@ public class ArticleController implements ArticleApi {
   @Override
   public ResponseEntity<ArticleDto> getArticleDetails(
       @PathVariable UUID articleId,
-      @RequestParam(required = true) UUID userId
+      @RequestHeader("Monew-Request-User-ID") UUID userId
+
   ){
 
     log.info("GET /api/articles/{} 뉴스 단편 조회 요청. userId : {}",articleId, userId);
