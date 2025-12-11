@@ -34,4 +34,6 @@ public interface NotificationRepository extends JpaRepository<Notification, UUID
             @Param("id") UUID id,
             @Param("user_id") UUID userId
     );
+
+    Long countByUserId(UUID userId);
 }
