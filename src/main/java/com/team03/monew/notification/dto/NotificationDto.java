@@ -9,12 +9,12 @@ import java.util.UUID;
 
 public record NotificationDto(
         UUID id,
-        @JsonProperty("created_at") LocalDateTime createdAt,
+        @JsonProperty("createdAt") LocalDateTime createdAt,
         LocalDateTime updatedAt,
         @JsonProperty("confirmed") Boolean isChecked,
         UUID userId,
         @JsonProperty("content") String context,
-        @JsonProperty("resource_type") NoticeResourceType resource,
+        @JsonProperty("resourceType") NoticeResourceType resource,
         UUID resourceId
 ) {
     public static NotificationDto from(Notification notification) {

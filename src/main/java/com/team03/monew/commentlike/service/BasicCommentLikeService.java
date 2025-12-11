@@ -1,5 +1,8 @@
 package com.team03.monew.commentlike.service;
 
+import com.team03.monew.article.domain.Article;
+import com.team03.monew.article.repository.ArticleRepository;
+import com.team03.monew.article.service.ArticleService;
 import com.team03.monew.comment.dto.CommentDto;
 import com.team03.monew.comment.service.CommentService;
 import com.team03.monew.commentlike.domain.CommentLike;
@@ -14,8 +17,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +30,7 @@ import java.util.UUID;
 public class BasicCommentLikeService implements CommentLikeService{
 
     private final CommentLikeRepository commentLikeRepository;
+    private final ArticleRepository articleRepository;
     private final CommentService commentService;
     private final UserService userService;
     private final NotificationService notificationService;
@@ -93,6 +101,29 @@ public class BasicCommentLikeService implements CommentLikeService{
 
     @Override
     public List<CommentLikeActivityDto> topTenByUserId(UUID userId) {
-        return commentLikeRepository.findTopTenByUserIdOrderByCreatedAtDesc(userId);
+        List<CommentLike> commentLikeList = commentLikeRepository.findTop10ByLikedByOrderByCreatedAtDesc(userId);
+
+        if (commentLikeList.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<UUID> articleIdList = commentLikeList.stream()
+                .map(CommentLike::getArticleId)
+                .toList();
+
+        Map<UUID,Article> articleList = articleRepository.findAllById(articleIdList).stream()
+                .collect(Collectors.toMap(Article::getId, Function.identity()));
+
+        return toDtoList(commentLikeList,articleList);
+    }
+
+    private List<CommentLikeActivityDto> toDtoList(List<CommentLike> commentLikeList,Map<UUID,Article>  articleList) {
+        List<CommentLikeActivityDto> dtoList = new ArrayList<>();
+        for (CommentLike commentLike : commentLikeList) {
+            Article article = articleList.get(commentLike.getArticleId());
+            CommentLikeActivityDto commentLikeActivityDto = new CommentLikeActivityDto(commentLike, article);
+            dtoList.add(commentLikeActivityDto);
+        }
+        return dtoList;
     }
 }

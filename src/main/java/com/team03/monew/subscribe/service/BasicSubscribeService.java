@@ -14,9 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.rmi.NoSuchObjectException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -76,8 +77,7 @@ public class BasicSubscribeService implements SubscribeService {
         userRepository.findById(userId)
                 .orElseThrow(UserNotFoundException::new);
 
-        List<Subscribe> subscribes = subscribeRepository.findTop10ByUserIdOrderByCreatedAtDesc(userId);
-
+        List<Subscribe> subscribes = subscribeRepository.findByUserId(userId);
         if (subscribes.isEmpty()) {
             return new ArrayList<>();
         }
@@ -86,7 +86,19 @@ public class BasicSubscribeService implements SubscribeService {
                 .map(Subscribe::getInterestId)
                 .toList();
 
-        List<Interest> interests = interestRepository.findByIdIn(interestId);
-        return subscribeMapper.toDtos(subscribes, interests);
+        Map<UUID,Interest> interests = interestRepository.findByIdIn(interestId).stream()
+                .collect(Collectors.toMap(Interest::getId, Function.identity() ));
+
+        return toDto(subscribes, interests);
+    }
+
+    public List<SubscribeDto> toDto(List<Subscribe> subscribes, Map<UUID,Interest> interests) {
+        List<SubscribeDto> subscribeDtoList = new ArrayList<>();
+        for (Subscribe subscribe : subscribes) {
+            Interest interest = interests.get(subscribe.getInterestId());
+            SubscribeDto subscribeDto = subscribeMapper.toDto(subscribe,interest);
+            subscribeDtoList.add(subscribeDto);
+        }
+        return subscribeDtoList;
     }
 }

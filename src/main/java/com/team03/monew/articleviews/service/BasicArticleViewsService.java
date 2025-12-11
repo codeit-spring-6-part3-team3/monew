@@ -5,8 +5,10 @@ import com.team03.monew.articleviews.dto.ArticleViewsActivityDto;
 import com.team03.monew.articleviews.repository.ArticleViewsRepository;
 import com.team03.monew.article.domain.Article;
 import com.team03.monew.user.domain.User;
+import com.team03.monew.user.exception.UserNotFoundException;
 import com.team03.monew.user.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -43,6 +45,24 @@ public class BasicArticleViewsService implements ArticleViewsService {
   @Override
   @Transactional
   public List<ArticleViewsActivityDto> topTenByUserId(UUID userId) {
-    return articleViewsRepository.findTopTenByUserIdOrderByCreatedAtDesc(userId);
+
+      User user = userRepository.getReferenceById(userId);
+      if(user.getId() == null){
+          throw new UserNotFoundException();
+      }
+      List<ArticleViews> articleViewsList = articleViewsRepository.findTop10ByUserOrderByCreatedAtDesc(user);
+
+      return toDtoList(articleViewsList);
+
+  }
+
+  private List<ArticleViewsActivityDto> toDtoList(List<ArticleViews> articleViewsList) {
+      List<ArticleViewsActivityDto> articleViewsActivityDtoList = new ArrayList<>();
+
+      for (ArticleViews articleViews : articleViewsList) {
+          ArticleViewsActivityDto articleViewsActivityDto = new ArticleViewsActivityDto(articleViews);
+          articleViewsActivityDtoList.add(articleViewsActivityDto);
+      }
+      return articleViewsActivityDtoList;
   }
 }

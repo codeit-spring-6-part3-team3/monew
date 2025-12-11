@@ -8,7 +8,7 @@ import java.util.UUID;
 public record ArticleDto(
     UUID id,
     ArticleSourceType source,
-    String sourceLink,
+    String sourceUrl,
     String title,
     LocalDateTime publishDate,
     String summary,

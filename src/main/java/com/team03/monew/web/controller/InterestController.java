@@ -51,13 +51,13 @@ public class InterestController implements InterestApi {
     //3 관심사 목록 조회 추가
     @GetMapping
     public ResponseEntity<CursorPageResponseInterestDto> interestList(
-            @RequestParam String keyword,
+            @RequestParam(required = false) String keyword,
             @RequestParam String orderBy,
             @RequestParam String direction,
             @RequestParam(required = false) String cursor,
             @RequestParam(required = false) String after,
             @RequestParam int limit,
-            @RequestParam(name = "Monew-Request-User-ID",required = false) UUID userId
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ){
         InterestSearchRequest request = new InterestSearchRequest(
                 keyword,
@@ -76,8 +76,7 @@ public class InterestController implements InterestApi {
     public ResponseEntity<SubscribeDto> subscribeCreate(
             @PathVariable
             UUID interestId,
-            @RequestParam(name = "Monew-Request-User-ID")
-            UUID userId
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ) {
         SubscribeDto response = subscribeService.subscribeCreate(userId,interestId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -88,8 +87,7 @@ public class InterestController implements InterestApi {
     public ResponseEntity<Void> subscribeDelete(
             @PathVariable
             UUID interestId,
-            @RequestParam(name = "Monew-Request-User-ID")
-            UUID userId
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ) throws NoSuchObjectException {
         subscribeService.subscribeDelete(userId,interestId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

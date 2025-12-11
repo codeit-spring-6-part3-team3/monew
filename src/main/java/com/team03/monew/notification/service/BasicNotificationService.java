@@ -34,9 +34,18 @@ public class BasicNotificationService implements NotificationService {
 
     @Override
     @Transactional(readOnly = true)
-    public CursorPageResponseNotificationDto getUncheckedNotifications(UUID userId, int size) {
-        Slice<Notification> slice = notificationRepository.findNotifications(userId, size);
-        return CursorPageResponseNotificationDto.from(slice, size);
+    public CursorPageResponseNotificationDto getUncheckedNotifications(
+            UUID userId,
+            int size,
+            LocalDateTime after
+    ) {
+        Slice<Notification> slice = notificationRepository.findNotifications(
+                userId,
+                size,
+                after
+        );
+        Long totalElement = notificationRepository.countByUserId(userId);
+        return CursorPageResponseNotificationDto.from(slice, size, totalElement);
     }
 
     @Override
@@ -44,14 +53,16 @@ public class BasicNotificationService implements NotificationService {
     public CursorPageResponseNotificationDto getUncheckedNotificationsWithCursor(
             UUID userId,
             String cursor,
-            int size
+            int size,
+            LocalDateTime after
     ) {
         Slice<Notification> slice = notificationRepository.findNotificationsWithCursor(
                 userId,
                 cursor,
-                size
+                size,
+                after
         );
-        return CursorPageResponseNotificationDto.from(slice, size);
+        return CursorPageResponseNotificationDto.from(slice, size, null);
     }
 
     @Override

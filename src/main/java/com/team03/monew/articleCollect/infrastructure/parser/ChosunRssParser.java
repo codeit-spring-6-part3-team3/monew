@@ -38,7 +38,7 @@ public class ChosunRssParser extends StaxRssParser {
           String tag = reader.getLocalName();
           String ns = reader.getNamespaceURI();
 
-          log.debug("[CHOSUN] START_ELEMENT <{}> ns={}", tag, ns);
+          log.trace("[CHOSUN] START_ELEMENT <{}> ns={}", tag, ns);
 
           switch (tag) {
             case "title":
@@ -56,7 +56,7 @@ public class ChosunRssParser extends StaxRssParser {
             case "encoded":
               if (CONTENT_NS.equals(ns)) {
                 String encoded = safeElementText(reader);
-                log.debug("[CHOSUN] encoded len={}", encoded != null ? encoded.length() : 0);
+                log.trace("[CHOSUN] encoded len={}", encoded != null ? encoded.length() : 0);
 
                 String alt = extractImgAlt(encoded);
                 if (alt != null && !alt.isBlank()) {
@@ -78,7 +78,7 @@ public class ChosunRssParser extends StaxRssParser {
 
         } else if (eventType == XMLStreamConstants.END_ELEMENT) {
           if ("item".equals(reader.getLocalName())) {
-            log.debug("[CHOSUN] END_ELEMENT </item> → break");
+            log.trace("[CHOSUN] END_ELEMENT </item> → break");
             break;
           }
         }
@@ -88,7 +88,7 @@ public class ChosunRssParser extends StaxRssParser {
       return null;
     }
 
-    log.info("[CHOSUN] SUMMARY title='{}', link={}, pubDate={}, overview={}",
+    log.debug("[CHOSUN] SUMMARY title='{}', link={}, pubDate={}, overview={}",
         title, link, publishedAt, preview(overview, 80));
 
     if (title == null || link == null) {
@@ -104,7 +104,7 @@ public class ChosunRssParser extends StaxRssParser {
         .source(ArticleSourceType.CHOSUN)
         .build();
 
-    log.debug("[CHOSUN] BUILT FetchedArticles = {}", article);
+    log.trace("[CHOSUN] BUILT FetchedArticles = {}", article);
 
     if (log.isTraceEnabled()) {
       log.trace("[CHOSUN] readItem END");

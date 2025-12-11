@@ -15,9 +15,11 @@ import com.team03.monew.article.dto.ArticleDto;
 import com.team03.monew.article.dto.ArticleResponseDto;
 import com.team03.monew.article.repository.ArticleRepository;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -182,5 +184,10 @@ public class BasicArticleService implements ArticleService {
 
     log.debug("뉴스 상세 조회 성공. articleId : {}, viewedByMe : {}", articleId, viewedByMe);
     return ArticleDto.from(article,viewedByMe);
+  }
+
+  @Override
+  public ArticleSourceType[] getAllSources() {
+    return ArticleSourceType.values();
   }
 }

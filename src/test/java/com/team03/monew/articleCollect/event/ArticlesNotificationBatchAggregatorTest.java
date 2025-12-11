@@ -111,4 +111,60 @@ class ArticlesNotificationBatchAggregatorTest {
 
     verify(publisher, never()).publishEvent(any());
   }
+
+  @Test
+  @DisplayName("여러 관심사에 대한 누적 건수를 각 관심사별로 나눠서 발행한다")
+  void flushMultipleInterests() {
+    UUID interestA = UUID.randomUUID();
+    UUID interestB = UUID.randomUUID();
+
+    // interestA 6건, interestB 4건 → 총 10건이라 size 기준 플러시
+    for (int i = 0; i < 6; i++) {
+      aggregator.onArticlesCollected(new ArticlesCollectedEvent(UUID.randomUUID(), Set.of(interestA)));
+    }
+    for (int i = 0; i < 4; i++) {
+      aggregator.onArticlesCollected(new ArticlesCollectedEvent(UUID.randomUUID(), Set.of(interestB)));
+    }
+
+    Interest a = Interest.builder().name("A").keywords(List.of("a")).build();
+    Interest b = Interest.builder().name("B").keywords(List.of("b")).build();
+    ReflectionTestUtils.setField(a, "id", interestA);
+    ReflectionTestUtils.setField(b, "id", interestB);
+    when(interestRepository.findAllById(Set.of(interestA, interestB))).thenReturn(List.of(a, b));
+
+    UUID aUser1 = UUID.randomUUID();
+    UUID aUser2 = UUID.randomUUID();
+    UUID bUser1 = UUID.randomUUID();
+    when(subscribeRepository.findByInterestIdIn(List.of(interestA, interestB)))
+        .thenReturn(List.of(
+            Subscribe.builder().userId(aUser1).interestId(interestA).build(),
+            Subscribe.builder().userId(aUser2).interestId(interestA).build(),
+            Subscribe.builder().userId(bUser1).interestId(interestB).build()
+        ));
+
+    ArgumentCaptor<NotificationCreateDto> captor = ArgumentCaptor.forClass(NotificationCreateDto.class);
+
+    // when
+    aggregator.checkFlush();
+
+    // then: A 구독자 2명, B 구독자 1명 → 총 3건 발행
+    verify(publisher, times(3)).publishEvent(captor.capture());
+    List<NotificationCreateDto> events = captor.getAllValues();
+    assertThat(events).filteredOn(dto -> dto.resourceId().equals(interestA)).hasSize(2)
+        .allMatch(dto -> dto.context().contains("6건"));
+    assertThat(events).filteredOn(dto -> dto.resourceId().equals(interestB)).hasSize(1)
+        .allMatch(dto -> dto.context().contains("4건"));
+  }
+
+  @Test
+  @DisplayName("시간/사이즈 조건 모두 미충족 시 플러시하지 않는다")
+  void noFlushWhenBelowThreshold() {
+    UUID interestId = UUID.randomUUID();
+    aggregator.onArticlesCollected(new ArticlesCollectedEvent(UUID.randomUUID(), Set.of(interestId)));
+
+    // lastFlush는 초기값 그대로(최근) → 시간 조건 미충족, 건수도 1건
+    aggregator.checkFlush();
+
+    verify(publisher, never()).publishEvent(any());
+  }
 }

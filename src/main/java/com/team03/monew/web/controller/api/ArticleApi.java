@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Tag(name = "Article", description = "뉴스 API")
 public interface ArticleApi {
@@ -32,8 +35,11 @@ public interface ArticleApi {
       @Parameter(description = "정렬 방향") String direction,
       @Parameter(description = "커서") String cursor,
       @Parameter(description = "커서 기준 시간") LocalDateTime after,
-      @Parameter(description = "페이지 크기") int limit
+      @Parameter(description = "페이지 크기") int limit,
+      @RequestHeader("Monew-Request-User-ID") UUID userId
   );
+
+  // 뉴스 목록 조회
 
   // 뉴스 단건 조회
   @Operation(summary = "뉴스 단건 조회")
