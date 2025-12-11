@@ -15,7 +15,7 @@ public record ArticleViewsActivityDto(
         ArticleSourceType source,
         String sourceUrl,
         String articleTitle,
-        LocalDateTime articlePublishedAt,
+        LocalDateTime articlePublishedDate,
         String articleSummary,
         Long articleCommentCount,
         Long articleViewCount
