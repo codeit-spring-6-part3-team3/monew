@@ -14,7 +14,7 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, UUID> {
 
     Boolean existsByUserIdAndInterestId(UUID userId, UUID interestId);
 
-    List<Subscribe> findTop10ByUserIdOrderByCreatedAtDesc(UUID userId);
+    List<Subscribe> findByUserId(UUID userId);
 
     List<Subscribe> findByUserIdAndInterestIdIn(UUID userId, List<UUID> interestIds);
 

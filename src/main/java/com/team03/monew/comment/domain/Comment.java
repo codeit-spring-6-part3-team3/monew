@@ -2,8 +2,10 @@ package com.team03.monew.comment.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -35,7 +37,8 @@ public class Comment {
     @Column(name = "like_count", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Long likeCount;
 
-    @Column(name = "liked_by_me", nullable = false, columnDefinition = "FALSE")
+    @Column(name = "liked_by_me", nullable = false)
+    @ColumnDefault("false")
     private boolean likedByMe;
 
     @UpdateTimestamp
