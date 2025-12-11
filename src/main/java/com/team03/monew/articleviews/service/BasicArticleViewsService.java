@@ -1,10 +1,13 @@
 package com.team03.monew.articleviews.service;
 
 import com.team03.monew.articleviews.domain.ArticleViews;
+import com.team03.monew.articleviews.dto.ArticleViewsActivityDto;
 import com.team03.monew.articleviews.repository.ArticleViewsRepository;
 import com.team03.monew.article.domain.Article;
 import com.team03.monew.user.domain.User;
 import com.team03.monew.user.repository.UserRepository;
+
+import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +38,11 @@ public class BasicArticleViewsService implements ArticleViewsService {
     article.increaseViewCount();
 
     return true;
+  }
+
+  @Override
+  @Transactional
+  public List<ArticleViewsActivityDto> topTenByUserId(UUID userId) {
+    return articleViewsRepository.findTopTenByUserIdOrderByCreatedAtDesc(userId);
   }
 }

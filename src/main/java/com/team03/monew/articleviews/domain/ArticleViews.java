@@ -15,6 +15,7 @@ import jakarta.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 @Entity
 @NoArgsConstructor
@@ -30,6 +31,7 @@ import lombok.NoArgsConstructor;
         @UniqueConstraint(columnNames = {"viewed_by","article_id"})
     }
 )
+@Getter
 public class ArticleViews {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
