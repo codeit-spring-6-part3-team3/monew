@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.subscribe.controller.SubscribeCreateTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.990Z" hostname="ichihoui-MacBookPro.local" time="0.008">
+  <properties/>
+  <testcase name="구독 생성 성공 검증" classname="com.team03.monew.subscribe.controller.SubscribeCreateTest" time="0.005"/>
+  <testcase name="구독 생성 필수 요청값 없음 실패 검증" classname="com.team03.monew.subscribe.controller.SubscribeCreateTest" time="0.002"/>
+  <system-out><![CDATA[25-12-12 07:05:25.981 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.subscribe.controller.SubscribeCreateTest]: SubscribeCreateTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 07:05:25.990 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.subscribe.controller.SubscribeCreateTest
+25-12-12 07:05:25.998 [Test worker] [73b8e5f9-9e7a-47b8-b92b-4df6c75ab9bb] [127.0.0.1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestHeaderException: Required request header 'Monew-Request-User-ID' for method parameter type UUID is not present]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

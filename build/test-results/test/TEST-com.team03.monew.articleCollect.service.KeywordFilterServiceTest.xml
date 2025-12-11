@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.articleCollect.service.KeywordFilterServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.056Z" hostname="ichihoui-MacBookPro.local" time="0.002">
+  <properties/>
+  <testcase name="matchingInterests: 등록된 키워드가 없거나 뉴스가 null이면 빈 Set을 반환한다" classname="com.team03.monew.articleCollect.service.KeywordFilterServiceTest" time="0.0"/>
+  <testcase name="refresh: 키워드 인덱스를 구축하고 제목/본문에 키워드가 포함된 관심사를 반환한다" classname="com.team03.monew.articleCollect.service.KeywordFilterServiceTest" time="0.001"/>
+  <system-out><![CDATA[25-12-12 07:05:25.058 [Test worker] [] [] INFO  c.t.m.a.service.KeywordFilterService - Keyword index refreshed. 3 keywords loaded.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,1099 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.article.repository.ArticleQueryRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.488Z" hostname="ichihoui-MacBookPro.local" time="0.127">
+  <properties/>
+  <testcase name="findNextCursor_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.097"/>
+  <testcase name="findArticleList_Fail_NoResults()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.014"/>
+  <testcase name="findArticleList_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.007"/>
+  <testcase name="orderByViewCount_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.008"/>
+  <system-out><![CDATA[25-12-12 07:05:24.308 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.article.repository.ArticleQueryRepositoryTest]: ArticleQueryRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 07:05:24.317 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.article.repository.ArticleQueryRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.8)
+
+25-12-12 07:05:24.328 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - Starting ArticleQueryRepositoryTest using Java 17.0.17 with PID 70039 (started by chiho in /Users/chiho/Desktop/codeit/sprint-element/monew)
+25-12-12 07:05:24.328 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - The following 1 profile is active: "test"
+25-12-12 07:05:24.360 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-12-12 07:05:24.372 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 8 JPA repository interfaces.
+25-12-12 07:05:24.379 [Test worker] [] [] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+25-12-12 07:05:24.387 [Test worker] [] [] INFO  o.s.j.d.e.EmbeddedDatabaseFactory    - Starting embedded database: url='jdbc:h2:mem:21f19a44-6ba7-442d-8d7b-767849738dc2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+25-12-12 07:05:24.397 [Test worker] [] [] INFO  o.h.jpa.internal.util.LogHelper      - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-12-12 07:05:24.398 [Test worker] [] [] INFO  o.h.c.i.RegionFactoryInitiator       - HHH000026: Second-level cache disabled
+25-12-12 07:05:24.406 [Test worker] [] [] INFO  o.s.o.j.p.SpringPersistenceUnitInfo  - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-12-12 07:05:24.406 [Test worker] [] [] WARN  org.hibernate.orm.deprecation        - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-12-12 07:05:24.407 [Test worker] [] [] INFO  o.hibernate.orm.connections.pooling  - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@1c84d89e']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+25-12-12 07:05:24.440 [Test worker] [] [] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator   - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-12-12 07:05:24.440 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    drop table if exists article cascade 
+Hibernate: 
+    drop table if exists article cascade 
+25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    drop table if exists article_views cascade 
+Hibernate: 
+    drop table if exists article_views cascade 
+25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    drop table if exists comment_likes cascade 
+Hibernate: 
+    drop table if exists comment_likes cascade 
+25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    drop table if exists interest cascade 
+Hibernate: 
+    drop table if exists interest cascade 
+25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    drop table if exists notification cascade 
+Hibernate: 
+    drop table if exists notification cascade 
+25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    drop table if exists reply cascade 
+Hibernate: 
+    drop table if exists reply cascade 
+25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    drop table if exists subscribe cascade 
+Hibernate: 
+    drop table if exists subscribe cascade 
+25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    drop table if exists users cascade 
+Hibernate: 
+    drop table if exists users cascade 
+25-12-12 07:05:24.442 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create table article (
+        is_delete boolean default false,
+        comment_count INTEGER DEFAULT 0,
+        created_at timestamp(6),
+        posted_at timestamp(6),
+        updated_at timestamp(6),
+        view_count INTEGER DEFAULT 0,
+        id uuid not null,
+        interest_id uuid,
+        title varchar(200),
+        resource_link varchar(600),
+        overview varchar(2000),
+        source enum ('CHOSUN','KOREA','YNA'),
+        primary key (id),
+        unique (resource_link)
+    )
+Hibernate: 
+    create table article (
+        is_delete boolean default false,
+        comment_count INTEGER DEFAULT 0,
+        created_at timestamp(6),
+        posted_at timestamp(6),
+        updated_at timestamp(6),
+        view_count INTEGER DEFAULT 0,
+        id uuid not null,
+        interest_id uuid,
+        title varchar(200),
+        resource_link varchar(600),
+        overview varchar(2000),
+        source enum ('CHOSUN','KOREA','YNA'),
+        primary key (id),
+        unique (resource_link)
+    )
+25-12-12 07:05:24.443 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create table article_views (
+        created_at timestamp(6),
+        article_id uuid,
+        article_views_id uuid not null,
+        viewed_by uuid,
+        primary key (article_views_id),
+        unique (viewed_by, article_id)
+    )
+Hibernate: 
+    create table article_views (
+        created_at timestamp(6),
+        article_id uuid,
+        article_views_id uuid not null,
+        viewed_by uuid,
+        primary key (article_views_id),
+        unique (viewed_by, article_id)
+    )
+25-12-12 07:05:24.443 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create table comment_likes (
+        comment_created_at timestamp(6) not null,
+        comment_like_count bigint not null,
+        created_at timestamp(6) not null,
+        article_id uuid not null,
+        comment_id uuid not null,
+        comment_user_id uuid not null,
+        id uuid not null,
+        liked_by uuid not null,
+        comment_content varchar(255) not null,
+        comment_user_nickname varchar(255) not null,
+        primary key (id),
+        unique (liked_by, comment_id)
+    )
+Hibernate: 
+    create table comment_likes (
+        comment_created_at timestamp(6) not null,
+        comment_like_count bigint not null,
+        created_at timestamp(6) not null,
+        article_id uuid not null,
+        comment_id uuid not null,
+        comment_user_id uuid not null,
+        id uuid not null,
+        liked_by uuid not null,
+        comment_content varchar(255) not null,
+        comment_user_nickname varchar(255) not null,
+        primary key (id),
+        unique (liked_by, comment_id)
+    )
+25-12-12 07:05:24.444 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create table interest (
+        created_at timestamp(6),
+        subscribe_count bigint default 0,
+        updated_at timestamp(6),
+        id uuid not null,
+        name varchar(100) not null,
+        keywords varchar(255) array not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table interest (
+        created_at timestamp(6),
+        subscribe_count bigint default 0,
+        updated_at timestamp(6),
+        id uuid not null,
+        name varchar(100) not null,
+        keywords varchar(255) array not null,
+        primary key (id)
+    )
+25-12-12 07:05:24.444 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create table notification (
+        is_checked BOOLEAN DEFAULT FALSE not null,
+        created_at timestamp(6),
+        updated_at timestamp(6),
+        id uuid not null,
+        resource_id uuid not null,
+        user_id uuid not null,
+        context varchar(255) not null,
+        resource enum ('INTEREST','REPLY') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table notification (
+        is_checked BOOLEAN DEFAULT FALSE not null,
+        created_at timestamp(6),
+        updated_at timestamp(6),
+        id uuid not null,
+        resource_id uuid not null,
+        user_id uuid not null,
+        context varchar(255) not null,
+        resource enum ('INTEREST','REPLY') not null,
+        primary key (id)
+    )
+25-12-12 07:05:24.445 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create table reply (
+        liked_by_me boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        like_count bigint not null,
+        updated_at timestamp(6) not null,
+        article_id uuid not null,
+        id uuid not null,
+        user_id uuid not null,
+        content varchar(500) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table reply (
+        liked_by_me boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        like_count bigint not null,
+        updated_at timestamp(6) not null,
+        article_id uuid not null,
+        id uuid not null,
+        user_id uuid not null,
+        content varchar(500) not null,
+        primary key (id)
+    )
+25-12-12 07:05:24.445 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create table subscribe (
+        created_at timestamp(6),
+        id uuid not null,
+        interest_id uuid not null,
+        user_id uuid not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table subscribe (
+        created_at timestamp(6),
+        id uuid not null,
+        interest_id uuid not null,
+        user_id uuid not null,
+        primary key (id)
+    )
+25-12-12 07:05:24.446 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create table users (
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        updated_at timestamp(6) not null,
+        user_id uuid not null,
+        nickname varchar(50) not null unique,
+        email varchar(255) not null unique,
+        password_hash varchar(255) not null,
+        primary key (user_id)
+    )
+Hibernate: 
+    create table users (
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        updated_at timestamp(6) not null,
+        user_id uuid not null,
+        nickname varchar(50) not null unique,
+        email varchar(255) not null unique,
+        password_hash varchar(255) not null,
+        primary key (user_id)
+    )
+25-12-12 07:05:24.446 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create index idx_email 
+       on users (email)
+Hibernate: 
+    create index idx_email 
+       on users (email)
+25-12-12 07:05:24.446 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    create index idx_deleted_at 
+       on users (deleted_at)
+Hibernate: 
+    create index idx_deleted_at 
+       on users (deleted_at)
+25-12-12 07:05:24.447 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    alter table if exists article 
+       add constraint FKoy1hgssyovltbfn9s0q8pxvhi 
+       foreign key (interest_id) 
+       references interest
+Hibernate: 
+    alter table if exists article 
+       add constraint FKoy1hgssyovltbfn9s0q8pxvhi 
+       foreign key (interest_id) 
+       references interest
+25-12-12 07:05:24.447 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    alter table if exists article_views 
+       add constraint FKe0htn7lnoyil7uq5aadp58xnj 
+       foreign key (article_id) 
+       references article
+Hibernate: 
+    alter table if exists article_views 
+       add constraint FKe0htn7lnoyil7uq5aadp58xnj 
+       foreign key (article_id) 
+       references article
+25-12-12 07:05:24.448 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    alter table if exists article_views 
+       add constraint FKbnjo1tykslka7kakrdjnduptt 
+       foreign key (viewed_by) 
+       references users
+Hibernate: 
+    alter table if exists article_views 
+       add constraint FKbnjo1tykslka7kakrdjnduptt 
+       foreign key (viewed_by) 
+       references users
+25-12-12 07:05:24.449 [Test worker] [] [] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-12-12 07:05:24.487 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - Started ArticleQueryRepositoryTest in 0.168 seconds (process running for 2.629)
+25-12-12 07:05:24.501 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.506 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.506 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.506 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.507 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.507 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.507 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.508 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.508 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.508 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.558 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.is_delete=? 
+    order by
+        a1_0.posted_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.is_delete=? 
+    order by
+        a1_0.posted_at desc 
+    fetch
+        first ? rows only
+25-12-12 07:05:24.561 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.posted_at<=? 
+        and a1_0.is_delete=? 
+    order by
+        a1_0.posted_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.posted_at<=? 
+        and a1_0.is_delete=? 
+    order by
+        a1_0.posted_at desc 
+    fetch
+        first ? rows only
+25-12-12 07:05:24.587 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.588 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.589 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.589 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.590 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.590 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.590 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.591 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.591 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.591 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.594 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    update
+        article a1_0 
+    set
+        is_delete=true
+Hibernate: 
+    update
+        article a1_0 
+    set
+        is_delete=true
+25-12-12 07:05:24.597 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.is_delete=? 
+    order by
+        a1_0.posted_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.is_delete=? 
+    order by
+        a1_0.posted_at desc 
+    fetch
+        first ? rows only
+25-12-12 07:05:24.601 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.602 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.602 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.603 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.603 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.603 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.604 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.604 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.604 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.605 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.605 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.is_delete=? 
+    order by
+        a1_0.posted_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.is_delete=? 
+    order by
+        a1_0.posted_at desc 
+    fetch
+        first ? rows only
+25-12-12 07:05:24.609 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.609 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.610 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.610 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.610 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.610 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.611 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.611 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.611 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.611 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        article
+        (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+25-12-12 07:05:24.613 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.is_delete=? 
+    order by
+        a1_0.view_count desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.source,
+        a1_0.resource_link,
+        a1_0.title,
+        a1_0.posted_at,
+        a1_0.overview,
+        a1_0.comment_count,
+        a1_0.view_count,
+        av1_0.article_views_id is not null 
+    from
+        article a1_0 
+    left join
+        article_views av1_0 
+            on av1_0.article_id=a1_0.id 
+    where
+        a1_0.is_delete=? 
+    order by
+        a1_0.view_count desc 
+    fetch
+        first ? rows only
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

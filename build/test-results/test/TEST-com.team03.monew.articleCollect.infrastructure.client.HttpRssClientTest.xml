@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.articleCollect.infrastructure.client.HttpRssClientTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.887Z" hostname="ichihoui-MacBookPro.local" time="0.089">
+  <properties/>
+  <testcase name="응답이 null/blank이면 RssFetchException을 던진다" classname="com.team03.monew.articleCollect.infrastructure.client.HttpRssClientTest" time="0.083"/>
+  <testcase name="정상: CHOSUN 피드 요청 시 해당 파서를 사용해 sink에 전달한다" classname="com.team03.monew.articleCollect.infrastructure.client.HttpRssClientTest" time="0.001"/>
+  <testcase name="지원 파서가 없는 경우 초기화 시 RssParserNotFoundException 발생" classname="com.team03.monew.articleCollect.infrastructure.client.HttpRssClientTest" time="0.0"/>
+  <testcase name="HTTP 요청 실패 시 RssFetchException으로 래핑한다" classname="com.team03.monew.articleCollect.infrastructure.client.HttpRssClientTest" time="0.002"/>
+  <testcase name="파서에서 예외가 발생하면 그대로 전파된다" classname="com.team03.monew.articleCollect.infrastructure.client.HttpRssClientTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
