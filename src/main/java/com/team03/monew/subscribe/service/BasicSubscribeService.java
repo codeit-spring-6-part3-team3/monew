@@ -12,6 +12,7 @@ import com.team03.monew.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.rmi.NoSuchObjectException;
 import java.util.*;
@@ -91,7 +92,7 @@ public class BasicSubscribeService implements SubscribeService {
 
         return toDto(subscribes, interests);
     }
-
+    @Transactional(readOnly = true)
     public List<SubscribeDto> toDto(List<Subscribe> subscribes, Map<UUID,Interest> interests) {
         List<SubscribeDto> subscribeDtoList = new ArrayList<>();
         for (Subscribe subscribe : subscribes) {

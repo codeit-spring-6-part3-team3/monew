@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.977Z" hostname="ichihoui-MacBookPro.local" time="0.007">
+<testsuite name="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.552Z" hostname="macui-MacBookPro.local" time="0.012">
   <properties/>
-  <testcase name="encoded에_alt와_p가_있으면_p텍스트가_최종_overview()" classname="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" time="0.004"/>
+  <testcase name="encoded에_alt와_p가_있으면_p텍스트가_최종_overview()" classname="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" time="0.008"/>
   <testcase name="title이나_link가_없으면_null()" classname="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" time="0.001"/>
   <testcase name="encoded에_alt만_있으면_alt가_overview()" classname="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" time="0.0"/>
-  <testcase name="description과_encoded가_같이_있으면_encoded가_description을_덮어쓴다()" classname="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" time="0.001"/>
+  <testcase name="description과_encoded가_같이_있으면_encoded가_description을_덮어쓴다()" classname="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" time="0.0"/>
   <testcase name="description만_있으면_overview는_description()" classname="com.team03.monew.articleCollect.infrastructure.parser.ChosunRssParserTest" time="0.0"/>
-  <system-out><![CDATA[25-12-12 07:05:24.983 [Test worker] [] [] WARN  c.t.m.a.i.parser.ChosunRssParser     - [CHOSUN] Skip item: missing title or link. title='null', link=https://www.chosun.com/article1
-25-12-12 07:05:24.983 [Test worker] [] [] WARN  c.t.m.a.i.parser.ChosunRssParser     - [CHOSUN] Skip item: missing title or link. title='조선 기사', link=null
+  <system-out><![CDATA[25-12-12 12:05:59.561 [Test worker] [] [] WARN  c.t.m.a.i.parser.ChosunRssParser     - [CHOSUN] Skip item: missing title or link. title='null', link=https://www.chosun.com/article1
+25-12-12 12:05:59.561 [Test worker] [] [] WARN  c.t.m.a.i.parser.ChosunRssParser     - [CHOSUN] Skip item: missing title or link. title='조선 기사', link=null
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

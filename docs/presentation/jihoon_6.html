@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>프로젝트 발표</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide-container { 
+            width: 1280px; 
+            height: 720px; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 20px 30px;
+            width: fit-content;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3b82f6;
+        }
+        .code-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #10b981;
+        }
+        .code-content {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+        .code-section {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        .explanation-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            border: 1px solid #e2e8f0;
+        }
+        .explanation-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .explanation-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .explanation-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+        .explanation-text {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        .info-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .info-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6b7280;
+        }
+        .code-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="info-box">
+        <div class="info-title">구독 조회</div>
+        <div class="info-subtitle">Batch 조회 및 Map 매핑을 통한 N+1 문제 해결</div>
+    </div>
+    <div class="code-box">
+        <div class="code-title">subscribeUser & toDto 메서드</div>
+        <div class="code-content">
+            <div class="code-section">
+                <div class="section-title">💻 Java Source Code</div>
+<pre>
+<span style="color: #f472b6">@Override</span>
+<span style="color: #f472b6">@Transactional(readOnly = true)</span>
+<span style="color: #c084fc">public</span> <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">SubscribeDto</span>&gt; <span style="color: #60a5fa">subscribeUser</span>(<span style="color: #fbbf24">UUID</span> userId) {
+    userRepository.<span style="color: #60a5fa">findById</span>(userId)
+            .<span style="color: #60a5fa">orElseThrow</span>(<span style="color: #fbbf24">UserNotFoundException</span>::<span style="color: #c084fc">new</span>);
+    <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">Subscribe</span>&gt; subscribes = subscribeRepository.<span style="color: #60a5fa">findByUserId</span>(userId);
+    <span style="color: #c084fc">if</span> (subscribes.<span style="color: #60a5fa">isEmpty</span>()) <span style="color: #c084fc">return new</span> <span style="color: #fbbf24">ArrayList</span><>();
+    <span style="color: #6b7280">// 1. 구독 목록에서 관심사 ID만 추출</span>
+    <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">UUID</span>&gt; interestId = subscribes.<span style="color: #60a5fa">stream</span>()
+            .<span style="color: #60a5fa">map</span>(Subscribe::<span style="color: #60a5fa">getInterestId</span>)
+            .<span style="color: #60a5fa">toList</span>();
+    <span style="color: #6b7280">// 2. 관심사 일괄 조회 (IN Query) 후 Map 변환</span>
+    <span style="color: #fbbf24">Map</span>&lt;<span style="color: #fbbf24">UUID</span>, <span style="color: #fbbf24">Interest</span>&gt; interests = interestRepository
+            .<span style="color: #60a5fa">findByIdIn</span>(interestId).<span style="color: #60a5fa">stream</span>()
+            .<span style="color: #60a5fa">collect</span>(<span style="color: #fbbf24">Collectors</span>.<span style="color: #60a5fa">toMap</span>(
+                Interest::<span style="color: #60a5fa">getId</span>, <span style="color: #fbbf24">Function</span>.<span style="color: #60a5fa">identity</span>() 
+            ));
+    <span style="color: #c084fc">return</span> <span style="color: #60a5fa">toDto</span>(subscribes, interests);
+}
+<span style="color: #c084fc">public</span> <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">SubscribeDto</span>&gt; <span style="color: #60a5fa">toDto</span>(<span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">Subscribe</span>&gt; subscribes, <span style="color: #fbbf24">Map</span>&lt;<span style="color: #fbbf24">UUID</span>, <span style="color: #fbbf24">Interest</span>&gt; interests) {
+<span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">SubscribeDto</span>&gt; subscribeDtoList = <span style="color: #c084fc">new</span> <span style="color: #fbbf24">ArrayList</span><>();
+<span style="color: #c084fc">for</span> (<span style="color: #fbbf24">Subscribe</span> subscribe : subscribes) {
+<span style="color: #6b7280">// 3. Map에서 O(1)로 조회하여 매핑</span>
+<span style="color: #fbbf24">Interest</span> interest = interests.<span style="color: #60a5fa">get</span>(subscribe.<span style="color: #60a5fa">getInterestId</span>());
+        <span style="color: #fbbf24">SubscribeDto</span> subscribeDto = subscribeMapper.<span style="color: #60a5fa">toDto</span>(subscribe, interest);
+        subscribeDtoList.<span style="color: #60a5fa">add</span>(subscribeDto);
+    }
+    <span style="color: #c084fc">return</span> subscribeDtoList;
+}</pre>
+</div>
+            <div class="code-section">
+                <div class="section-title">📝 로직 상세 분석</div>
+                <div class="explanation-box">
+                    <div class="explanation-item">
+                        <div class="explanation-title">N+1 문제 원인 및 해결</div>
+                        <div class="explanation-text">
+                            구독 리스트를 순회하며 매번 <code>findById</code>로 관심사를 조회하면 쿼리가 N번 발생합니다. 이를 <code>findByIdIn</code>을 사용하여 1번의 쿼리로 모든 연관 데이터를 가져오도록 최적화했습니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">Map을 활용한 매핑 성능 향상</div>
+                        <div class="explanation-text">
+                            조회한 관심사 리스트를 <code>Map&lt;UUID, Interest&gt;</code>로 변환했습니다. 이를 통해 DTO 변환 반복문 내부에서 데이터를 찾을 때 리스트 탐색 O(N) 대신 O(1)의 속도로 빠르게 접근할 수 있습니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">Stream API & Collectors</div>
+                        <div class="explanation-text">
+                            <code>Collectors.toMap(Key, Value)</code>를 사용하여 Entity의 ID를 Key로, Entity 객체 자체(<code>Function.identity()</code>)를 Value로 갖는 맵을 효율적으로 생성했습니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">책임 분리 (Helper Method)</div>
+                        <div class="explanation-text">
+                            데이터 조회 로직(<code>subscribeUser</code>)과 객체 조립/변환 로직(<code>toDto</code>)을 분리하여 코드의 가독성을 높이고 유지보수를 용이하게 만들었습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

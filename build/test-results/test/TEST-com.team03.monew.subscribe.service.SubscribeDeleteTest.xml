@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.subscribe.service.SubscribeDeleteTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:26.027Z" hostname="ichihoui-MacBookPro.local" time="0.003">
+<testsuite name="com.team03.monew.subscribe.service.SubscribeDeleteTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:06:00.928Z" hostname="macui-MacBookPro.local" time="0.004">
   <properties/>
-  <testcase name="구독 삭제 삭제 관심사 정보 없음 실패 검증" classname="com.team03.monew.subscribe.service.SubscribeDeleteTest" time="0.001"/>
+  <testcase name="구독 삭제 삭제 관심사 정보 없음 실패 검증" classname="com.team03.monew.subscribe.service.SubscribeDeleteTest" time="0.002"/>
   <testcase name="구독 삭제 삭제 유저 정보 없음 실패 검증" classname="com.team03.monew.subscribe.service.SubscribeDeleteTest" time="0.001"/>
   <testcase name="구독 삭제 성공 검증" classname="com.team03.monew.subscribe.service.SubscribeDeleteTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

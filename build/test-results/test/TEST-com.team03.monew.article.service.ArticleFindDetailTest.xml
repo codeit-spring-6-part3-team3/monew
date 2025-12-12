@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.article.service.ArticleFindDetailTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.815Z" hostname="ichihoui-MacBookPro.local" time="0.018">
+<testsuite name="com.team03.monew.article.service.ArticleFindDetailTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.331Z" hostname="macui-MacBookPro.local" time="0.027">
   <properties/>
-  <testcase name="getDetailArticle_Success()" classname="com.team03.monew.article.service.ArticleFindDetailTest" time="0.015"/>
-  <testcase name="getDetailArticle_Fail()" classname="com.team03.monew.article.service.ArticleFindDetailTest" time="0.003"/>
-  <system-out><![CDATA[25-12-12 07:05:24.833 [Test worker] [] [] WARN  c.t.m.a.service.BasicArticleService  - 뉴스 조회 되지 않음. articleId : a5bcbae6-9699-4284-81ee-7d82f40da27b
+  <testcase name="getDetailArticle_Success()" classname="com.team03.monew.article.service.ArticleFindDetailTest" time="0.023"/>
+  <testcase name="getDetailArticle_Fail()" classname="com.team03.monew.article.service.ArticleFindDetailTest" time="0.004"/>
+  <system-out><![CDATA[25-12-12 12:05:59.357 [Test worker] [] [] WARN  c.t.m.a.service.BasicArticleService  - 뉴스 조회 되지 않음. articleId : a1b2a222-5087-464b-aedb-08fde3081788
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

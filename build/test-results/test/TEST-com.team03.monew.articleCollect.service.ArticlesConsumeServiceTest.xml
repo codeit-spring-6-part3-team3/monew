@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.articleCollect.service.ArticlesConsumeServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.031Z" hostname="ichihoui-MacBookPro.local" time="0.024">
+<testsuite name="com.team03.monew.articleCollect.service.ArticlesConsumeServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.634Z" hostname="macui-MacBookPro.local" time="0.031">
   <properties/>
-  <testcase name="consumeLoop: 기사 저장 후 관심사 ID 집합으로 이벤트를 발행한다" classname="com.team03.monew.articleCollect.service.ArticlesConsumeServiceTest" time="0.024"/>
+  <testcase name="consumeLoop: 기사 저장 후 관심사 ID 집합으로 이벤트를 발행한다" classname="com.team03.monew.articleCollect.service.ArticlesConsumeServiceTest" time="0.031"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

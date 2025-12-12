@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.article.service.ArticleDeleteTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.776Z" hostname="ichihoui-MacBookPro.local" time="0.037">
+<testsuite name="com.team03.monew.article.service.ArticleDeleteTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.281Z" hostname="macui-MacBookPro.local" time="0.047">
   <properties/>
-  <testcase name="뉴스 삭제 실패(물리) - isDelete가 false 일떄" classname="com.team03.monew.article.service.ArticleDeleteTest" time="0.029"/>
-  <testcase name="뉴스 삭제 실패 - 뉴스가 없을 때" classname="com.team03.monew.article.service.ArticleDeleteTest" time="0.003"/>
-  <testcase name="뉴스 삭제 성공 - 논리" classname="com.team03.monew.article.service.ArticleDeleteTest" time="0.001"/>
-  <testcase name="뉴스 삭제 성공 - 물리" classname="com.team03.monew.article.service.ArticleDeleteTest" time="0.002"/>
-  <system-out><![CDATA[25-12-12 07:05:24.804 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 물리 삭제 시작. articleId : e2ea445f-8ab7-4b67-99cd-a9f6e7866edf
-25-12-12 07:05:24.804 [Test worker] [] [] WARN  c.t.m.a.service.BasicArticleService  - 뉴스 물리 삭제 거부. articleId : e2ea445f-8ab7-4b67-99cd-a9f6e7866edf, isDelete : false
-25-12-12 07:05:24.808 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 논리 삭제 시도. articleId : 30eed4b6-85ee-4a19-83cf-2acf73e5ea09
-25-12-12 07:05:24.809 [Test worker] [] [] WARN  c.t.m.a.service.BasicArticleService  - 뉴스 발견되지 않음 articleId : 30eed4b6-85ee-4a19-83cf-2acf73e5ea09
-25-12-12 07:05:24.810 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 논리 삭제 시도. articleId : 09dffcb0-9d1f-48eb-b51f-d854e7098072
-25-12-12 07:05:24.811 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 논리 삭제 성공. articleId: 09dffcb0-9d1f-48eb-b51f-d854e7098072
-25-12-12 07:05:24.812 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 물리 삭제 시작. articleId : a6b28757-e4dd-4c1c-956d-18667a3d2000
-25-12-12 07:05:24.813 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 물리 삭제 성공. articleId: a6b28757-e4dd-4c1c-956d-18667a3d2000
+  <testcase name="뉴스 삭제 실패(물리) - isDelete가 false 일떄" classname="com.team03.monew.article.service.ArticleDeleteTest" time="0.036"/>
+  <testcase name="뉴스 삭제 실패 - 뉴스가 없을 때" classname="com.team03.monew.article.service.ArticleDeleteTest" time="0.004"/>
+  <testcase name="뉴스 삭제 성공 - 논리" classname="com.team03.monew.article.service.ArticleDeleteTest" time="0.003"/>
+  <testcase name="뉴스 삭제 성공 - 물리" classname="com.team03.monew.article.service.ArticleDeleteTest" time="0.003"/>
+  <system-out><![CDATA[25-12-12 12:05:59.315 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 물리 삭제 시작. articleId : f986315f-67df-4aa3-a9db-46593f96891d
+25-12-12 12:05:59.316 [Test worker] [] [] WARN  c.t.m.a.service.BasicArticleService  - 뉴스 물리 삭제 거부. articleId : f986315f-67df-4aa3-a9db-46593f96891d, isDelete : false
+25-12-12 12:05:59.321 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 논리 삭제 시도. articleId : 5b364f6d-ea87-4815-8c82-f9131285a179
+25-12-12 12:05:59.321 [Test worker] [] [] WARN  c.t.m.a.service.BasicArticleService  - 뉴스 발견되지 않음 articleId : 5b364f6d-ea87-4815-8c82-f9131285a179
+25-12-12 12:05:59.324 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 논리 삭제 시도. articleId : 624bcd17-e95a-40a0-b8e6-37848dbbc73a
+25-12-12 12:05:59.325 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 논리 삭제 성공. articleId: 624bcd17-e95a-40a0-b8e6-37848dbbc73a
+25-12-12 12:05:59.327 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 물리 삭제 시작. articleId : 210caabe-74c0-43fd-ab08-b253f4f46265
+25-12-12 12:05:59.328 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 물리 삭제 성공. articleId: 210caabe-74c0-43fd-ab08-b253f4f46265
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

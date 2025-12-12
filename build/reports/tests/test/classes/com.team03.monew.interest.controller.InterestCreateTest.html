@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.103s</div>
+<div class="counter">0.118s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,19 +81,19 @@
 <tr>
 <td class="success">관심사 생성 관심사 이름 중복 실패 검증</td>
 <td class="success">interestCreateDuplicateFail()</td>
-<td class="success">0.080s</td>
+<td class="success">0.089s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">관심사 생성 요청 값 없음 실패 검증</td>
 <td class="success">interestCreateRequestNullFail()</td>
-<td class="success">0.003s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">관심사 생성 성공 검증</td>
 <td class="success">interestCreateSuccess()</td>
-<td class="success">0.020s</td>
+<td class="success">0.024s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -101,8 +101,8 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>25-12-12 07:05:25.121 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.interest.controller.InterestCreateTest]: InterestCreateTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-25-12-12 07:05:25.141 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.interest.controller.InterestCreateTest
+<pre>25-12-12 12:05:59.749 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.interest.controller.InterestCreateTest]: InterestCreateTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 12:05:59.778 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.interest.controller.InterestCreateTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -113,15 +113,15 @@
 
  :: Spring Boot ::                (v3.5.8)
 
-25-12-12 07:05:25.160 [Test worker] [] [] INFO  c.t.m.i.c.InterestCreateTest         - Starting InterestCreateTest using Java 17.0.17 with PID 70039 (started by chiho in /Users/chiho/Desktop/codeit/sprint-element/monew)
-25-12-12 07:05:25.160 [Test worker] [] [] INFO  c.t.m.i.c.InterestCreateTest         - The following 1 profile is active: &quot;dev&quot;
-25-12-12 07:05:25.310 [Test worker] [] [] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-25-12-12 07:05:25.366 [Test worker] [] [] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
-25-12-12 07:05:25.366 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Initializing Servlet ''
-25-12-12 07:05:25.367 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Completed initialization in 1 ms
-25-12-12 07:05:25.377 [Test worker] [] [] INFO  c.t.m.i.c.InterestCreateTest         - Started InterestCreateTest in 0.234 seconds (process running for 3.518)
-25-12-12 07:05:25.447 [Test worker] [f11874e2-7c61-4b2c-ad30-cded03c74637] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.interest.dto.InterestDto&gt; com.team03.monew.web.controller.InterestController.interestCreate(com.team03.monew.interest.dto.InterestRegisterRequest) with 2 errors: [Field error in object 'interestRegisterRequest' on field 'name': rejected value []; codes [Size.interestRegisterRequest.name,Size.name,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [interestRegisterRequest.name,name]; arguments []; default message [name],50,1]; default message [size must be between 1 and 50]] [Field error in object 'interestRegisterRequest' on field 'name': rejected value []; codes [NotBlank.interestRegisterRequest.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [interestRegisterRequest.name,name]; arguments []; default message [name]]; default message [must not be blank]] 
-25-12-12 07:05:25.461 [Test worker] [a9705d3c-b569-45d8-bb8d-9e814c0d0286] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.interest.dto.InterestDto&gt; com.team03.monew.web.controller.InterestController.interestCreate(com.team03.monew.interest.dto.InterestRegisterRequest) with 2 errors: [Field error in object 'interestRegisterRequest' on field 'name': rejected value []; codes [Size.interestRegisterRequest.name,Size.name,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [interestRegisterRequest.name,name]; arguments []; default message [name],50,1]; default message [size must be between 1 and 50]] [Field error in object 'interestRegisterRequest' on field 'name': rejected value []; codes [NotBlank.interestRegisterRequest.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [interestRegisterRequest.name,name]; arguments []; default message [name]]; default message [must not be blank]] 
+25-12-12 12:05:59.804 [Test worker] [] [] INFO  c.t.m.i.c.InterestCreateTest         - Starting InterestCreateTest using Java 17.0.16 with PID 61118 (started by mac in /Users/mac/IdeaProjects/monew-main)
+25-12-12 12:05:59.804 [Test worker] [] [] INFO  c.t.m.i.c.InterestCreateTest         - The following 1 profile is active: &quot;dev&quot;
+25-12-12 12:05:59.984 [Test worker] [] [] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+25-12-12 12:06:00.060 [Test worker] [] [] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+25-12-12 12:06:00.060 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Initializing Servlet ''
+25-12-12 12:06:00.061 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Completed initialization in 0 ms
+25-12-12 12:06:00.070 [Test worker] [] [] INFO  c.t.m.i.c.InterestCreateTest         - Started InterestCreateTest in 0.29 seconds (process running for 4.142)
+25-12-12 12:06:00.149 [Test worker] [151396c9-f193-4f6a-9e2f-fb627e443272] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.interest.dto.InterestDto&gt; com.team03.monew.web.controller.InterestController.interestCreate(com.team03.monew.interest.dto.InterestRegisterRequest) with 2 errors: [Field error in object 'interestRegisterRequest' on field 'name': rejected value []; codes [Size.interestRegisterRequest.name,Size.name,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [interestRegisterRequest.name,name]; arguments []; default message [name],50,1]; default message [size must be between 1 and 50]] [Field error in object 'interestRegisterRequest' on field 'name': rejected value []; codes [NotBlank.interestRegisterRequest.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [interestRegisterRequest.name,name]; arguments []; default message [name]]; default message [must not be blank]] 
+25-12-12 12:06:00.165 [Test worker] [dbe4aff6-dfa1-4d8e-959a-16e3db080a19] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.interest.dto.InterestDto&gt; com.team03.monew.web.controller.InterestController.interestCreate(com.team03.monew.interest.dto.InterestRegisterRequest) with 2 errors: [Field error in object 'interestRegisterRequest' on field 'name': rejected value []; codes [NotBlank.interestRegisterRequest.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [interestRegisterRequest.name,name]; arguments []; default message [name]]; default message [must not be blank]] [Field error in object 'interestRegisterRequest' on field 'name': rejected value []; codes [Size.interestRegisterRequest.name,Size.name,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [interestRegisterRequest.name,name]; arguments []; default message [name],50,1]; default message [size must be between 1 and 50]] 
 </pre>
 </span>
 </div>
@@ -133,7 +133,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2025. 12. 12. 오전 7:05:26</p>
+<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2025. 12. 12. 오후 12:06:01</p>
 </div>
 </div>
 </body>

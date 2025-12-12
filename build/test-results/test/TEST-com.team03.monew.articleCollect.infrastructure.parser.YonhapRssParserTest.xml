@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.987Z" hostname="ichihoui-MacBookPro.local" time="0.003">
+<testsuite name="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.573Z" hostname="macui-MacBookPro.local" time="0.005">
   <properties/>
   <testcase name="description이_비어있고_encoded가_있으면_encoded_클린텍스트가_overview()" classname="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" time="0.001"/>
-  <testcase name="title이나_link가_없으면_null()" classname="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" time="0.001"/>
-  <testcase name="description과_encoded가_같이_있으면_description_우선()" classname="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" time="0.0"/>
-  <testcase name="description만_있으면_overview는_description()" classname="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" time="0.0"/>
-  <system-out><![CDATA[25-12-12 07:05:24.989 [Test worker] [] [] WARN  c.t.m.a.i.parser.YonhapRssParser     - [YNA] Skip item: missing title or link. title='null', link=https://www.yonhapnewstv.co.kr/news/MYID
-25-12-12 07:05:24.989 [Test worker] [] [] WARN  c.t.m.a.i.parser.YonhapRssParser     - [YNA] Skip item: missing title or link. title='연합뉴스 기사', link=null
+  <testcase name="title이나_link가_없으면_null()" classname="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" time="0.002"/>
+  <testcase name="description과_encoded가_같이_있으면_description_우선()" classname="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" time="0.001"/>
+  <testcase name="description만_있으면_overview는_description()" classname="com.team03.monew.articleCollect.infrastructure.parser.YonhapRssParserTest" time="0.001"/>
+  <system-out><![CDATA[25-12-12 12:05:59.575 [Test worker] [] [] WARN  c.t.m.a.i.parser.YonhapRssParser     - [YNA] Skip item: missing title or link. title='null', link=https://www.yonhapnewstv.co.kr/news/MYID
+25-12-12 12:05:59.576 [Test worker] [] [] WARN  c.t.m.a.i.parser.YonhapRssParser     - [YNA] Skip item: missing title or link. title='연합뉴스 기사', link=null
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

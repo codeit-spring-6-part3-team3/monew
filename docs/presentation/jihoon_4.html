@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>프로젝트 발표</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide-container { 
+            width: 1280px; 
+            height: 720px; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 20px 30px;
+            width: fit-content;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3b82f6;
+        }
+        .code-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #10b981;
+        }
+        .code-content {
+            display: grid;
+            grid-template-columns: 1.4fr 0.6fr; /* 코드 길이가 길어 비율 조정 */
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+        .code-section {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 12px; /* 코드 양이 많아 폰트 크기 조정 */
+            line-height: 1.5;
+        }
+        .explanation-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            border: 1px solid #e2e8f0;
+        }
+        .explanation-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .explanation-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .explanation-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+        .explanation-text {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        .info-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .info-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6b7280;
+        }
+        .code-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="info-box">
+        <div class="info-title">관심사 관리</div>
+        <div class="info-subtitle">No-Offset 커서 기반 페이지네이션 목록 조회</div>
+    </div>
+    <div class="code-box">
+        <div class="code-title">interestList & Cursor Extraction</div>
+        <div class="code-content">
+            <div class="code-section">
+                <div class="section-title">💻 Java Source Code</div>
+<pre>
+<span style="color: #f472b6">@Override</span>
+<span style="color: #f472b6">@Transactional(readOnly = true)</span>
+<span style="color: #c084fc">public</span> <span style="color: #fbbf24">CursorPageResponseInterestDto</span> <span style="color: #60a5fa">interestList</span>(<span style="color: #fbbf24">UUID</span> userId, <span style="color: #fbbf24">InterestSearchRequest</span> request) {
+    <span style="color: #6b7280">// 1. 데이터 조회 및 커서 정보 추출</span>
+    <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">Interest</span>&gt; interestList = interestRepository.<span style="color: #60a5fa">search</span>(request);
+    <span style="color: #fbbf24">Long</span> totalElements = interestRepository.<span style="color: #60a5fa">totalElements</span>(request);
+    <span style="color: #fbbf24">CursorPagingInfo</span> nextCursor = <span style="color: #60a5fa">extractCursorInfo</span>(interestList, request.<span style="color: #60a5fa">orderBy</span>(), request.<span style="color: #60a5fa">limit</span>());
+    <span style="color: #c084fc">if</span> (interestList.<span style="color: #60a5fa">isEmpty</span>()) <span style="color: #c084fc">return new</span> <span style="color: #fbbf24">CursorPageResponseInterestDto</span>();
+    <span style="color: #c084fc">if</span> (nextCursor.<span style="color: #60a5fa">hasNext</span>()) {
+        interestList = interestList.<span style="color: #60a5fa">subList</span>(<span style="color: #a78bfa">0</span>, request.<span style="color: #60a5fa">limit</span>());
+    }
+    <span style="color: #6b7280">// 2. 사용자 구독 여부 매핑 (N+1 방지)</span>
+    <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">UUID</span>&gt; interestIds = interestList.<span style="color: #60a5fa">stream</span>().<span style="color: #60a5fa">map</span>(Interest::<span style="color: #60a5fa">getId</span>).<span style="color: #60a5fa">toList</span>();
+    <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">UUID</span>&gt; userInterestIds = subscribeRepository.<span style="color: #60a5fa">findByUserIdAndInterestIdIn</span>(userId, interestIds)
+            .<span style="color: #60a5fa">stream</span>().<span style="color: #60a5fa">map</span>(Subscribe::<span style="color: #60a5fa">getInterestId</span>).<span style="color: #60a5fa">toList</span>();
+    <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">InterestDto</span>&gt; interestDtoList = interestMapper.<span style="color: #60a5fa">toDtoList</span>(interestList, userInterestIds);
+    <span style="color: #c084fc">return</span> <span style="color: #fbbf24">CursorPageResponseInterestDto</span>.<span style="color: #60a5fa">builder</span>()
+            .<span style="color: #60a5fa">content</span>(interestDtoList)
+            .<span style="color: #60a5fa">nextCursor</span>(nextCursor.<span style="color: #60a5fa">nextCursor</span>())
+            .<span style="color: #60a5fa">nextAfter</span>(nextCursor.<span style="color: #60a5fa">nextAfter</span>())
+            .<span style="color: #60a5fa">hasNext</span>(nextCursor.<span style="color: #60a5fa">hasNext</span>())
+            .<span style="color: #60a5fa">build</span>();
+}
+<span style="color: #c084fc">private</span> <span style="color: #fbbf24">CursorPagingInfo</span> <span style="color: #60a5fa">extractCursorInfo</span>(<span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">Interest</span>&gt; interestList, <span style="color: #fbbf24">String</span> orderBy, <span style="color: #c084fc">int</span> limit) {
+<span style="color: #c084fc">boolean</span> hasNext = interestList.<span style="color: #60a5fa">size</span>() == limit + <span style="color: #a78bfa">1</span>;
+<span style="color: #fbbf24">String</span> nextCursor = <span style="color: #c084fc">null</span>;
+<span style="color: #fbbf24">String</span> nextAfter = <span style="color: #c084fc">null</span>;
+    <span style="color: #c084fc">if</span> (hasNext) {
+        interestList = interestList.<span style="color: #60a5fa">subList</span>(<span style="color: #a78bfa">0</span>, limit);
+        <span style="color: #fbbf24">Interest</span> lastItem = interestList.<span style="color: #60a5fa">get</span>(interestList.<span style="color: #60a5fa">size</span>() - <span style="color: #a78bfa">1</span>); 
+        nextCursor = orderBy.<span style="color: #60a5fa">equalsIgnoreCase</span>(<span style="color: #a78bfa">"name"</span>) ? lastItem.<span style="color: #60a5fa">getName</span>() 
+                   : lastItem.<span style="color: #60a5fa">getSubscribeCount</span>().<span style="color: #60a5fa">toString</span>();
+        nextAfter = lastItem.<span style="color: #60a5fa">getCreatedAt</span>().<span style="color: #60a5fa">toString</span>();
+    }
+    <span style="color: #c084fc">return new</span> <span style="color: #fbbf24">CursorPagingInfo</span>(nextCursor, nextAfter, hasNext);
+}</pre>
+</div>
+            <div class="code-section">
+                <div class="section-title">📝 로직 상세 분석</div>
+                <div class="explanation-box">
+                    <div class="explanation-item">
+                        <div class="explanation-title">Cursor Paging 원리 (Limit + 1)</div>
+                        <div class="explanation-text">
+                            요청한 <code>limit</code>보다 1개를 더 조회하여(limit+1), 다음 페이지 존재 여부(<code>hasNext</code>)를 판단합니다. 다음 페이지가 있다면 마지막 요소를 잘라내고(subList), 해당 요소의 값을 커서로 사용합니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">사용자 구독 정보 매핑 (N+1 방지)</div>
+                        <div class="explanation-text">
+                            반환된 관심사 목록에 대해 사용자의 구독 여부를 표시해야 합니다. 반복문 내 쿼리 실행을 막기 위해, <code>findByUserIdAndInterestIdIn</code>으로 구독 정보를 한 번에 조회(IN 쿼리)한 후 매핑합니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">동적 정렬 기준 (OrderBy)</div>
+                        <div class="explanation-text">
+                            정렬 기준이 '이름(name)'인지 '구독자 수'인지에 따라 Next Cursor에 담기는 값이 달라집니다. 이를 <code>extractCursorInfo</code> 메서드에서 분기 처리하여 확장성을 확보했습니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">Response DTO 조립</div>
+                        <div class="explanation-text">
+                            콘텐츠, 커서 정보, 다음 페이지 존재 여부 등을 <code>CursorPageResponseInterestDto</code>로 캡슐화하여 반환합니다. 이를 통해 클라이언트는 무한 스크롤 등을 쉽게 구현할 수 있습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

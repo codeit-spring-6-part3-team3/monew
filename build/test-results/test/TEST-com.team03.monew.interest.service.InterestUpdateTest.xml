@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.interest.service.InterestUpdateTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.977Z" hostname="ichihoui-MacBookPro.local" time="0.001">
+<testsuite name="com.team03.monew.interest.service.InterestUpdateTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:06:00.851Z" hostname="macui-MacBookPro.local" time="0.003">
   <properties/>
-  <testcase name="관심사 키워드 업데이트 성공 검증" classname="com.team03.monew.interest.service.InterestUpdateTest" time="0.0"/>
+  <testcase name="관심사 키워드 업데이트 성공 검증" classname="com.team03.monew.interest.service.InterestUpdateTest" time="0.001"/>
   <testcase name="관심사 업데이트 해당 관심사 없음 실패 검증" classname="com.team03.monew.interest.service.InterestUpdateTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

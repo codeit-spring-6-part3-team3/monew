@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.articleCollect.service.ArticlesCollectServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.991Z" hostname="ichihoui-MacBookPro.local" time="0.039">
+<testsuite name="com.team03.monew.articleCollect.service.ArticlesCollectServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.579Z" hostname="macui-MacBookPro.local" time="0.054">
   <properties/>
-  <testcase name="handleOneArticle: 매칭 관심사가 있으면 FilteredArticlesTask로 큐에 publish한다" classname="com.team03.monew.articleCollect.service.ArticlesCollectServiceTest" time="0.035"/>
-  <testcase name="handleOneArticle: 매칭 관심사가 없으면 큐에 넣지 않는다" classname="com.team03.monew.articleCollect.service.ArticlesCollectServiceTest" time="0.0"/>
-  <testcase name="fetchAllArticles는 모든 피드에 대해 fetchAndParse를 호출하고 예외가 발생해도 나머지를 계속 처리한다" classname="com.team03.monew.articleCollect.service.ArticlesCollectServiceTest" time="0.003"/>
-  <system-out><![CDATA[25-12-12 07:05:25.028 [Test worker] [] [] ERROR c.t.m.a.s.ArticlesCollectService     - Failed to fetch feed: https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml
+  <testcase name="handleOneArticle: 매칭 관심사가 있으면 FilteredArticlesTask로 큐에 publish한다" classname="com.team03.monew.articleCollect.service.ArticlesCollectServiceTest" time="0.047"/>
+  <testcase name="handleOneArticle: 매칭 관심사가 없으면 큐에 넣지 않는다" classname="com.team03.monew.articleCollect.service.ArticlesCollectServiceTest" time="0.002"/>
+  <testcase name="fetchAllArticles는 모든 피드에 대해 fetchAndParse를 호출하고 예외가 발생해도 나머지를 계속 처리한다" classname="com.team03.monew.articleCollect.service.ArticlesCollectServiceTest" time="0.005"/>
+  <system-out><![CDATA[25-12-12 12:05:59.630 [Test worker] [] [] ERROR c.t.m.a.s.ArticlesCollectService     - Failed to fetch feed: https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml
 java.lang.RuntimeException: fetch fail
 	at com.team03.monew.articleCollect.service.ArticlesCollectService.lambda$fetchAllArticles$0(ArticlesCollectService.java:30)
 	at java.base/java.lang.Iterable.forEach(Iterable.java:75)

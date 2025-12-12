@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>알고리즘 발표</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide-container { 
+            width: 1280px; 
+            height: 720px; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 20px 30px;
+            width: fit-content;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3b82f6;
+        }
+        .code-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #10b981;
+        }
+        .code-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; /* 코드 영역을 조금 더 넓게 조정 */
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+        .code-section {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .explanation-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            border: 1px solid #e2e8f0;
+        }
+        .explanation-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .explanation-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .explanation-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+        .explanation-text {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        .info-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .info-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6b7280;
+        }
+        .code-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        /* 스크롤바 커스텀 */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="info-box">
+        <div class="info-title">관심사 관리</div>
+        <div class="info-subtitle">문자열 유사도 분석 (Levenshtein Distance)</div>
+    </div>
+    <div class="code-box">
+        <div class="code-title">SimilarityCheck 구현부</div>
+        <div class="code-content">
+            <div class="code-section">
+                <div class="section-title">💻 Java Source Code</div>
+                <pre>
+<span style="color: #c084fc">public class</span> <span style="color: #fbbf24">SimilarityCheck</span> {
+    <span style="color: #c084fc">public static boolean</span> <span style="color: #60a5fa">isSimilar</span>(String tinsName, String targetName) {
+        <span style="color: #6b7280">// 긴 문자열 기준 길이 구하기 & 유사도 산출 준비</span>
+        <span style="color: #c084fc">int</span> maxLength = Math.<span style="color: #60a5fa">max</span>(tinsName.<span style="color: #60a5fa">length</span>(), targetName.<span style="color: #60a5fa">length</span>());
+        <span style="color: #6b7280">// 레벤슈타인 거리(편집 거리) 계산</span>
+        <span style="color: #c084fc">int</span> distance = <span style="color: #60a5fa">getLevenshteinDistance</span>(tinsName, targetName);
+        <span style="color: #6b7280">// 유사도 = 1.0 - (편집거리 / 최대길이)</span>
+        <span style="color: #c084fc">double</span> similarity = <span style="color: #a78bfa">1.0</span> - ((<span style="color: #c084fc">double</span>) distance / maxLength);
+        <span style="color: #c084fc">return</span> similarity >= <span style="color: #a78bfa">0.8</span>; <span style="color: #6b7280">// 80% 이상 일치 시 true</span>
+    }
+    <span style="color: #c084fc">private static int</span> <span style="color: #60a5fa">getLevenshteinDistance</span>(String s1, String s2) {
+        <span style="color: #c084fc">int</span>[][] dp = <span style="color: #c084fc">new int</span>[s1.<span style="color: #60a5fa">length</span>() + <span style="color: #a78bfa">1</span>][s2.<span style="color: #60a5fa">length</span>() + <span style="color: #a78bfa">1</span>];
+        <span style="color: #c084fc">for</span> (<span style="color: #c084fc">int</span> i = <span style="color: #a78bfa">0</span>; i <= s1.<span style="color: #60a5fa">length</span>(); i++) dp[i][<span style="color: #a78bfa">0</span>] = i;
+        <span style="color: #c084fc">for</span> (<span style="color: #c084fc">int</span> j = <span style="color: #a78bfa">0</span>; j <= s2.<span style="color: #60a5fa">length</span>(); j++) dp[<span style="color: #a78bfa">0</span>][j] = j;
+        <span style="color: #c084fc">for</span> (<span style="color: #c084fc">int</span> i = <span style="color: #a78bfa">1</span>; i <= s1.<span style="color: #60a5fa">length</span>(); i++) {
+            <span style="color: #c084fc">for</span> (<span style="color: #c084fc">int</span> j = <span style="color: #a78bfa">1</span>; j <= s2.<span style="color: #60a5fa">length</span>(); j++) {
+                <span style="color: #6b7280">// 두 글자가 같으면 비용 0, 다르면 1 (교체 비용)</span>
+                <span style="color: #c084fc">int</span> cost = (s1.<span style="color: #60a5fa">charAt</span>(i - <span style="color: #a78bfa">1</span>) == s2.<span style="color: #60a5fa">charAt</span>(j - <span style="color: #a78bfa">1</span>)) ? <span style="color: #a78bfa">0</span> : <span style="color: #a78bfa">1</span>;
+                dp[i][j] = Math.<span style="color: #60a5fa">min</span>(Math.<span style="color: #60a5fa">min</span>(
+                    dp[i-<span style="color: #a78bfa">1</span>][j] + <span style="color: #a78bfa">1</span>,      <span style="color: #6b7280">// 삭제(Deletion)</span>
+                    dp[i][j-<span style="color: #a78bfa">1</span>] + <span style="color: #a78bfa">1</span>),     <span style="color: #6b7280">// 삽입(Insertion)</span>
+                    dp[i-<span style="color: #a78bfa">1</span>][j-<span style="color: #a78bfa">1</span>] + cost  <span style="color: #6b7280">// 교체(Substitution)</span>
+                );
+            }
+        }
+        <span style="color: #c084fc">return</span> dp[s1.<span style="color: #60a5fa">length</span>()][s2.<span style="color: #60a5fa">length</span>()];
+    }
+}</pre>
+</div>
+<div class="code-section">
+<div class="section-title">📝 로직 상세 분석</div>
+<div class="explanation-box">
+<div class="explanation-item">
+<div class="explanation-title">유사도 판단 기준 (isSimilar)</div>
+<div class="explanation-text">
+두 문자열 사이의 '편집 거리'를 구한 뒤, 더 긴 문자열의 길이를 기준으로 정규화합니다. 결과값이 0.8(80%) 이상일 경우 두 문자열을 '유사하다'고 판단합니다.
+</div>
+</div>
+<div class="explanation-item">
+<div class="explanation-title">레벤슈타인 거리 (Levenshtein Distance)</div>
+<div class="explanation-text">
+두 문자열이 같아지기 위해 필요한 최소한의 연산(삽입, 삭제, 교체) 횟수를 계산하는 알고리즘입니다. 오타 정정이나 검색어 추천 시스템에 주로 사용됩니다.
+</div>
+</div>
+<div class="explanation-item">
+<div class="explanation-title">동적 계획법 (Dynamic Programming)</div>
+<div class="explanation-text">
+<code>dp[i][j]</code> 2차원 배열을 사용하여 중복 계산을 방지합니다. 각 셀은 부분 문자열 간의 최소 편집 거리를 저장하며 점진적으로 최종 값을 도출합니다.
+</div>
+</div>
+<div class="explanation-item">
+<div class="explanation-title">최소 비용 점화식</div>
+<div class="explanation-text">
+현재 문자가 다를 경우 비용(cost)은 1이 됩니다. 이때 위쪽(삭제), 왼쪽(삽입), 대각선 위(교체) 값 중 최솟값을 선택하여 현재 위치의 값을 갱신합니다.
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

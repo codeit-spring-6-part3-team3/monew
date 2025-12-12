@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.user.controller.UserControllerTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:26.180Z" hostname="ichihoui-MacBookPro.local" time="0.046">
+<testsuite name="com.team03.monew.user.controller.UserControllerTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:06:01.140Z" hostname="macui-MacBookPro.local" time="0.068">
   <properties/>
-  <testcase name="로그인 API 성공" classname="com.team03.monew.user.controller.UserControllerTest" time="0.015"/>
-  <testcase name="회원가입 API 실패 - 유효성 검사 실패 (닉네임 길이)" classname="com.team03.monew.user.controller.UserControllerTest" time="0.007"/>
-  <testcase name="로그인 API 실패 - 비밀번호 불일치" classname="com.team03.monew.user.controller.UserControllerTest" time="0.004"/>
-  <testcase name="회원가입 API 성공" classname="com.team03.monew.user.controller.UserControllerTest" time="0.003"/>
-  <testcase name="회원가입 API 실패 - 유효성 검사 실패 (이메일 형식)" classname="com.team03.monew.user.controller.UserControllerTest" time="0.003"/>
-  <testcase name="회원가입 API 실패 - 이메일 중복" classname="com.team03.monew.user.controller.UserControllerTest" time="0.005"/>
-  <testcase name="로그인 API 실패 - 유효성 검사 실패 (이메일 형식)" classname="com.team03.monew.user.controller.UserControllerTest" time="0.003"/>
-  <testcase name="로그인 API 실패 - 사용자 없음" classname="com.team03.monew.user.controller.UserControllerTest" time="0.004"/>
-  <system-out><![CDATA[25-12-12 07:05:26.032 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.user.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-25-12-12 07:05:26.041 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.user.controller.UserControllerTest
+  <testcase name="로그인 API 성공" classname="com.team03.monew.user.controller.UserControllerTest" time="0.018"/>
+  <testcase name="회원가입 API 실패 - 유효성 검사 실패 (닉네임 길이)" classname="com.team03.monew.user.controller.UserControllerTest" time="0.01"/>
+  <testcase name="로그인 API 실패 - 비밀번호 불일치" classname="com.team03.monew.user.controller.UserControllerTest" time="0.008"/>
+  <testcase name="회원가입 API 성공" classname="com.team03.monew.user.controller.UserControllerTest" time="0.004"/>
+  <testcase name="회원가입 API 실패 - 유효성 검사 실패 (이메일 형식)" classname="com.team03.monew.user.controller.UserControllerTest" time="0.005"/>
+  <testcase name="회원가입 API 실패 - 이메일 중복" classname="com.team03.monew.user.controller.UserControllerTest" time="0.006"/>
+  <testcase name="로그인 API 실패 - 유효성 검사 실패 (이메일 형식)" classname="com.team03.monew.user.controller.UserControllerTest" time="0.005"/>
+  <testcase name="로그인 API 실패 - 사용자 없음" classname="com.team03.monew.user.controller.UserControllerTest" time="0.006"/>
+  <system-out><![CDATA[25-12-12 12:06:00.935 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.user.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 12:06:00.947 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.user.controller.UserControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -21,13 +21,13 @@
 
  :: Spring Boot ::                (v3.5.8)
 
-25-12-12 07:05:26.054 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - Starting UserControllerTest using Java 17.0.17 with PID 70039 (started by chiho in /Users/chiho/Desktop/codeit/sprint-element/monew)
-25-12-12 07:05:26.054 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - The following 1 profile is active: "dev"
-25-12-12 07:05:26.143 [Test worker] [] [] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-25-12-12 07:05:26.175 [Test worker] [] [] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
-25-12-12 07:05:26.176 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Initializing Servlet ''
-25-12-12 07:05:26.176 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Completed initialization in 0 ms
-25-12-12 07:05:26.180 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - Started UserControllerTest in 0.138 seconds (process running for 4.321)
+25-12-12 12:06:00.957 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - Starting UserControllerTest using Java 17.0.16 with PID 61118 (started by mac in /Users/mac/IdeaProjects/monew-main)
+25-12-12 12:06:00.958 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - The following 1 profile is active: "dev"
+25-12-12 12:06:01.084 [Test worker] [] [] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+25-12-12 12:06:01.133 [Test worker] [] [] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+25-12-12 12:06:01.133 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Initializing Servlet ''
+25-12-12 12:06:01.133 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Completed initialization in 0 ms
+25-12-12 12:06:01.138 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - Started UserControllerTest in 0.19 seconds (process running for 5.21)
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -59,13 +59,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 200
     Error message = null
-          Headers = [X-Request-Id:"b495aeb6-7e6f-4635-a5c0-44a1fb040453", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
+          Headers = [X-Request-Id:"3a0b356b-ed98-4463-829f-d51718e61897", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
      Content type = application/json
-             Body = {"id":"0d0d9bac-e5ea-4ef2-8cf6-2436756e3c42","email":"test@monew.com","nickname":"테스터","createdAt":"2025-12-12T07:05:26.182437"}
+             Body = {"id":"06df91da-9369-4481-9468-039e4d35ec99","email":"test@monew.com","nickname":"테스터","createdAt":"2025-12-12T12:06:01.141708"}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.200 [Test worker] [5cf06e5c-b9c8-4837-bfbd-8c949dcd32da] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.team03.monew.user.dto.UserDto> com.team03.monew.user.controller.UserController.register(com.team03.monew.user.dto.UserRegisterRequest): [Field error in object 'userRegisterRequest' on field 'nickname': rejected value [null]; codes [NotBlank.userRegisterRequest.nickname,NotBlank.nickname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRegisterRequest.nickname,nickname]; arguments []; default message [nickname]]; default message [닉네임은 필수입니다.]] 
+25-12-12 12:06:01.164 [Test worker] [44aa3078-c668-4cab-814b-ac03cf145e4d] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.team03.monew.user.dto.UserDto> com.team03.monew.user.controller.UserController.register(com.team03.monew.user.dto.UserRegisterRequest): [Field error in object 'userRegisterRequest' on field 'nickname': rejected value [null]; codes [NotBlank.userRegisterRequest.nickname,NotBlank.nickname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRegisterRequest.nickname,nickname]; arguments []; default message [nickname]]; default message [닉네임은 필수입니다.]] 
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -97,13 +97,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 400
     Error message = null
-          Headers = [X-Request-Id:"5cf06e5c-b9c8-4837-bfbd-8c949dcd32da", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
+          Headers = [X-Request-Id:"44aa3078-c668-4cab-814b-ac03cf145e4d", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
      Content type = application/json
-             Body = {"timestamp":"2025-12-12T07:05:26.200867","code":"VALIDATION_ERROR","message":"요청 JOSN 값 유효성 검사에 실패했습니다","details":{"nickname":"닉네임은 필수입니다."},"exceptionType":"MethodArgumentNotValidException","status":400}
+             Body = {"timestamp":"2025-12-12T12:06:01.164866","code":"VALIDATION_ERROR","message":"요청 JOSN 값 유효성 검사에 실패했습니다","details":{"nickname":"닉네임은 필수입니다."},"exceptionType":"MethodArgumentNotValidException","status":400}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.205 [Test worker] [2597fd99-2632-41d0-bcdd-8a953e3a18a8] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=INVALID_PASSWORD, message=비밀번호가 일치하지 않습니다.
+25-12-12 12:06:01.171 [Test worker] [b5c6dd4b-10c1-4dac-a91c-eccbf6d6865b] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=INVALID_PASSWORD, message=비밀번호가 일치하지 않습니다.
 com.team03.monew.user.exception.InvalidPasswordException: 비밀번호가 일치하지 않습니다.
 	at com.team03.monew.user.controller.UserController.login(UserController.java:60)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -269,9 +269,9 @@ FlashMap:
 MockHttpServletResponse:
            Status = 401
     Error message = null
-          Headers = [X-Request-Id:"2597fd99-2632-41d0-bcdd-8a953e3a18a8", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
+          Headers = [X-Request-Id:"b5c6dd4b-10c1-4dac-a91c-eccbf6d6865b", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
      Content type = application/json
-             Body = {"timestamp":"2025-12-12T07:05:26.207004","code":"INVALID_PASSWORD","message":"비밀번호가 일치하지 않습니다.","details":{},"exceptionType":"InvalidPasswordException","status":401}
+             Body = {"timestamp":"2025-12-12T12:06:01.174239","code":"INVALID_PASSWORD","message":"비밀번호가 일치하지 않습니다.","details":{},"exceptionType":"InvalidPasswordException","status":401}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
@@ -306,13 +306,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 201
     Error message = null
-          Headers = [X-Request-Id:"09ae7705-1509-413f-b577-558a78e8ea5f", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
+          Headers = [X-Request-Id:"6752cbc2-961f-4f16-b720-9f0070449d58", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
      Content type = application/json
-             Body = {"id":"721c2b61-da5d-45b8-935e-a73ad92a2a28","email":"test@monew.com","nickname":"테스터","createdAt":"2025-12-12T07:05:26.20907"}
+             Body = {"id":"29345cee-37f9-40be-916c-8abac944070d","email":"test@monew.com","nickname":"테스터","createdAt":"2025-12-12T12:06:01.179659"}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.212 [Test worker] [97e01b74-1070-486a-9dfa-5afc43271c98] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.team03.monew.user.dto.UserDto> com.team03.monew.user.controller.UserController.register(com.team03.monew.user.dto.UserRegisterRequest): [Field error in object 'userRegisterRequest' on field 'email': rejected value [faild-email]; codes [Email.userRegisterRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRegisterRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@5e6ef21a,.*]; default message [올바른 이메일 형식이 아닙니다.]] 
+25-12-12 12:06:01.185 [Test worker] [0fab4117-b918-46d2-ad90-32b785f692f6] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.team03.monew.user.dto.UserDto> com.team03.monew.user.controller.UserController.register(com.team03.monew.user.dto.UserRegisterRequest): [Field error in object 'userRegisterRequest' on field 'email': rejected value [faild-email]; codes [Email.userRegisterRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRegisterRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@62a7af91,.*]; default message [올바른 이메일 형식이 아닙니다.]] 
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -344,13 +344,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 400
     Error message = null
-          Headers = [X-Request-Id:"97e01b74-1070-486a-9dfa-5afc43271c98", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
+          Headers = [X-Request-Id:"0fab4117-b918-46d2-ad90-32b785f692f6", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
      Content type = application/json
-             Body = {"timestamp":"2025-12-12T07:05:26.212584","code":"VALIDATION_ERROR","message":"요청 JOSN 값 유효성 검사에 실패했습니다","details":{"email":"올바른 이메일 형식이 아닙니다."},"exceptionType":"MethodArgumentNotValidException","status":400}
+             Body = {"timestamp":"2025-12-12T12:06:01.185948","code":"VALIDATION_ERROR","message":"요청 JOSN 값 유효성 검사에 실패했습니다","details":{"email":"올바른 이메일 형식이 아닙니다."},"exceptionType":"MethodArgumentNotValidException","status":400}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.216 [Test worker] [c10d0368-c78d-445e-b271-071f379e7507] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=DUPLICATE_EMAIL, message=이미 사용 중인 이메일입니다.
+25-12-12 12:06:01.191 [Test worker] [38446423-8ce9-4972-9eeb-68c4afeae992] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=DUPLICATE_EMAIL, message=이미 사용 중인 이메일입니다.
 com.team03.monew.user.exception.DuplicateEmailException: 이미 사용 중인 이메일입니다.
 	at com.team03.monew.user.controller.UserController.register(UserController.java:43)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -516,13 +516,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 409
     Error message = null
-          Headers = [X-Request-Id:"c10d0368-c78d-445e-b271-071f379e7507", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
+          Headers = [X-Request-Id:"38446423-8ce9-4972-9eeb-68c4afeae992", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
      Content type = application/json
-             Body = {"timestamp":"2025-12-12T07:05:26.218139","code":"DUPLICATE_EMAIL","message":"이미 사용 중인 이메일입니다.","details":{},"exceptionType":"DuplicateEmailException","status":409}
+             Body = {"timestamp":"2025-12-12T12:06:01.192804","code":"DUPLICATE_EMAIL","message":"이미 사용 중인 이메일입니다.","details":{},"exceptionType":"DuplicateEmailException","status":409}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.221 [Test worker] [139ffb7d-4b48-4d00-b286-38fb90c62b6b] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.team03.monew.user.dto.UserDto> com.team03.monew.user.controller.UserController.login(com.team03.monew.user.dto.UserLoginRequest): [Field error in object 'userLoginRequest' on field 'email': rejected value [invalid-email]; codes [Email.userLoginRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userLoginRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@5e6ef21a,.*]; default message [올바른 이메일 형식이 아닙니다.]] 
+25-12-12 12:06:01.198 [Test worker] [3ff0e7e9-6f57-4db4-95d3-14048d7df6f4] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.team03.monew.user.dto.UserDto> com.team03.monew.user.controller.UserController.login(com.team03.monew.user.dto.UserLoginRequest): [Field error in object 'userLoginRequest' on field 'email': rejected value [invalid-email]; codes [Email.userLoginRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userLoginRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@62a7af91,.*]; default message [올바른 이메일 형식이 아닙니다.]] 
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -554,13 +554,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 400
     Error message = null
-          Headers = [X-Request-Id:"139ffb7d-4b48-4d00-b286-38fb90c62b6b", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
+          Headers = [X-Request-Id:"3ff0e7e9-6f57-4db4-95d3-14048d7df6f4", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
      Content type = application/json
-             Body = {"timestamp":"2025-12-12T07:05:26.221532","code":"VALIDATION_ERROR","message":"요청 JOSN 값 유효성 검사에 실패했습니다","details":{"email":"올바른 이메일 형식이 아닙니다."},"exceptionType":"MethodArgumentNotValidException","status":400}
+             Body = {"timestamp":"2025-12-12T12:06:01.198997","code":"VALIDATION_ERROR","message":"요청 JOSN 값 유효성 검사에 실패했습니다","details":{"email":"올바른 이메일 형식이 아닙니다."},"exceptionType":"MethodArgumentNotValidException","status":400}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.224 [Test worker] [68ab3b76-d9d7-4117-94cb-df6efbcb606f] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=USER_NOT_FOUND, message=사용자를 찾을 수 없습니다.
+25-12-12 12:06:01.204 [Test worker] [8f993d9b-bc67-4eee-be9b-51bcda0d0605] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=USER_NOT_FOUND, message=사용자를 찾을 수 없습니다.
 com.team03.monew.user.exception.UserNotFoundException: 사용자를 찾을 수 없습니다.
 	at com.team03.monew.user.controller.UserController.login(UserController.java:60)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -726,9 +726,9 @@ FlashMap:
 MockHttpServletResponse:
            Status = 401
     Error message = null
-          Headers = [X-Request-Id:"68ab3b76-d9d7-4117-94cb-df6efbcb606f", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
+          Headers = [X-Request-Id:"8f993d9b-bc67-4eee-be9b-51bcda0d0605", X-Client-IP:"127.0.0.1", Content-Type:"application/json"]
      Content type = application/json
-             Body = {"timestamp":"2025-12-12T07:05:26.225582","code":"USER_NOT_FOUND","message":"사용자를 찾을 수 없습니다.","details":{},"exceptionType":"UserNotFoundException","status":401}
+             Body = {"timestamp":"2025-12-12T12:06:01.205869","code":"USER_NOT_FOUND","message":"사용자를 찾을 수 없습니다.","details":{},"exceptionType":"UserNotFoundException","status":401}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []

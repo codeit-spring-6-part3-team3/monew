@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.user.service.UserServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:26.256Z" hostname="ichihoui-MacBookPro.local" time="0.019">
+<testsuite name="com.team03.monew.user.service.UserServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:06:01.248Z" hostname="macui-MacBookPro.local" time="0.028">
   <properties/>
-  <testcase name="로그인 성공" classname="com.team03.monew.user.service.UserServiceTest" time="0.016"/>
+  <testcase name="로그인 성공" classname="com.team03.monew.user.service.UserServiceTest" time="0.022"/>
   <testcase name="로그인 실패 - 비밀번호 불일치" classname="com.team03.monew.user.service.UserServiceTest" time="0.001"/>
-  <testcase name="회원가입 성공" classname="com.team03.monew.user.service.UserServiceTest" time="0.001"/>
-  <testcase name="회원가입 실패 - 이메일 중복" classname="com.team03.monew.user.service.UserServiceTest" time="0.0"/>
+  <testcase name="회원가입 성공" classname="com.team03.monew.user.service.UserServiceTest" time="0.002"/>
+  <testcase name="회원가입 실패 - 이메일 중복" classname="com.team03.monew.user.service.UserServiceTest" time="0.002"/>
   <testcase name="로그인 실패 - 사용자 없음" classname="com.team03.monew.user.service.UserServiceTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

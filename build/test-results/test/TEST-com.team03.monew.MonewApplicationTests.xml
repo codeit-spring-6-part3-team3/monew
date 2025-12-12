@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.MonewApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.074Z" hostname="ichihoui-MacBookPro.local" time="0.231">
+<testsuite name="com.team03.monew.MonewApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:58.453Z" hostname="macui-MacBookPro.local" time="0.223">
   <properties/>
-  <testcase name="contextLoads()" classname="com.team03.monew.MonewApplicationTests" time="0.231"/>
-  <system-out><![CDATA[07:05:22.166 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.team03.monew.MonewApplicationTests]: MonewApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-07:05:22.209 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.MonewApplicationTests
+  <testcase name="contextLoads()" classname="com.team03.monew.MonewApplicationTests" time="0.223"/>
+  <system-out><![CDATA[12:05:56.269 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.team03.monew.MonewApplicationTests]: MonewApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:05:56.320 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.MonewApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,20 +14,20 @@
 
  :: Spring Boot ::                (v3.5.8)
 
-25-12-12 07:05:22.359 [background-preinit] [] [] INFO  o.h.validator.internal.util.Version  - HV000001: Hibernate Validator 8.0.3.Final
-25-12-12 07:05:22.373 [Test worker] [] [] INFO  c.team03.monew.MonewApplicationTests - Starting MonewApplicationTests using Java 17.0.17 with PID 70039 (started by chiho in /Users/chiho/Desktop/codeit/sprint-element/monew)
-25-12-12 07:05:22.373 [Test worker] [] [] INFO  c.team03.monew.MonewApplicationTests - The following 1 profile is active: "dev"
-25-12-12 07:05:22.656 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-25-12-12 07:05:22.717 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 8 JPA repository interfaces.
-25-12-12 07:05:22.866 [Test worker] [] [] INFO  o.h.jpa.internal.util.LogHelper      - HHH000204: Processing PersistenceUnitInfo [name: default]
-25-12-12 07:05:22.879 [Test worker] [] [] INFO  org.hibernate.Version                - HHH000412: Hibernate ORM core version 6.6.36.Final
-25-12-12 07:05:22.889 [Test worker] [] [] INFO  o.h.c.i.RegionFactoryInitiator       - HHH000026: Second-level cache disabled
-25-12-12 07:05:22.970 [Test worker] [] [] INFO  o.s.o.j.p.SpringPersistenceUnitInfo  - No LoadTimeWeaver setup: ignoring JPA class transformer
-25-12-12 07:05:22.978 [Test worker] [] [] INFO  com.zaxxer.hikari.HikariDataSource   - HikariPool-1 - Starting...
-25-12-12 07:05:23.038 [Test worker] [] [] INFO  com.zaxxer.hikari.pool.HikariPool    - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-25-12-12 07:05:23.038 [Test worker] [] [] INFO  com.zaxxer.hikari.HikariDataSource   - HikariPool-1 - Start completed.
-25-12-12 07:05:23.045 [Test worker] [] [] WARN  org.hibernate.orm.deprecation        - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-25-12-12 07:05:23.053 [Test worker] [] [] INFO  o.hibernate.orm.connections.pooling  - HHH10001005: Database info:
+25-12-12 12:05:56.503 [background-preinit] [] [] INFO  o.h.validator.internal.util.Version  - HV000001: Hibernate Validator 8.0.3.Final
+25-12-12 12:05:56.520 [Test worker] [] [] INFO  c.team03.monew.MonewApplicationTests - Starting MonewApplicationTests using Java 17.0.16 with PID 61118 (started by mac in /Users/mac/IdeaProjects/monew-main)
+25-12-12 12:05:56.521 [Test worker] [] [] INFO  c.team03.monew.MonewApplicationTests - The following 1 profile is active: "dev"
+25-12-12 12:05:56.835 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-12-12 12:05:56.910 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 71 ms. Found 8 JPA repository interfaces.
+25-12-12 12:05:57.111 [Test worker] [] [] INFO  o.h.jpa.internal.util.LogHelper      - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-12-12 12:05:57.143 [Test worker] [] [] INFO  org.hibernate.Version                - HHH000412: Hibernate ORM core version 6.6.36.Final
+25-12-12 12:05:57.157 [Test worker] [] [] INFO  o.h.c.i.RegionFactoryInitiator       - HHH000026: Second-level cache disabled
+25-12-12 12:05:57.261 [Test worker] [] [] INFO  o.s.o.j.p.SpringPersistenceUnitInfo  - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-12-12 12:05:57.272 [Test worker] [] [] INFO  com.zaxxer.hikari.HikariDataSource   - HikariPool-1 - Starting...
+25-12-12 12:05:57.339 [Test worker] [] [] INFO  com.zaxxer.hikari.pool.HikariPool    - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+25-12-12 12:05:57.340 [Test worker] [] [] INFO  com.zaxxer.hikari.HikariDataSource   - HikariPool-1 - Start completed.
+25-12-12 12:05:57.351 [Test worker] [] [] WARN  org.hibernate.orm.deprecation        - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-12-12 12:05:57.360 [Test worker] [] [] INFO  o.hibernate.orm.connections.pooling  - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 2.3.232
@@ -35,7 +35,7 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-25-12-12 07:05:23.383 [Test worker] [] [] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator   - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-12-12 12:05:57.713 [Test worker] [] [] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator   - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     drop table if exists article cascade 
 Hibernate: 
@@ -168,8 +168,8 @@ Hibernate:
        add constraint FKbnjo1tykslka7kakrdjnduptt 
        foreign key (viewed_by) 
        references users
-25-12-12 07:05:23.409 [Test worker] [] [] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-25-12-12 07:05:23.554 [Test worker] [] [] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+25-12-12 12:05:57.741 [Test worker] [] [] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-12-12 12:05:57.899 [Test worker] [] [] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
 Hibernate: 
     select
         i1_0.id,
@@ -180,14 +180,14 @@ Hibernate:
         i1_0.updated_at 
     from
         interest i1_0
-25-12-12 07:05:23.748 [Test worker] [] [] INFO  c.t.m.a.service.KeywordFilterService - Keyword index refreshed. 0 keywords loaded.
-25-12-12 07:05:23.751 [Test worker] [] [] INFO  c.t.m.a.s.ArticlesConsumeService     - Articles consumer thread started.
-25-12-12 07:05:23.826 [Test worker] [] [] INFO  c.t.m.n.e.NotificationEventHandler   - NotificationEventHandler initialized
-25-12-12 07:05:23.901 [Test worker] [] [] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-25-12-12 07:05:24.035 [Test worker] [] [] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
-25-12-12 07:05:24.068 [Test worker] [] [] INFO  c.team03.monew.MonewApplicationTests - Started MonewApplicationTests in 1.818 seconds (process running for 2.21)
+25-12-12 12:05:58.106 [Test worker] [] [] INFO  c.t.m.a.service.KeywordFilterService - Keyword index refreshed. 0 keywords loaded.
+25-12-12 12:05:58.108 [Test worker] [] [] INFO  c.t.m.a.s.ArticlesConsumeService     - Articles consumer thread started.
+25-12-12 12:05:58.184 [Test worker] [] [] INFO  c.t.m.n.e.NotificationEventHandler   - NotificationEventHandler initialized
+25-12-12 12:05:58.269 [Test worker] [] [] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+25-12-12 12:05:58.411 [Test worker] [] [] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+25-12-12 12:05:58.448 [Test worker] [] [] INFO  c.team03.monew.MonewApplicationTests - Started MonewApplicationTests in 2.073 seconds (process running for 2.52)
 ]]></system-out>
-  <system-err><![CDATA[07:05:22,323 |-WARN in ch.qos.logback.core.joran.action.ConversionRuleAction - [converterClass] attribute is deprecated and replaced by [class]. See element [conversionRule] near line 4
-07:05:22,324 |-WARN in ch.qos.logback.core.joran.action.ConversionRuleAction - [converterClass] attribute is deprecated and replaced by [class]. See element [conversionRule] near line 5
+  <system-err><![CDATA[12:05:56,462 |-WARN in ch.qos.logback.core.joran.action.ConversionRuleAction - [converterClass] attribute is deprecated and replaced by [class]. See element [conversionRule] near line 4
+12:05:56,462 |-WARN in ch.qos.logback.core.joran.action.ConversionRuleAction - [converterClass] attribute is deprecated and replaced by [class]. See element [conversionRule] near line 5
 ]]></system-err>
 </testsuite>

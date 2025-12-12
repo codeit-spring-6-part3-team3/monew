@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>프로젝트 발표</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide-container { 
+            width: 1280px; 
+            height: 720px; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 20px 30px;
+            width: fit-content;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3b82f6;
+        }
+        .code-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #10b981;
+        }
+        .code-content {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr; /* 코드가 길어서 비율 조정 */
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+        .code-section {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 12px; /* 코드 양이 많아 폰트 사이즈 미세 조정 */
+            line-height: 1.5;
+        }
+        .explanation-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            border: 1px solid #e2e8f0;
+        }
+        .explanation-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .explanation-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .explanation-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+        .explanation-text {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        .info-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .info-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6b7280;
+        }
+        .code-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="info-box">
+        <div class="info-title">관심사(Interest) 관리</div>
+        <div class="info-subtitle">수정(Update) 및 삭제(Delete) 트랜잭션 처리</div>
+    </div>
+    <div class="code-box">
+        <div class="code-title">Service Layer 구현</div>
+        <div class="code-content">
+            <div class="code-section">
+                <div class="section-title">💻 Java Source Code</div>
+<pre>
+<span style="color: #f472b6">@Transactional</span>
+<span style="color: #f472b6">@Override</span>
+<span style="color: #c084fc">public</span> <span style="color: #fbbf24">InterestDto</span> <span style="color: #60a5fa">interestUpdate</span>(<span style="color: #fbbf24">UUID</span> interest, <span style="color: #fbbf24">InterestUpdateRequest</span> request) {
+    <span style="color: #fbbf24">Interest</span> interestUpdate = interestRepository.<span style="color: #60a5fa">findById</span>(interest)
+            .<span style="color: #60a5fa">orElseThrow</span>(<span style="color: #fbbf24">InterestsNotFoundException</span>::<span style="color: #c084fc">new</span>);
+    <span style="color: #6b7280">// 도메인 메서드를 통한 상태 변경 (Setter 지양)</span>
+    interestUpdate.<span style="color: #60a5fa">keywordUpdate</span>(request.<span style="color: #60a5fa">keywords</span>());
+    interestRepository.<span style="color: #60a5fa">save</span>(interestUpdate);
+    <span style="color: #c084fc">return</span> interestMapper.<span style="color: #60a5fa">toDto</span>(interestUpdate, <span style="color: #c084fc">null</span>);
+}
+<span style="color: #c084fc">public void</span> <span style="color: #60a5fa">interestDelete</span>(<span style="color: #fbbf24">UUID</span> interest) {
+<span style="color: #fbbf24">Interest</span> interestDelete = interestRepository.<span style="color: #60a5fa">findById</span>(interest)
+.<span style="color: #60a5fa">orElseThrow</span>(<span style="color: #fbbf24">InterestsNotFoundException</span>::<span style="color: #c084fc">new</span>);
+    <span style="color: #6b7280">// 1. 참조 무결성 검사: 뉴스가 참조 중이면 삭제 불가</span>
+    <span style="color: #c084fc">if</span> (articleRepository.<span style="color: #60a5fa">existsByInterestId</span>(interest)) {
+        <span style="color: #c084fc">throw new</span> <span style="color: #fbbf24">IllegalStateException</span>(<span style="color: #a78bfa">"해당 관심사를 참조하는 뉴스가 존재..."</span>);
+    }
+    <span style="color: #6b7280">// 2. 연관 데이터(구독) 일괄 조회 및 삭제</span>
+    <span style="color: #fbbf24">List</span>&lt;<span style="color: #fbbf24">Subscribe</span>&gt; subscribeList = subscribeRepository
+            .<span style="color: #60a5fa">findByInterestIdIn</span>(<span style="color: #fbbf24">List</span>.<span style="color: #60a5fa">of</span>(interest));
+    subscribeRepository.<span style="color: #60a5fa">deleteAll</span>(subscribeList);
+    <span style="color: #6b7280">// 3. 최종 Interest 삭제</span>
+    interestRepository.<span style="color: #60a5fa">delete</span>(interestDelete);
+}</pre>
+</div>
+            <div class="code-section">
+                <div class="section-title">📝 로직 상세 분석</div>
+                <div class="explanation-box">
+                    <div class="explanation-item">
+                        <div class="explanation-title">[Update] 도메인 주도 설계</div>
+                        <div class="explanation-text">
+                            단순 Setter 사용을 지양하고, <code>keywordUpdate()</code>라는 비즈니스 의미가 담긴 메서드를 호출하여 객체의 상태를 안전하게 변경합니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">[Delete] 참조 무결성 검증</div>
+                        <div class="explanation-text">
+                            관심사를 삭제하기 전, 해당 관심사를 사용 중인 뉴스(Article)가 있는지 <code>existsByInterestId</code>로 확인합니다. 데이터 고아 객체(Orphan) 발생을 방지하기 위함입니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">[Delete] 연관 데이터 삭제</div>
+                        <div class="explanation-text">
+                            관심사가 삭제될 때 이를 구독(Subscribe)한 정보들도 함께 지워져야 합니다. N+1 문제를 방지하기 위해 리스트로 조회 후 <code>deleteAll</code>로 일괄 삭제합니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">예외 처리 전략</div>
+                        <div class="explanation-text">
+                            존재하지 않는 ID 조회 시 <code>InterestsNotFoundException</code>(404), 삭제 불가능 상태일 때 <code>IllegalStateException</code>(400/409)을 발생시켜 명확한 에러를 전달합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.article.service.ArticleCreateTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.616Z" hostname="ichihoui-MacBookPro.local" time="0.159">
+<testsuite name="com.team03.monew.article.service.ArticleCreateTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.098Z" hostname="macui-MacBookPro.local" time="0.182">
   <properties/>
-  <testcase name="뉴스 저장 실패 - 관심사 일치하지 않음" classname="com.team03.monew.article.service.ArticleCreateTest" time="0.152"/>
-  <testcase name="뉴스 저장 실패 - 중복 뉴스 링크" classname="com.team03.monew.article.service.ArticleCreateTest" time="0.005"/>
-  <testcase name="뉴스 저장 성공" classname="com.team03.monew.article.service.ArticleCreateTest" time="0.002"/>
-  <system-out><![CDATA[25-12-12 07:05:24.761 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 기사 등록 시도. title : 뉴스 제목, source : CHOSUN, resourceLink :https://test.com, interestId : bcb0eac4-63f4-4294-be05-89fcb174ebe5
-25-12-12 07:05:24.763 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 관심사, 키워드와 맞지 않는 뉴스 기사. title : 뉴스 제목, overview : 뉴스 요약, interestId: bcb0eac4-63f4-4294-be05-89fcb174ebe5
-25-12-12 07:05:24.770 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 기사 등록 시도. title : 테스트 제목, source : CHOSUN, resourceLink :https://test.com, interestId : d1e1e6d8-8201-49d4-b4cf-2d72bebc9229
-25-12-12 07:05:24.770 [Test worker] [] [] WARN  c.t.m.a.service.BasicArticleService  - 중복된 뉴스 링크 resourceLink : https://test.com
-25-12-12 07:05:24.775 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 기사 등록 시도. title : 테스트 제목, source : CHOSUN, resourceLink :https://test.com, interestId : 63eee5fe-c360-48ec-9b3a-8c4b70c4f064
-25-12-12 07:05:24.775 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 등록 성공. articleId: 848a25dd-0215-43f4-ac71-5b45c1d90d14
+  <testcase name="뉴스 저장 실패 - 관심사 일치하지 않음" classname="com.team03.monew.article.service.ArticleCreateTest" time="0.17"/>
+  <testcase name="뉴스 저장 실패 - 중복 뉴스 링크" classname="com.team03.monew.article.service.ArticleCreateTest" time="0.007"/>
+  <testcase name="뉴스 저장 성공" classname="com.team03.monew.article.service.ArticleCreateTest" time="0.004"/>
+  <system-out><![CDATA[25-12-12 12:05:59.261 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 기사 등록 시도. title : 뉴스 제목, source : CHOSUN, resourceLink :https://test.com, interestId : ad8f03ad-36b9-4ac1-8009-a17ed139ee99
+25-12-12 12:05:59.263 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 관심사, 키워드와 맞지 않는 뉴스 기사. title : 뉴스 제목, overview : 뉴스 요약, interestId: ad8f03ad-36b9-4ac1-8009-a17ed139ee99
+25-12-12 12:05:59.271 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 기사 등록 시도. title : 테스트 제목, source : CHOSUN, resourceLink :https://test.com, interestId : 71cefdb0-9982-4f46-af6d-08749fd1fbb4
+25-12-12 12:05:59.271 [Test worker] [] [] WARN  c.t.m.a.service.BasicArticleService  - 중복된 뉴스 링크 resourceLink : https://test.com
+25-12-12 12:05:59.278 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 기사 등록 시도. title : 테스트 제목, source : CHOSUN, resourceLink :https://test.com, interestId : 58b50d86-769b-44a5-b706-baa77bf89b7f
+25-12-12 12:05:59.279 [Test worker] [] [] INFO  c.t.m.a.service.BasicArticleService  - 뉴스 등록 성공. articleId: a0d8a309-63ea-4d66-9c1f-5e3baf233b2d
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.article.repository.ArticleQueryRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.488Z" hostname="ichihoui-MacBookPro.local" time="0.127">
+<testsuite name="com.team03.monew.article.repository.ArticleQueryRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:58.920Z" hostname="macui-MacBookPro.local" time="0.175">
   <properties/>
-  <testcase name="findNextCursor_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.097"/>
-  <testcase name="findArticleList_Fail_NoResults()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.014"/>
-  <testcase name="findArticleList_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.007"/>
-  <testcase name="orderByViewCount_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.008"/>
-  <system-out><![CDATA[25-12-12 07:05:24.308 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.article.repository.ArticleQueryRepositoryTest]: ArticleQueryRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-25-12-12 07:05:24.317 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.article.repository.ArticleQueryRepositoryTest
+  <testcase name="findNextCursor_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.128"/>
+  <testcase name="findArticleList_Fail_NoResults()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.019"/>
+  <testcase name="findArticleList_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.013"/>
+  <testcase name="orderByViewCount_Success()" classname="com.team03.monew.article.repository.ArticleQueryRepositoryTest" time="0.013"/>
+  <system-out><![CDATA[25-12-12 12:05:58.679 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.article.repository.ArticleQueryRepositoryTest]: ArticleQueryRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 12:05:58.693 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.article.repository.ArticleQueryRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -17,58 +17,58 @@
 
  :: Spring Boot ::                (v3.5.8)
 
-25-12-12 07:05:24.328 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - Starting ArticleQueryRepositoryTest using Java 17.0.17 with PID 70039 (started by chiho in /Users/chiho/Desktop/codeit/sprint-element/monew)
-25-12-12 07:05:24.328 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - The following 1 profile is active: "test"
-25-12-12 07:05:24.360 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-25-12-12 07:05:24.372 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 8 JPA repository interfaces.
-25-12-12 07:05:24.379 [Test worker] [] [] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
-25-12-12 07:05:24.387 [Test worker] [] [] INFO  o.s.j.d.e.EmbeddedDatabaseFactory    - Starting embedded database: url='jdbc:h2:mem:21f19a44-6ba7-442d-8d7b-767849738dc2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-25-12-12 07:05:24.397 [Test worker] [] [] INFO  o.h.jpa.internal.util.LogHelper      - HHH000204: Processing PersistenceUnitInfo [name: default]
-25-12-12 07:05:24.398 [Test worker] [] [] INFO  o.h.c.i.RegionFactoryInitiator       - HHH000026: Second-level cache disabled
-25-12-12 07:05:24.406 [Test worker] [] [] INFO  o.s.o.j.p.SpringPersistenceUnitInfo  - No LoadTimeWeaver setup: ignoring JPA class transformer
-25-12-12 07:05:24.406 [Test worker] [] [] WARN  org.hibernate.orm.deprecation        - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-25-12-12 07:05:24.407 [Test worker] [] [] INFO  o.hibernate.orm.connections.pooling  - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@1c84d89e']
+25-12-12 12:05:58.705 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - Starting ArticleQueryRepositoryTest using Java 17.0.16 with PID 61118 (started by mac in /Users/mac/IdeaProjects/monew-main)
+25-12-12 12:05:58.705 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - The following 1 profile is active: "test"
+25-12-12 12:05:58.752 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-12-12 12:05:58.768 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 8 JPA repository interfaces.
+25-12-12 12:05:58.776 [Test worker] [] [] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+25-12-12 12:05:58.787 [Test worker] [] [] INFO  o.s.j.d.e.EmbeddedDatabaseFactory    - Starting embedded database: url='jdbc:h2:mem:286ece72-8ae0-4893-8b7f-533579a2cb18;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+25-12-12 12:05:58.799 [Test worker] [] [] INFO  o.h.jpa.internal.util.LogHelper      - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-12-12 12:05:58.800 [Test worker] [] [] INFO  o.h.c.i.RegionFactoryInitiator       - HHH000026: Second-level cache disabled
+25-12-12 12:05:58.804 [Test worker] [] [] INFO  o.s.o.j.p.SpringPersistenceUnitInfo  - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-12-12 12:05:58.805 [Test worker] [] [] WARN  org.hibernate.orm.deprecation        - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-12-12 12:05:58.806 [Test worker] [] [] INFO  o.hibernate.orm.connections.pooling  - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@22717282']
 	Database driver: undefined/unknown
 	Database version: 2.3.232
 	Autocommit mode: undefined/unknown
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-25-12-12 07:05:24.440 [Test worker] [] [] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator   - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-25-12-12 07:05:24.440 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.845 [Test worker] [] [] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator   - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-12-12 12:05:58.845 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists article cascade 
 Hibernate: 
     drop table if exists article cascade 
-25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.845 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists article_views cascade 
 Hibernate: 
     drop table if exists article_views cascade 
-25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.845 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists comment_likes cascade 
 Hibernate: 
     drop table if exists comment_likes cascade 
-25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.846 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists interest cascade 
 Hibernate: 
     drop table if exists interest cascade 
-25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.846 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists notification cascade 
 Hibernate: 
     drop table if exists notification cascade 
-25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.846 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists reply cascade 
 Hibernate: 
     drop table if exists reply cascade 
-25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.847 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists subscribe cascade 
 Hibernate: 
     drop table if exists subscribe cascade 
-25-12-12 07:05:24.441 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.847 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists users cascade 
 Hibernate: 
     drop table if exists users cascade 
-25-12-12 07:05:24.442 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.848 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table article (
         is_delete boolean default false,
         comment_count INTEGER DEFAULT 0,
@@ -102,7 +102,7 @@ Hibernate:
         primary key (id),
         unique (resource_link)
     )
-25-12-12 07:05:24.443 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.851 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table article_views (
         created_at timestamp(6),
         article_id uuid,
@@ -120,7 +120,7 @@ Hibernate:
         primary key (article_views_id),
         unique (viewed_by, article_id)
     )
-25-12-12 07:05:24.443 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.853 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table comment_likes (
         comment_created_at timestamp(6) not null,
         comment_like_count bigint not null,
@@ -150,7 +150,7 @@ Hibernate:
         primary key (id),
         unique (liked_by, comment_id)
     )
-25-12-12 07:05:24.444 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.855 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table interest (
         created_at timestamp(6),
         subscribe_count bigint default 0,
@@ -170,7 +170,7 @@ Hibernate:
         keywords varchar(255) array not null,
         primary key (id)
     )
-25-12-12 07:05:24.444 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.857 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table notification (
         is_checked BOOLEAN DEFAULT FALSE not null,
         created_at timestamp(6),
@@ -194,7 +194,7 @@ Hibernate:
         resource enum ('INTEREST','REPLY') not null,
         primary key (id)
     )
-25-12-12 07:05:24.445 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.859 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table reply (
         liked_by_me boolean not null,
         created_at timestamp(6) not null,
@@ -220,7 +220,7 @@ Hibernate:
         content varchar(500) not null,
         primary key (id)
     )
-25-12-12 07:05:24.445 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.861 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table subscribe (
         created_at timestamp(6),
         id uuid not null,
@@ -236,7 +236,7 @@ Hibernate:
         user_id uuid not null,
         primary key (id)
     )
-25-12-12 07:05:24.446 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.862 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table users (
         created_at timestamp(6) not null,
         deleted_at timestamp(6),
@@ -258,19 +258,19 @@ Hibernate:
         password_hash varchar(255) not null,
         primary key (user_id)
     )
-25-12-12 07:05:24.446 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.864 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create index idx_email 
        on users (email)
 Hibernate: 
     create index idx_email 
        on users (email)
-25-12-12 07:05:24.446 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.865 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create index idx_deleted_at 
        on users (deleted_at)
 Hibernate: 
     create index idx_deleted_at 
        on users (deleted_at)
-25-12-12 07:05:24.447 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.866 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     alter table if exists article 
        add constraint FKoy1hgssyovltbfn9s0q8pxvhi 
        foreign key (interest_id) 
@@ -280,7 +280,7 @@ Hibernate:
        add constraint FKoy1hgssyovltbfn9s0q8pxvhi 
        foreign key (interest_id) 
        references interest
-25-12-12 07:05:24.447 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.867 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     alter table if exists article_views 
        add constraint FKe0htn7lnoyil7uq5aadp58xnj 
        foreign key (article_id) 
@@ -290,7 +290,7 @@ Hibernate:
        add constraint FKe0htn7lnoyil7uq5aadp58xnj 
        foreign key (article_id) 
        references article
-25-12-12 07:05:24.448 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.868 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     alter table if exists article_views 
        add constraint FKbnjo1tykslka7kakrdjnduptt 
        foreign key (viewed_by) 
@@ -300,9 +300,9 @@ Hibernate:
        add constraint FKbnjo1tykslka7kakrdjnduptt 
        foreign key (viewed_by) 
        references users
-25-12-12 07:05:24.449 [Test worker] [] [] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-25-12-12 07:05:24.487 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - Started ArticleQueryRepositoryTest in 0.168 seconds (process running for 2.629)
-25-12-12 07:05:24.501 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.869 [Test worker] [] [] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-12-12 12:05:58.920 [Test worker] [] [] INFO  c.t.m.a.r.ArticleQueryRepositoryTest - Started ArticleQueryRepositoryTest in 0.226 seconds (process running for 2.991)
+25-12-12 12:05:58.938 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -316,7 +316,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.506 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.944 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -330,7 +330,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.506 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.944 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -344,7 +344,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.506 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.945 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -358,7 +358,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.507 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.945 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -372,7 +372,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.507 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.946 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -386,7 +386,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.507 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.946 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -400,7 +400,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.508 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.946 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -414,7 +414,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.508 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.947 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -428,7 +428,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.508 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:58.948 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -442,7 +442,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.558 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.013 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     select
         a1_0.id,
         a1_0.source,
@@ -486,7 +486,7 @@ Hibernate:
         a1_0.posted_at desc 
     fetch
         first ? rows only
-25-12-12 07:05:24.561 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.019 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     select
         a1_0.id,
         a1_0.source,
@@ -532,7 +532,7 @@ Hibernate:
         a1_0.posted_at desc 
     fetch
         first ? rows only
-25-12-12 07:05:24.587 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.051 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -546,7 +546,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.588 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.053 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -560,7 +560,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.589 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.053 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -574,7 +574,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.589 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.053 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -588,7 +588,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.590 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.054 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -602,7 +602,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.590 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.055 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -616,7 +616,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.590 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.055 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -630,7 +630,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.591 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.056 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -644,7 +644,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.591 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.056 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -658,7 +658,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.591 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.056 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -672,7 +672,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.594 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.060 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     update
         article a1_0 
     set
@@ -682,7 +682,7 @@ Hibernate:
         article a1_0 
     set
         is_delete=true
-25-12-12 07:05:24.597 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.064 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     select
         a1_0.id,
         a1_0.source,
@@ -726,7 +726,7 @@ Hibernate:
         a1_0.posted_at desc 
     fetch
         first ? rows only
-25-12-12 07:05:24.601 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.071 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -740,7 +740,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.602 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.072 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -754,7 +754,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.602 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.072 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -768,7 +768,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.603 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.073 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -782,7 +782,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.603 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.073 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -796,7 +796,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.603 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.074 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -810,7 +810,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.604 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.075 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -824,7 +824,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.604 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.076 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -838,7 +838,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.604 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.077 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -852,7 +852,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.605 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.078 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -866,7 +866,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.605 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.078 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     select
         a1_0.id,
         a1_0.source,
@@ -910,7 +910,7 @@ Hibernate:
         a1_0.posted_at desc 
     fetch
         first ? rows only
-25-12-12 07:05:24.609 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.085 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -924,7 +924,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.609 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.086 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -938,7 +938,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.610 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.086 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -952,7 +952,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.610 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.087 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -966,7 +966,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.610 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.087 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -980,7 +980,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.610 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.088 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -994,7 +994,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.611 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.088 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -1008,7 +1008,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.611 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.089 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -1022,7 +1022,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.611 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.089 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -1036,7 +1036,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.611 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.089 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         article
@@ -1050,7 +1050,7 @@ Hibernate:
         (comment_count, created_at, interest_id, is_delete, overview, posted_at, resource_link, source, title, updated_at, view_count, id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-25-12-12 07:05:24.613 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:05:59.092 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     select
         a1_0.id,
         a1_0.source,

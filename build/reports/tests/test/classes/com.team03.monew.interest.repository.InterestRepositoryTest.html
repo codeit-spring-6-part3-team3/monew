@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.163s</div>
+<div class="counter">0.195s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,19 +81,19 @@
 <tr>
 <td class="success">관심사 커서 없을떄 목록 조회</td>
 <td class="success">search()</td>
-<td class="success">0.066s</td>
+<td class="success">0.079s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">관심사 커서 있을떄 목록 조회</td>
 <td class="success">searchCursor()</td>
-<td class="success">0.083s</td>
+<td class="success">0.097s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">관심사 조건에 맞는 개수 조회</td>
 <td class="success">totalElements()</td>
-<td class="success">0.014s</td>
+<td class="success">0.019s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -101,8 +101,8 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>25-12-12 07:05:25.542 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.interest.repository.InterestRepositoryTest]: InterestRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-25-12-12 07:05:25.551 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.interest.repository.InterestRepositoryTest
+<pre>25-12-12 12:06:00.272 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.interest.repository.InterestRepositoryTest]: InterestRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 12:06:00.288 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.interest.repository.InterestRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -113,58 +113,58 @@
 
  :: Spring Boot ::                (v3.5.8)
 
-25-12-12 07:05:25.563 [Test worker] [] [] INFO  c.t.m.i.r.InterestRepositoryTest     - Starting InterestRepositoryTest using Java 17.0.17 with PID 70039 (started by chiho in /Users/chiho/Desktop/codeit/sprint-element/monew)
-25-12-12 07:05:25.563 [Test worker] [] [] INFO  c.t.m.i.r.InterestRepositoryTest     - The following 1 profile is active: &quot;dev&quot;
-25-12-12 07:05:25.609 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-25-12-12 07:05:25.626 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 8 JPA repository interfaces.
-25-12-12 07:05:25.634 [Test worker] [] [] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
-25-12-12 07:05:25.643 [Test worker] [] [] INFO  o.s.j.d.e.EmbeddedDatabaseFactory    - Starting embedded database: url='jdbc:h2:mem:6a55a3aa-6b46-488a-b0eb-98a90c15a766;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-25-12-12 07:05:25.657 [Test worker] [] [] INFO  o.h.jpa.internal.util.LogHelper      - HHH000204: Processing PersistenceUnitInfo [name: default]
-25-12-12 07:05:25.659 [Test worker] [] [] INFO  o.h.c.i.RegionFactoryInitiator       - HHH000026: Second-level cache disabled
-25-12-12 07:05:25.664 [Test worker] [] [] INFO  o.s.o.j.p.SpringPersistenceUnitInfo  - No LoadTimeWeaver setup: ignoring JPA class transformer
-25-12-12 07:05:25.665 [Test worker] [] [] WARN  org.hibernate.orm.deprecation        - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-25-12-12 07:05:25.665 [Test worker] [] [] INFO  o.hibernate.orm.connections.pooling  - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@76fc0fa']
+25-12-12 12:06:00.313 [Test worker] [] [] INFO  c.t.m.i.r.InterestRepositoryTest     - Starting InterestRepositoryTest using Java 17.0.16 with PID 61118 (started by mac in /Users/mac/IdeaProjects/monew-main)
+25-12-12 12:06:00.313 [Test worker] [] [] INFO  c.t.m.i.r.InterestRepositoryTest     - The following 1 profile is active: &quot;dev&quot;
+25-12-12 12:06:00.376 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-12-12 12:06:00.400 [Test worker] [] [] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 8 JPA repository interfaces.
+25-12-12 12:06:00.408 [Test worker] [] [] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+25-12-12 12:06:00.418 [Test worker] [] [] INFO  o.s.j.d.e.EmbeddedDatabaseFactory    - Starting embedded database: url='jdbc:h2:mem:ed8cc2c5-6ccf-4a92-9ae7-0309fbdf2545;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+25-12-12 12:06:00.438 [Test worker] [] [] INFO  o.h.jpa.internal.util.LogHelper      - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-12-12 12:06:00.440 [Test worker] [] [] INFO  o.h.c.i.RegionFactoryInitiator       - HHH000026: Second-level cache disabled
+25-12-12 12:06:00.446 [Test worker] [] [] INFO  o.s.o.j.p.SpringPersistenceUnitInfo  - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-12-12 12:06:00.447 [Test worker] [] [] WARN  org.hibernate.orm.deprecation        - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-12-12 12:06:00.447 [Test worker] [] [] INFO  o.hibernate.orm.connections.pooling  - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@6e520c9a']
 	Database driver: undefined/unknown
 	Database version: 2.3.232
 	Autocommit mode: undefined/unknown
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-25-12-12 07:05:25.705 [Test worker] [] [] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator   - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-25-12-12 07:05:25.705 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.497 [Test worker] [] [] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator   - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-12-12 12:06:00.497 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists article cascade 
 Hibernate: 
     drop table if exists article cascade 
-25-12-12 07:05:25.706 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.498 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists article_views cascade 
 Hibernate: 
     drop table if exists article_views cascade 
-25-12-12 07:05:25.706 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.498 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists comment_likes cascade 
 Hibernate: 
     drop table if exists comment_likes cascade 
-25-12-12 07:05:25.706 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.498 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists interest cascade 
 Hibernate: 
     drop table if exists interest cascade 
-25-12-12 07:05:25.706 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.498 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists notification cascade 
 Hibernate: 
     drop table if exists notification cascade 
-25-12-12 07:05:25.706 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.498 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists reply cascade 
 Hibernate: 
     drop table if exists reply cascade 
-25-12-12 07:05:25.706 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.498 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists subscribe cascade 
 Hibernate: 
     drop table if exists subscribe cascade 
-25-12-12 07:05:25.706 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.499 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     drop table if exists users cascade 
 Hibernate: 
     drop table if exists users cascade 
-25-12-12 07:05:25.706 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.499 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table article (
         is_delete boolean default false,
         comment_count INTEGER DEFAULT 0,
@@ -198,7 +198,7 @@ Hibernate:
         primary key (id),
         unique (resource_link)
     )
-25-12-12 07:05:25.708 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.500 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table article_views (
         created_at timestamp(6),
         article_id uuid,
@@ -216,7 +216,7 @@ Hibernate:
         primary key (article_views_id),
         unique (viewed_by, article_id)
     )
-25-12-12 07:05:25.708 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.502 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table comment_likes (
         comment_created_at timestamp(6) not null,
         comment_like_count bigint not null,
@@ -246,7 +246,7 @@ Hibernate:
         primary key (id),
         unique (liked_by, comment_id)
     )
-25-12-12 07:05:25.709 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.503 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table interest (
         created_at timestamp(6),
         subscribe_count bigint default 0,
@@ -266,7 +266,7 @@ Hibernate:
         keywords varchar(255) array not null,
         primary key (id)
     )
-25-12-12 07:05:25.709 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.504 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table notification (
         is_checked BOOLEAN DEFAULT FALSE not null,
         created_at timestamp(6),
@@ -290,7 +290,7 @@ Hibernate:
         resource enum ('INTEREST','REPLY') not null,
         primary key (id)
     )
-25-12-12 07:05:25.710 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.506 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table reply (
         liked_by_me boolean not null,
         created_at timestamp(6) not null,
@@ -316,7 +316,7 @@ Hibernate:
         content varchar(500) not null,
         primary key (id)
     )
-25-12-12 07:05:25.710 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.507 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table subscribe (
         created_at timestamp(6),
         id uuid not null,
@@ -332,7 +332,7 @@ Hibernate:
         user_id uuid not null,
         primary key (id)
     )
-25-12-12 07:05:25.711 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.508 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create table users (
         created_at timestamp(6) not null,
         deleted_at timestamp(6),
@@ -354,19 +354,19 @@ Hibernate:
         password_hash varchar(255) not null,
         primary key (user_id)
     )
-25-12-12 07:05:25.712 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.509 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create index idx_email 
        on users (email)
 Hibernate: 
     create index idx_email 
        on users (email)
-25-12-12 07:05:25.712 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.509 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     create index idx_deleted_at 
        on users (deleted_at)
 Hibernate: 
     create index idx_deleted_at 
        on users (deleted_at)
-25-12-12 07:05:25.712 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.509 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     alter table if exists article 
        add constraint FKoy1hgssyovltbfn9s0q8pxvhi 
        foreign key (interest_id) 
@@ -376,7 +376,7 @@ Hibernate:
        add constraint FKoy1hgssyovltbfn9s0q8pxvhi 
        foreign key (interest_id) 
        references interest
-25-12-12 07:05:25.713 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.510 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     alter table if exists article_views 
        add constraint FKe0htn7lnoyil7uq5aadp58xnj 
        foreign key (article_id) 
@@ -386,7 +386,7 @@ Hibernate:
        add constraint FKe0htn7lnoyil7uq5aadp58xnj 
        foreign key (article_id) 
        references article
-25-12-12 07:05:25.713 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.511 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     alter table if exists article_views 
        add constraint FKbnjo1tykslka7kakrdjnduptt 
        foreign key (viewed_by) 
@@ -396,9 +396,9 @@ Hibernate:
        add constraint FKbnjo1tykslka7kakrdjnduptt 
        foreign key (viewed_by) 
        references users
-25-12-12 07:05:25.714 [Test worker] [] [] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-25-12-12 07:05:25.785 [Test worker] [] [] INFO  c.t.m.i.r.InterestRepositoryTest     - Started InterestRepositoryTest in 0.232 seconds (process running for 3.927)
-25-12-12 07:05:25.851 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.513 [Test worker] [] [] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-12-12 12:06:00.617 [Test worker] [] [] INFO  c.t.m.i.r.InterestRepositoryTest     - Started InterestRepositoryTest in 0.328 seconds (process running for 4.688)
+25-12-12 12:06:00.694 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         interest
@@ -412,7 +412,7 @@ Hibernate:
         (created_at, keywords, name, subscribe_count, updated_at, id) 
     values
         (?, ?, ?, ?, ?, ?)
-25-12-12 07:05:25.853 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.696 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         interest
@@ -426,7 +426,7 @@ Hibernate:
         (created_at, keywords, name, subscribe_count, updated_at, id) 
     values
         (?, ?, ?, ?, ?, ?)
-25-12-12 07:05:25.853 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.697 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     select
         i1_0.id,
         i1_0.created_at,
@@ -462,7 +462,7 @@ Hibernate:
         i1_0.id desc 
     fetch
         first ? rows only
-25-12-12 07:05:25.935 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.794 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         interest
@@ -476,7 +476,7 @@ Hibernate:
         (created_at, keywords, name, subscribe_count, updated_at, id) 
     values
         (?, ?, ?, ?, ?, ?)
-25-12-12 07:05:25.936 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.795 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         interest
@@ -490,7 +490,7 @@ Hibernate:
         (created_at, keywords, name, subscribe_count, updated_at, id) 
     values
         (?, ?, ?, ?, ?, ?)
-25-12-12 07:05:25.937 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.795 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     select
         i1_0.id,
         i1_0.created_at,
@@ -540,7 +540,7 @@ Hibernate:
         i1_0.id desc 
     fetch
         first ? rows only
-25-12-12 07:05:25.949 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.813 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         interest
@@ -554,7 +554,7 @@ Hibernate:
         (created_at, keywords, name, subscribe_count, updated_at, id) 
     values
         (?, ?, ?, ?, ?, ?)
-25-12-12 07:05:25.950 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.814 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     insert 
     into
         interest
@@ -568,7 +568,7 @@ Hibernate:
         (created_at, keywords, name, subscribe_count, updated_at, id) 
     values
         (?, ?, ?, ?, ?, ?)
-25-12-12 07:05:25.950 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
+25-12-12 12:06:00.814 [Test worker] [] [] DEBUG org.hibernate.SQL                    - 
     select
         count(i1_0.id) 
     from
@@ -595,7 +595,7 @@ Hibernate:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2025. 12. 12. 오전 7:05:26</p>
+<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2025. 12. 12. 오후 12:06:01</p>
 </div>
 </div>
 </body>

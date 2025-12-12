@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.044s</div>
+<div class="counter">0.062s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,49 +81,49 @@
 <tr>
 <td class="success">로그인 API 실패 - 유효성 검사 실패 (이메일 형식)</td>
 <td class="success">login_fail_invalidEmail()</td>
-<td class="success">0.003s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">로그인 API 실패 - 비밀번호 불일치</td>
 <td class="success">login_fail_invalidPassword()</td>
-<td class="success">0.004s</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">로그인 API 실패 - 사용자 없음</td>
 <td class="success">login_fail_userNotFound()</td>
-<td class="success">0.004s</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">로그인 API 성공</td>
 <td class="success">login_success()</td>
-<td class="success">0.015s</td>
+<td class="success">0.018s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">회원가입 API 실패 - 이메일 중복</td>
 <td class="success">register_fail_duplicateEmail()</td>
-<td class="success">0.005s</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">회원가입 API 실패 - 유효성 검사 실패 (이메일 형식)</td>
 <td class="success">register_fail_invalidEmail()</td>
-<td class="success">0.003s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">회원가입 API 실패 - 유효성 검사 실패 (닉네임 길이)</td>
 <td class="success">register_fail_invalidNickname()</td>
-<td class="success">0.007s</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">회원가입 API 성공</td>
 <td class="success">register_success()</td>
-<td class="success">0.003s</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -131,8 +131,8 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>25-12-12 07:05:26.032 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.user.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-25-12-12 07:05:26.041 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.user.controller.UserControllerTest
+<pre>25-12-12 12:06:00.935 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.user.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 12:06:00.947 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.user.controller.UserControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -143,13 +143,13 @@
 
  :: Spring Boot ::                (v3.5.8)
 
-25-12-12 07:05:26.054 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - Starting UserControllerTest using Java 17.0.17 with PID 70039 (started by chiho in /Users/chiho/Desktop/codeit/sprint-element/monew)
-25-12-12 07:05:26.054 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - The following 1 profile is active: &quot;dev&quot;
-25-12-12 07:05:26.143 [Test worker] [] [] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-25-12-12 07:05:26.175 [Test worker] [] [] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
-25-12-12 07:05:26.176 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Initializing Servlet ''
-25-12-12 07:05:26.176 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Completed initialization in 0 ms
-25-12-12 07:05:26.180 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - Started UserControllerTest in 0.138 seconds (process running for 4.321)
+25-12-12 12:06:00.957 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - Starting UserControllerTest using Java 17.0.16 with PID 61118 (started by mac in /Users/mac/IdeaProjects/monew-main)
+25-12-12 12:06:00.958 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - The following 1 profile is active: &quot;dev&quot;
+25-12-12 12:06:01.084 [Test worker] [] [] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+25-12-12 12:06:01.133 [Test worker] [] [] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+25-12-12 12:06:01.133 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Initializing Servlet ''
+25-12-12 12:06:01.133 [Test worker] [] [] INFO  o.s.t.w.s.TestDispatcherServlet      - Completed initialization in 0 ms
+25-12-12 12:06:01.138 [Test worker] [] [] INFO  c.t.m.u.c.UserControllerTest         - Started UserControllerTest in 0.19 seconds (process running for 5.21)
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -181,13 +181,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 200
     Error message = null
-          Headers = [X-Request-Id:&quot;b495aeb6-7e6f-4635-a5c0-44a1fb040453&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
+          Headers = [X-Request-Id:&quot;3a0b356b-ed98-4463-829f-d51718e61897&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
      Content type = application/json
-             Body = {&quot;id&quot;:&quot;0d0d9bac-e5ea-4ef2-8cf6-2436756e3c42&quot;,&quot;email&quot;:&quot;test@monew.com&quot;,&quot;nickname&quot;:&quot;테스터&quot;,&quot;createdAt&quot;:&quot;2025-12-12T07:05:26.182437&quot;}
+             Body = {&quot;id&quot;:&quot;06df91da-9369-4481-9468-039e4d35ec99&quot;,&quot;email&quot;:&quot;test@monew.com&quot;,&quot;nickname&quot;:&quot;테스터&quot;,&quot;createdAt&quot;:&quot;2025-12-12T12:06:01.141708&quot;}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.200 [Test worker] [5cf06e5c-b9c8-4837-bfbd-8c949dcd32da] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.user.dto.UserDto&gt; com.team03.monew.user.controller.UserController.register(com.team03.monew.user.dto.UserRegisterRequest): [Field error in object 'userRegisterRequest' on field 'nickname': rejected value [null]; codes [NotBlank.userRegisterRequest.nickname,NotBlank.nickname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRegisterRequest.nickname,nickname]; arguments []; default message [nickname]]; default message [닉네임은 필수입니다.]] 
+25-12-12 12:06:01.164 [Test worker] [44aa3078-c668-4cab-814b-ac03cf145e4d] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.user.dto.UserDto&gt; com.team03.monew.user.controller.UserController.register(com.team03.monew.user.dto.UserRegisterRequest): [Field error in object 'userRegisterRequest' on field 'nickname': rejected value [null]; codes [NotBlank.userRegisterRequest.nickname,NotBlank.nickname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRegisterRequest.nickname,nickname]; arguments []; default message [nickname]]; default message [닉네임은 필수입니다.]] 
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -219,13 +219,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 400
     Error message = null
-          Headers = [X-Request-Id:&quot;5cf06e5c-b9c8-4837-bfbd-8c949dcd32da&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
+          Headers = [X-Request-Id:&quot;44aa3078-c668-4cab-814b-ac03cf145e4d&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
      Content type = application/json
-             Body = {&quot;timestamp&quot;:&quot;2025-12-12T07:05:26.200867&quot;,&quot;code&quot;:&quot;VALIDATION_ERROR&quot;,&quot;message&quot;:&quot;요청 JOSN 값 유효성 검사에 실패했습니다&quot;,&quot;details&quot;:{&quot;nickname&quot;:&quot;닉네임은 필수입니다.&quot;},&quot;exceptionType&quot;:&quot;MethodArgumentNotValidException&quot;,&quot;status&quot;:400}
+             Body = {&quot;timestamp&quot;:&quot;2025-12-12T12:06:01.164866&quot;,&quot;code&quot;:&quot;VALIDATION_ERROR&quot;,&quot;message&quot;:&quot;요청 JOSN 값 유효성 검사에 실패했습니다&quot;,&quot;details&quot;:{&quot;nickname&quot;:&quot;닉네임은 필수입니다.&quot;},&quot;exceptionType&quot;:&quot;MethodArgumentNotValidException&quot;,&quot;status&quot;:400}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.205 [Test worker] [2597fd99-2632-41d0-bcdd-8a953e3a18a8] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=INVALID_PASSWORD, message=비밀번호가 일치하지 않습니다.
+25-12-12 12:06:01.171 [Test worker] [b5c6dd4b-10c1-4dac-a91c-eccbf6d6865b] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=INVALID_PASSWORD, message=비밀번호가 일치하지 않습니다.
 com.team03.monew.user.exception.InvalidPasswordException: 비밀번호가 일치하지 않습니다.
 	at com.team03.monew.user.controller.UserController.login(UserController.java:60)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -391,9 +391,9 @@ FlashMap:
 MockHttpServletResponse:
            Status = 401
     Error message = null
-          Headers = [X-Request-Id:&quot;2597fd99-2632-41d0-bcdd-8a953e3a18a8&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
+          Headers = [X-Request-Id:&quot;b5c6dd4b-10c1-4dac-a91c-eccbf6d6865b&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
      Content type = application/json
-             Body = {&quot;timestamp&quot;:&quot;2025-12-12T07:05:26.207004&quot;,&quot;code&quot;:&quot;INVALID_PASSWORD&quot;,&quot;message&quot;:&quot;비밀번호가 일치하지 않습니다.&quot;,&quot;details&quot;:{},&quot;exceptionType&quot;:&quot;InvalidPasswordException&quot;,&quot;status&quot;:401}
+             Body = {&quot;timestamp&quot;:&quot;2025-12-12T12:06:01.174239&quot;,&quot;code&quot;:&quot;INVALID_PASSWORD&quot;,&quot;message&quot;:&quot;비밀번호가 일치하지 않습니다.&quot;,&quot;details&quot;:{},&quot;exceptionType&quot;:&quot;InvalidPasswordException&quot;,&quot;status&quot;:401}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
@@ -428,13 +428,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 201
     Error message = null
-          Headers = [X-Request-Id:&quot;09ae7705-1509-413f-b577-558a78e8ea5f&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
+          Headers = [X-Request-Id:&quot;6752cbc2-961f-4f16-b720-9f0070449d58&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
      Content type = application/json
-             Body = {&quot;id&quot;:&quot;721c2b61-da5d-45b8-935e-a73ad92a2a28&quot;,&quot;email&quot;:&quot;test@monew.com&quot;,&quot;nickname&quot;:&quot;테스터&quot;,&quot;createdAt&quot;:&quot;2025-12-12T07:05:26.20907&quot;}
+             Body = {&quot;id&quot;:&quot;29345cee-37f9-40be-916c-8abac944070d&quot;,&quot;email&quot;:&quot;test@monew.com&quot;,&quot;nickname&quot;:&quot;테스터&quot;,&quot;createdAt&quot;:&quot;2025-12-12T12:06:01.179659&quot;}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.212 [Test worker] [97e01b74-1070-486a-9dfa-5afc43271c98] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.user.dto.UserDto&gt; com.team03.monew.user.controller.UserController.register(com.team03.monew.user.dto.UserRegisterRequest): [Field error in object 'userRegisterRequest' on field 'email': rejected value [faild-email]; codes [Email.userRegisterRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRegisterRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@5e6ef21a,.*]; default message [올바른 이메일 형식이 아닙니다.]] 
+25-12-12 12:06:01.185 [Test worker] [0fab4117-b918-46d2-ad90-32b785f692f6] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.user.dto.UserDto&gt; com.team03.monew.user.controller.UserController.register(com.team03.monew.user.dto.UserRegisterRequest): [Field error in object 'userRegisterRequest' on field 'email': rejected value [faild-email]; codes [Email.userRegisterRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRegisterRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@62a7af91,.*]; default message [올바른 이메일 형식이 아닙니다.]] 
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -466,13 +466,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 400
     Error message = null
-          Headers = [X-Request-Id:&quot;97e01b74-1070-486a-9dfa-5afc43271c98&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
+          Headers = [X-Request-Id:&quot;0fab4117-b918-46d2-ad90-32b785f692f6&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
      Content type = application/json
-             Body = {&quot;timestamp&quot;:&quot;2025-12-12T07:05:26.212584&quot;,&quot;code&quot;:&quot;VALIDATION_ERROR&quot;,&quot;message&quot;:&quot;요청 JOSN 값 유효성 검사에 실패했습니다&quot;,&quot;details&quot;:{&quot;email&quot;:&quot;올바른 이메일 형식이 아닙니다.&quot;},&quot;exceptionType&quot;:&quot;MethodArgumentNotValidException&quot;,&quot;status&quot;:400}
+             Body = {&quot;timestamp&quot;:&quot;2025-12-12T12:06:01.185948&quot;,&quot;code&quot;:&quot;VALIDATION_ERROR&quot;,&quot;message&quot;:&quot;요청 JOSN 값 유효성 검사에 실패했습니다&quot;,&quot;details&quot;:{&quot;email&quot;:&quot;올바른 이메일 형식이 아닙니다.&quot;},&quot;exceptionType&quot;:&quot;MethodArgumentNotValidException&quot;,&quot;status&quot;:400}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.216 [Test worker] [c10d0368-c78d-445e-b271-071f379e7507] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=DUPLICATE_EMAIL, message=이미 사용 중인 이메일입니다.
+25-12-12 12:06:01.191 [Test worker] [38446423-8ce9-4972-9eeb-68c4afeae992] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=DUPLICATE_EMAIL, message=이미 사용 중인 이메일입니다.
 com.team03.monew.user.exception.DuplicateEmailException: 이미 사용 중인 이메일입니다.
 	at com.team03.monew.user.controller.UserController.register(UserController.java:43)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -638,13 +638,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 409
     Error message = null
-          Headers = [X-Request-Id:&quot;c10d0368-c78d-445e-b271-071f379e7507&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
+          Headers = [X-Request-Id:&quot;38446423-8ce9-4972-9eeb-68c4afeae992&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
      Content type = application/json
-             Body = {&quot;timestamp&quot;:&quot;2025-12-12T07:05:26.218139&quot;,&quot;code&quot;:&quot;DUPLICATE_EMAIL&quot;,&quot;message&quot;:&quot;이미 사용 중인 이메일입니다.&quot;,&quot;details&quot;:{},&quot;exceptionType&quot;:&quot;DuplicateEmailException&quot;,&quot;status&quot;:409}
+             Body = {&quot;timestamp&quot;:&quot;2025-12-12T12:06:01.192804&quot;,&quot;code&quot;:&quot;DUPLICATE_EMAIL&quot;,&quot;message&quot;:&quot;이미 사용 중인 이메일입니다.&quot;,&quot;details&quot;:{},&quot;exceptionType&quot;:&quot;DuplicateEmailException&quot;,&quot;status&quot;:409}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.221 [Test worker] [139ffb7d-4b48-4d00-b286-38fb90c62b6b] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.user.dto.UserDto&gt; com.team03.monew.user.controller.UserController.login(com.team03.monew.user.dto.UserLoginRequest): [Field error in object 'userLoginRequest' on field 'email': rejected value [invalid-email]; codes [Email.userLoginRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userLoginRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@5e6ef21a,.*]; default message [올바른 이메일 형식이 아닙니다.]] 
+25-12-12 12:06:01.198 [Test worker] [3ff0e7e9-6f57-4db4-95d3-14048d7df6f4] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 요청 JOSN 값 유효성 검사 실패: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;com.team03.monew.user.dto.UserDto&gt; com.team03.monew.user.controller.UserController.login(com.team03.monew.user.dto.UserLoginRequest): [Field error in object 'userLoginRequest' on field 'email': rejected value [invalid-email]; codes [Email.userLoginRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userLoginRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@62a7af91,.*]; default message [올바른 이메일 형식이 아닙니다.]] 
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -676,13 +676,13 @@ FlashMap:
 MockHttpServletResponse:
            Status = 400
     Error message = null
-          Headers = [X-Request-Id:&quot;139ffb7d-4b48-4d00-b286-38fb90c62b6b&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
+          Headers = [X-Request-Id:&quot;3ff0e7e9-6f57-4db4-95d3-14048d7df6f4&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
      Content type = application/json
-             Body = {&quot;timestamp&quot;:&quot;2025-12-12T07:05:26.221532&quot;,&quot;code&quot;:&quot;VALIDATION_ERROR&quot;,&quot;message&quot;:&quot;요청 JOSN 값 유효성 검사에 실패했습니다&quot;,&quot;details&quot;:{&quot;email&quot;:&quot;올바른 이메일 형식이 아닙니다.&quot;},&quot;exceptionType&quot;:&quot;MethodArgumentNotValidException&quot;,&quot;status&quot;:400}
+             Body = {&quot;timestamp&quot;:&quot;2025-12-12T12:06:01.198997&quot;,&quot;code&quot;:&quot;VALIDATION_ERROR&quot;,&quot;message&quot;:&quot;요청 JOSN 값 유효성 검사에 실패했습니다&quot;,&quot;details&quot;:{&quot;email&quot;:&quot;올바른 이메일 형식이 아닙니다.&quot;},&quot;exceptionType&quot;:&quot;MethodArgumentNotValidException&quot;,&quot;status&quot;:400}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-25-12-12 07:05:26.224 [Test worker] [68ab3b76-d9d7-4117-94cb-df6efbcb606f] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=USER_NOT_FOUND, message=사용자를 찾을 수 없습니다.
+25-12-12 12:06:01.204 [Test worker] [8f993d9b-bc67-4eee-be9b-51bcda0d0605] [127.0.0.1] ERROR c.t.m.c.c.GlobalExceptionHandler     - 커스텀 예외 발생: code=USER_NOT_FOUND, message=사용자를 찾을 수 없습니다.
 com.team03.monew.user.exception.UserNotFoundException: 사용자를 찾을 수 없습니다.
 	at com.team03.monew.user.controller.UserController.login(UserController.java:60)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -848,9 +848,9 @@ FlashMap:
 MockHttpServletResponse:
            Status = 401
     Error message = null
-          Headers = [X-Request-Id:&quot;68ab3b76-d9d7-4117-94cb-df6efbcb606f&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
+          Headers = [X-Request-Id:&quot;8f993d9b-bc67-4eee-be9b-51bcda0d0605&quot;, X-Client-IP:&quot;127.0.0.1&quot;, Content-Type:&quot;application/json&quot;]
      Content type = application/json
-             Body = {&quot;timestamp&quot;:&quot;2025-12-12T07:05:26.225582&quot;,&quot;code&quot;:&quot;USER_NOT_FOUND&quot;,&quot;message&quot;:&quot;사용자를 찾을 수 없습니다.&quot;,&quot;details&quot;:{},&quot;exceptionType&quot;:&quot;UserNotFoundException&quot;,&quot;status&quot;:401}
+             Body = {&quot;timestamp&quot;:&quot;2025-12-12T12:06:01.205869&quot;,&quot;code&quot;:&quot;USER_NOT_FOUND&quot;,&quot;message&quot;:&quot;사용자를 찾을 수 없습니다.&quot;,&quot;details&quot;:{},&quot;exceptionType&quot;:&quot;UserNotFoundException&quot;,&quot;status&quot;:401}
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
@@ -865,7 +865,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2025. 12. 12. 오전 7:05:26</p>
+<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2025. 12. 12. 오후 12:06:01</p>
 </div>
 </div>
 </body>

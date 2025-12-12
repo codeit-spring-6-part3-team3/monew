@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>프로젝트 발표</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide-container { 
+            width: 1280px; 
+            height: 720px; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 20px 30px;
+            width: fit-content;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3b82f6;
+        }
+        .code-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #10b981;
+        }
+        .code-content {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr; /* 코드 영역 비율 확대 */
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+        .code-section {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        .explanation-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            overflow: auto;
+            flex: 1;
+            border: 1px solid #e2e8f0;
+        }
+        .explanation-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .explanation-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .explanation-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+        .explanation-text {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        .info-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .info-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6b7280;
+        }
+        .code-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="info-box">
+        <div class="info-title">구독 기능</div>
+        <div class="info-subtitle">구독 생성 및 취소 비즈니스 로직</div>
+    </div>
+    <div class="code-box">
+        <div class="code-title">Service Layer 구현부</div>
+        <div class="code-content">
+            <div class="code-section">
+                <div class="section-title">💻 Java Source Code</div>
+<pre>
+<span style="color: #6b7280">// 1. 구독 생성</span>
+<span style="color: #f472b6">@Transactional</span>
+<span style="color: #f472b6">@Override</span>
+<span style="color: #c084fc">public</span> <span style="color: #fbbf24">SubscribeDto</span> <span style="color: #60a5fa">subscribeCreate</span>(<span style="color: #fbbf24">UUID</span> userId, <span style="color: #fbbf24">UUID</span> interestId) {
+    userRepository.<span style="color: #60a5fa">findById</span>(userId)
+            .<span style="color: #60a5fa">orElseThrow</span>(<span style="color: #fbbf24">UserNotFoundException</span>::<span style="color: #c084fc">new</span>);
+    <span style="color: #fbbf24">Interest</span> interest = interestRepository.<span style="color: #60a5fa">findById</span>(interestId)
+            .<span style="color: #60a5fa">orElseThrow</span>(<span style="color: #fbbf24">InterestsNotFoundException</span>::<span style="color: #c084fc">new</span>);
+    <span style="color: #fbbf24">Subscribe</span> subscribe = <span style="color: #fbbf24">Subscribe</span>.<span style="color: #60a5fa">builder</span>()
+            .<span style="color: #60a5fa">userId</span>(userId)
+            .<span style="color: #60a5fa">interestId</span>(interestId)
+            .<span style="color: #60a5fa">build</span>();
+    interest.<span style="color: #60a5fa">subscribeAdd</span>(); <span style="color: #6b7280">// 관심사 구독 카운트 증가 (+)</span>
+    subscribeRepository.<span style="color: #60a5fa">save</span>(subscribe);
+    interestRepository.<span style="color: #60a5fa">save</span>(interest);
+    <span style="color: #c084fc">return</span> subscribeMapper.<span style="color: #60a5fa">toDto</span>(subscribe, interest);
+}
+<span style="color: #6b7280">// 2. 구독 취소 (Delete)</span>
+<span style="color: #f472b6">@Override</span>
+<span style="color: #c084fc">public void</span> <span style="color: #60a5fa">subscribeDelete</span>(<span style="color: #fbbf24">UUID</span> userId, <span style="color: #fbbf24">UUID</span> interestId) {
+userRepository.<span style="color: #60a5fa">findById</span>(userId)
+.<span style="color: #60a5fa">orElseThrow</span>(<span style="color: #fbbf24">UserNotFoundException</span>::<span style="color: #c084fc">new</span>);
+    <span style="color: #fbbf24">Interest</span> interest = interestRepository.<span style="color: #60a5fa">findById</span>(interestId)
+            .<span style="color: #60a5fa">orElseThrow</span>(<span style="color: #fbbf24">InterestsNotFoundException</span>::<span style="color: #c084fc">new</span>);
+    <span style="color: #fbbf24">Subscribe</span> subscribe = subscribeRepository
+            .<span style="color: #60a5fa">findByUserIdAndInterestId</span>(userId, interestId)
+            .<span style="color: #60a5fa">orElse</span>(<span style="color: #c084fc">null</span>);
+    <span style="color: #c084fc">if</span> (subscribe == <span style="color: #c084fc">null</span>) <span style="color: #c084fc">return</span>; <span style="color: #6b7280">// 이미 구독 취소된 경우 예외 없이 리턴</span>
+    interest.<span style="color: #60a5fa">subscribeRemove</span>(); <span style="color: #6b7280">// 관심사 구독 카운트 감소 (-)</span>
+    interestRepository.<span style="color: #60a5fa">save</span>(interest);
+    subscribeRepository.<span style="color: #60a5fa">delete</span>(subscribe);
+}</pre>
+</div>
+            <div class="code-section">
+                <div class="section-title">📝 로직 상세 분석</div>
+                <div class="explanation-box">
+                    <div class="explanation-item">
+                        <div class="explanation-title">데이터 정합성 검증 (Validation)</div>
+                        <div class="explanation-text">
+                            구독을 생성/삭제하기 전, <code>User</code>와 <code>Interest</code>가 실제로 DB에 존재하는지 먼저 검증합니다. 존재하지 않을 경우 명시적인 예외(NotFoundException)를 발생시킵니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">도메인 주도 설계 (DDD)</div>
+                        <div class="explanation-text">
+                            구독자 수 변경 로직을 서비스 레이어에 노출하지 않고, Entity 내부 메서드인 <code>subscribeAdd()</code>, <code>subscribeRemove()</code>를 호출하여 캡슐화를 유지합니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">데이터 동기화 (Sync)</div>
+                        <div class="explanation-text">
+                            구독 테이블(Subscribe)의 행 추가/삭제와 동시에, 관심사 테이블(Interest)의 <code>subscribeCount</code> 컬럼도 업데이트하여 데이터의 일관성을 보장합니다.
+                        </div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-title">멱등성 고려 (Idempotency)</div>
+                        <div class="explanation-text">
+                            삭제 요청 시 이미 구독이 취소된 상태(null)라면, 에러를 발생시키는 대신 <code>return</code> 처리합니다. 이는 중복 삭제 요청에도 시스템이 안전하게 동작하도록 합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

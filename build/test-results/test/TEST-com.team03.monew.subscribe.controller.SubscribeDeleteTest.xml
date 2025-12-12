@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.subscribe.controller.SubscribeDeleteTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:26.003Z" hostname="ichihoui-MacBookPro.local" time="0.005">
+<testsuite name="com.team03.monew.subscribe.controller.SubscribeDeleteTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:06:00.893Z" hostname="macui-MacBookPro.local" time="0.01">
   <properties/>
-  <testcase name="구독 삭제 필수 요청값 없음 실패 검증" classname="com.team03.monew.subscribe.controller.SubscribeDeleteTest" time="0.003"/>
-  <testcase name="구독 삭제 성공 검증" classname="com.team03.monew.subscribe.controller.SubscribeDeleteTest" time="0.002"/>
-  <system-out><![CDATA[25-12-12 07:05:26.000 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.subscribe.controller.SubscribeDeleteTest]: SubscribeDeleteTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-25-12-12 07:05:26.003 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.subscribe.controller.SubscribeDeleteTest
-25-12-12 07:05:26.005 [Test worker] [2c248e1f-a324-47c3-aaa9-36a660721daf] [127.0.0.1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestHeaderException: Required request header 'Monew-Request-User-ID' for method parameter type UUID is not present]
+  <testcase name="구독 삭제 필수 요청값 없음 실패 검증" classname="com.team03.monew.subscribe.controller.SubscribeDeleteTest" time="0.005"/>
+  <testcase name="구독 삭제 성공 검증" classname="com.team03.monew.subscribe.controller.SubscribeDeleteTest" time="0.004"/>
+  <system-out><![CDATA[25-12-12 12:06:00.887 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.subscribe.controller.SubscribeDeleteTest]: SubscribeDeleteTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 12:06:00.892 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.subscribe.controller.SubscribeDeleteTest
+25-12-12 12:06:00.897 [Test worker] [02f26d32-1826-4bd8-a722-07a7aaf9ec3a] [127.0.0.1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestHeaderException: Required request header 'Monew-Request-User-ID' for method parameter type UUID is not present]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

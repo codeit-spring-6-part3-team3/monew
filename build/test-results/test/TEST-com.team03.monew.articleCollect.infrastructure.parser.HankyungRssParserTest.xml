@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.articleCollect.infrastructure.parser.HankyungRssParserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.985Z" hostname="ichihoui-MacBookPro.local" time="0.002">
+<testsuite name="com.team03.monew.articleCollect.infrastructure.parser.HankyungRssParserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.565Z" hostname="macui-MacBookPro.local" time="0.007">
   <properties/>
-  <testcase name="pubDate가_이상해도_title_link_있으면_뉴스는_만든다()" classname="com.team03.monew.articleCollect.infrastructure.parser.HankyungRssParserTest" time="0.0"/>
+  <testcase name="pubDate가_이상해도_title_link_있으면_뉴스는_만든다()" classname="com.team03.monew.articleCollect.infrastructure.parser.HankyungRssParserTest" time="0.002"/>
   <testcase name="링크_없으면_null_리턴()" classname="com.team03.monew.articleCollect.infrastructure.parser.HankyungRssParserTest" time="0.001"/>
   <testcase name="타이틀_없으면_null_리턴()" classname="com.team03.monew.articleCollect.infrastructure.parser.HankyungRssParserTest" time="0.001"/>
-  <testcase name="정상_아이템_파싱()" classname="com.team03.monew.articleCollect.infrastructure.parser.HankyungRssParserTest" time="0.0"/>
-  <system-out><![CDATA[25-12-12 07:05:24.986 [Test worker] [] [] WARN  c.t.m.a.i.parser.HankyungRssParser   - [HANKYUNG] Skip item: missing title or link. title='테스트 기사 제목', link=null
-25-12-12 07:05:24.987 [Test worker] [] [] WARN  c.t.m.a.i.parser.HankyungRssParser   - [HANKYUNG] Skip item: missing title or link. title='null', link=https://www.hankyung.com/news/123
+  <testcase name="정상_아이템_파싱()" classname="com.team03.monew.articleCollect.infrastructure.parser.HankyungRssParserTest" time="0.001"/>
+  <system-out><![CDATA[25-12-12 12:05:59.569 [Test worker] [] [] WARN  c.t.m.a.i.parser.HankyungRssParser   - [HANKYUNG] Skip item: missing title or link. title='테스트 기사 제목', link=null
+25-12-12 12:05:59.570 [Test worker] [] [] WARN  c.t.m.a.i.parser.HankyungRssParser   - [HANKYUNG] Skip item: missing title or link. title='null', link=https://www.hankyung.com/news/123
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

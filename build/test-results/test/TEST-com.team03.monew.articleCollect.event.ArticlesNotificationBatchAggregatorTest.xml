@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:24.834Z" hostname="ichihoui-MacBookPro.local" time="0.052">
+<testsuite name="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:05:59.359Z" hostname="macui-MacBookPro.local" time="0.069">
   <properties/>
-  <testcase name="여러 관심사에 대한 누적 건수를 각 관심사별로 나눠서 발행한다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.044"/>
-  <testcase name="버퍼 크기가 임계값 이상이면 즉시 flush하여 알림 이벤트를 발행한다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.002"/>
-  <testcase name="시간 조건이 충족되면 버퍼 크기와 상관없이 flush한다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.002"/>
-  <testcase name="구독자가 없으면 알림을 발행하지 않는다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.002"/>
+  <testcase name="여러 관심사에 대한 누적 건수를 각 관심사별로 나눠서 발행한다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.055"/>
+  <testcase name="버퍼 크기가 임계값 이상이면 즉시 flush하여 알림 이벤트를 발행한다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.004"/>
+  <testcase name="시간 조건이 충족되면 버퍼 크기와 상관없이 flush한다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.003"/>
+  <testcase name="구독자가 없으면 알림을 발행하지 않는다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.004"/>
   <testcase name="시간/사이즈 조건 모두 미충족 시 플러시하지 않는다" classname="com.team03.monew.articleCollect.event.ArticlesNotificationBatchAggregatorTest" time="0.001"/>
-  <system-out><![CDATA[25-12-12 07:05:24.876 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=size>=10, interests=2, total=10
-25-12-12 07:05:24.877 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 9b6f7646-ccc9-439f-93d0-a32e937c825c 알림 2건 발행 완료 (count=6)
-25-12-12 07:05:24.877 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 4477f2ba-3484-4f6f-99e2-82e674f896d9 알림 1건 발행 완료 (count=4)
-25-12-12 07:05:24.878 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
-25-12-12 07:05:24.880 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=size>=10, interests=1, total=10
-25-12-12 07:05:24.881 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 cfd2e8ce-591c-4b7b-b15a-b4e792023e0d 알림 2건 발행 완료 (count=10)
-25-12-12 07:05:24.881 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
-25-12-12 07:05:24.882 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=time>=3s, interests=1, total=1
-25-12-12 07:05:24.883 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 eca12e9c-d253-487e-ace6-4545d283cf02 알림 1건 발행 완료 (count=1)
-25-12-12 07:05:24.883 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
-25-12-12 07:05:24.884 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=time>=3s, interests=1, total=1
-25-12-12 07:05:24.884 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 ad425296-a9fd-4f61-94c1-fba27199bf27 구독자 없음 → 알림 생략
-25-12-12 07:05:24.885 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
+  <system-out><![CDATA[25-12-12 12:05:59.411 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=size>=10, interests=2, total=10
+25-12-12 12:05:59.413 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 0d29e0ea-5cbd-447b-82e6-c83a721daa9c 알림 1건 발행 완료 (count=4)
+25-12-12 12:05:59.413 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 a79019c4-425a-4dd5-99df-46616c8ee23c 알림 2건 발행 완료 (count=6)
+25-12-12 12:05:59.413 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
+25-12-12 12:05:59.416 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=size>=10, interests=1, total=10
+25-12-12 12:05:59.418 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 9377d334-895f-47f8-8f39-4a83aac1fab2 알림 2건 발행 완료 (count=10)
+25-12-12 12:05:59.418 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
+25-12-12 12:05:59.421 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=time>=3s, interests=1, total=1
+25-12-12 12:05:59.421 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 da9daf37-e7f6-4165-9bfb-632d95b98704 알림 1건 발행 완료 (count=1)
+25-12-12 12:05:59.421 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
+25-12-12 12:05:59.424 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 시작: reason=time>=3s, interests=1, total=1
+25-12-12 12:05:59.425 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - 관심사 81e33397-0ca7-4f5e-8fd6-0fda09550487 구독자 없음 → 알림 생략
+25-12-12 12:05:59.425 [Test worker] [] [] INFO  c.t.m.a.e.ArticlesNotificationBatchAggregator - ArticlesNotificationBatchAggregator flush 완료
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.team03.monew.interest.controller.InterestUpdateTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.528Z" hostname="ichihoui-MacBookPro.local" time="0.01">
+<testsuite name="com.team03.monew.interest.controller.InterestUpdateTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-12T03:06:00.252Z" hostname="macui-MacBookPro.local" time="0.016">
   <properties/>
-  <testcase name="관심사 업데이트 성공 검증" classname="com.team03.monew.interest.controller.InterestUpdateTest" time="0.005"/>
-  <testcase name="관심사 업데이트 요청값 없음 실패 검증" classname="com.team03.monew.interest.controller.InterestUpdateTest" time="0.003"/>
-  <testcase name="관심사 업데이트 관심사 없음 실패 검증" classname="com.team03.monew.interest.controller.InterestUpdateTest" time="0.002"/>
-  <system-out><![CDATA[25-12-12 07:05:25.524 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.interest.controller.InterestUpdateTest]: InterestUpdateTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-25-12-12 07:05:25.528 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.interest.controller.InterestUpdateTest
-25-12-12 07:05:25.535 [Test worker] [b5f581ed-69ae-4a06-bd59-c71b3ede147a] [127.0.0.1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<com.team03.monew.interest.dto.InterestDto> com.team03.monew.web.controller.InterestController.interestUpdate(java.util.UUID,com.team03.monew.interest.dto.InterestUpdateRequest)]
+  <testcase name="관심사 업데이트 성공 검증" classname="com.team03.monew.interest.controller.InterestUpdateTest" time="0.006"/>
+  <testcase name="관심사 업데이트 요청값 없음 실패 검증" classname="com.team03.monew.interest.controller.InterestUpdateTest" time="0.004"/>
+  <testcase name="관심사 업데이트 관심사 없음 실패 검증" classname="com.team03.monew.interest.controller.InterestUpdateTest" time="0.004"/>
+  <system-out><![CDATA[25-12-12 12:06:00.245 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.interest.controller.InterestUpdateTest]: InterestUpdateTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 12:06:00.250 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.interest.controller.InterestUpdateTest
+25-12-12 12:06:00.261 [Test worker] [d649871e-6ff5-4bf8-b86b-cc9e1878608e] [127.0.0.1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<com.team03.monew.interest.dto.InterestDto> com.team03.monew.web.controller.InterestController.interestUpdate(java.util.UUID,com.team03.monew.interest.dto.InterestUpdateRequest)]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
