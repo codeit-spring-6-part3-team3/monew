@@ -2,9 +2,8 @@ package com.team03.monew.comment.repository;
 
 import com.team03.monew.comment.dto.CommentDto;
 import com.team03.monew.comment.dto.CursorPageRequestCommentDto;
-
-import java.util.List;
+import org.springframework.data.domain.Slice;
 
 public interface CommentRepositoryCustom {
-    List<CommentDto> findByCursor(CursorPageRequestCommentDto request);
+    Slice<CommentDto> findByCursor(CursorPageRequestCommentDto request);
 }

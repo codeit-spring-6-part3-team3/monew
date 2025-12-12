@@ -13,12 +13,14 @@ public interface NotificationRepositoryCustom {
     Slice<Notification> findNotificationsWithCursor(
             UUID userId,
             String cursor,
-            int size
+            int size,
+            LocalDateTime after
     );
 
     // 알림 조회 (첫 페이지 용도), QueryDSL 사용
     Slice<Notification> findNotifications(
             UUID userId,
-            int size
+            int size,
+            LocalDateTime after
     );
 }

@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public record NotificationDto(
         UUID id,
-        @JsonProperty("createdAt") LocalDateTime creationAt,
+        @JsonProperty("createdAt") LocalDateTime createdAt,
         LocalDateTime updatedAt,
         @JsonProperty("confirmed") Boolean isChecked,
         UUID userId,
@@ -20,7 +20,7 @@ public record NotificationDto(
     public static NotificationDto from(Notification notification) {
         return new NotificationDto(
                 notification.getId(),
-                notification.getCreationAt(),
+                notification.getCreatedAt(),
                 notification.getUpdatedAt(),
                 notification.isChecked(),
                 notification.getUserId(),

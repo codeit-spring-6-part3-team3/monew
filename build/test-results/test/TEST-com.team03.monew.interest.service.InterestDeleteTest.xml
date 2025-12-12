@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.interest.service.InterestDeleteTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.971Z" hostname="ichihoui-MacBookPro.local" time="0.002">
+  <properties/>
+  <testcase name="관심사 삭제 관심사 정보 없음 실패 검증" classname="com.team03.monew.interest.service.InterestDeleteTest" time="0.001"/>
+  <testcase name="관심사 삭제 성공 검증" classname="com.team03.monew.interest.service.InterestDeleteTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

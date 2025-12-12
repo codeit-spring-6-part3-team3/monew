@@ -13,10 +13,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
@@ -62,7 +64,7 @@ public class UserController {
     @Operation(
             operationId = "update",
             summary = "사용자 정보 수정",
-            description = "사용자 닉네임을 수정합니다. 인증 헤더(MoNew-Request-User-ID)가 필요합니다."
+            description = "사용자 닉네임을 수정합니다."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "수정 성공"),
@@ -71,18 +73,20 @@ public class UserController {
             @ApiResponse(responseCode = "409", description = "닉네임 중복"),
             @ApiResponse(responseCode = "500", description = "서버 내부 오류")
     })
-    @PutMapping("/{userId}")
+    @PatchMapping("/{userId}")
     public ResponseEntity<UserDto> update(
             @PathVariable UUID userId,
             @Valid @RequestBody UserUpdateRequest request) {
+        log.debug("사용자 업데이트 요청 수신: userId={}, nickname={}", userId, request.nickname());
         UserDto response = userService.update(userId, request);
+        log.debug("사용자 업데이트 완료: userId={}", userId);
         return ResponseEntity.ok(response);
     }
 
     @Operation(
             operationId = "delete",
             summary = "사용자 논리 삭제",
-            description = "사용자를 논리 삭제합니다. 인증 헤더(MoNew-Request-User-ID)가 필요합니다."
+            description = "사용자를 논리 삭제합니다."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "삭제 성공"),
@@ -98,7 +102,7 @@ public class UserController {
     @Operation(
             operationId = "hardDelete",
             summary = "사용자 물리 삭제",
-            description = "사용자를 물리 삭제합니다. 인증 헤더(MoNew-Request-User-ID)가 필요합니다."
+            description = "사용자를 물리 삭제합니다."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "삭제 성공"),

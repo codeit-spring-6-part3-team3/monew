@@ -6,7 +6,6 @@ import com.team03.monew.subscribe.dto.SubscribeDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface SubscribeMapper {
@@ -20,5 +19,4 @@ public interface SubscribeMapper {
     @Mapping(source = "subscribe.createdAt",target = "createdAt")
     SubscribeDto toDto(Subscribe subscribe , Interest interest);
 
-    List<SubscribeDto> toDtos(List<Subscribe> subscribes , List<Interest> interest);
 }

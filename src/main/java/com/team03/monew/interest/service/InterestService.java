@@ -10,9 +10,9 @@ public interface InterestService {
 
     InterestDto interestCreate(InterestRegisterRequest request);
 
-    InterestDto interestUpdate(UUID interest, InterestUpdateRequest request) throws NoSuchObjectException;
+    InterestDto interestUpdate(UUID interest, InterestUpdateRequest request);
 
-    void interestDelete(UUID interest) throws NoSuchObjectException;
+    void interestDelete(UUID interest);
 
     CursorPageResponseInterestDto interestList(UUID userId, InterestSearchRequest request);
 }

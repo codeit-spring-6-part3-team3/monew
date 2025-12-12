@@ -3,9 +3,10 @@ package com.team03.monew.comment.dto;
 import org.springframework.data.domain.Slice;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record CursorPageResponseCommentDto(
-        Slice<CommentDto> content,
+        List<CommentDto> content,
         String nextCursor,
         LocalDateTime nextAfter,
         Integer size,

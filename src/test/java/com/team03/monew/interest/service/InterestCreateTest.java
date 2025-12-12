@@ -5,6 +5,7 @@ import com.team03.monew.interest.Fixture.InterestFixture;
 import com.team03.monew.interest.domain.Interest;
 import com.team03.monew.interest.dto.InterestDto;
 import com.team03.monew.interest.dto.InterestRegisterRequest;
+import com.team03.monew.interest.exception.DuplicateInterestNameException;
 import com.team03.monew.interest.mapper.InterestMapper;
 import com.team03.monew.interest.repository.InterestRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -67,8 +68,8 @@ public class InterestCreateTest {
 
         //when&then
         assertThatThrownBy(() -> basicInterestService.interestCreate(request))
-                .isInstanceOf(DuplicateKeyException.class)
-                .hasMessage("이미 비슷한 관심사 이름있음");
+                .isInstanceOf(DuplicateInterestNameException.class)
+                .hasMessage("유사 관심사 중복");
     }
 
 }

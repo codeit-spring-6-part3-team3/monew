@@ -18,7 +18,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    //커스텀이나 설정한 에러 제외 모든 에러 잡는곳
+    /*/커스텀이나 설정한 에러 제외 모든 에러 잡는곳
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
         log.error("예상치 못한 오류 발생: {}", e.getMessage(), e);
@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(errorResponse);
-    }
+    }*/
 
     //커스터 에러 잡는곳
     @ExceptionHandler(MonewException.class)

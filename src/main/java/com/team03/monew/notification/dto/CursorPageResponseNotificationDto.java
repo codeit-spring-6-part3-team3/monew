@@ -13,7 +13,7 @@ public record CursorPageResponseNotificationDto(
         Long totalElements,
         Boolean hasNext
 ) {
-    public static CursorPageResponseNotificationDto from(Slice<Notification> slice, int size) {
+    public static CursorPageResponseNotificationDto from(Slice<Notification> slice, int size, Long totalElements) {
         List<NotificationDto> content = slice.getContent().stream()
                 .map(NotificationDto::from)
                 .toList();
@@ -23,8 +23,8 @@ public record CursorPageResponseNotificationDto(
 
         if (slice.hasNext() && !content.isEmpty()) {
             NotificationDto lastDto = content.get(content.size() - 1);
-            nextCursor = lastDto.creationAt().toString();
-            nextAfter = lastDto.creationAt().toString();
+            nextCursor = lastDto.createdAt().toString();
+            nextAfter = lastDto.createdAt().toString();
         }
 
         return new CursorPageResponseNotificationDto(
@@ -32,7 +32,7 @@ public record CursorPageResponseNotificationDto(
                 nextCursor,
                 nextAfter,
                 size,
-                null,  // Slice는 totalElements 제공 안 함
+                totalElements,
                 slice.hasNext()
         );
     }

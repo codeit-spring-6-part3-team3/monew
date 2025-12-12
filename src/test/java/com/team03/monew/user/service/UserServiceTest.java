@@ -33,7 +33,7 @@ class UserServiceTest {
     private UserMapper userMapper;
 
     @InjectMocks
-    private UserService userService;
+    private BasicUserService userService;
 
     @Test
     @DisplayName("회원가입 성공")
@@ -51,8 +51,16 @@ class UserServiceTest {
                 .password(request.getPassword())
                 .build();
 
+        UserDto expectedDto = new UserDto(
+                user.getId(),
+                user.getEmail(),
+                user.getNickname(),
+                user.getCreatedAt()
+        );
+
         given(userRepository.existsByEmail(request.getEmail())).willReturn(false);
         given(userRepository.save(any(User.class))).willReturn(user);
+        given(userMapper.toDto(any(User.class))).willReturn(expectedDto);
 
         // when
         UserDto response = userService.register(request);
@@ -155,5 +163,4 @@ class UserServiceTest {
                 .isInstanceOf(InvalidPasswordException.class)
                 .hasMessage("비밀번호가 일치하지 않습니다.");
     }
-
 }

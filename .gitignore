@@ -1,6 +1,5 @@
 HELP.md
 .gradle
-build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -42,8 +41,6 @@ out/
 ### 빌드 결과물 ###
 target/
 
-# Ignore Gradle build output directory
-build
-
 ### Environment Variables ###
 .env
+monew.env

@@ -1,5 +1,6 @@
 package com.team03.monew.interest.repository;
 
+import com.team03.monew.article.config.JpaQueryFactoryTestConfig;
 import com.team03.monew.interest.domain.Interest;
 import com.team03.monew.interest.dto.InterestSearchRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@Import(JpaQueryFactoryTestConfig.class)
 public class InterestRepositoryTest {
     @Autowired
     private InterestRepository interestRepository;

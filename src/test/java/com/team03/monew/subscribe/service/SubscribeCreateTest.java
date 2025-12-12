@@ -2,6 +2,7 @@ package com.team03.monew.subscribe.service;
 
 import com.team03.monew.interest.Fixture.InterestFixture;
 import com.team03.monew.interest.domain.Interest;
+import com.team03.monew.interest.exception.InterestsNotFoundException;
 import com.team03.monew.interest.repository.InterestRepository;
 import com.team03.monew.subscribe.domain.Subscribe;
 import com.team03.monew.subscribe.dto.SubscribeDto;
@@ -9,6 +10,7 @@ import com.team03.monew.subscribe.fixture.SubscribeFixture;
 import com.team03.monew.subscribe.mapper.SubscribeMapper;
 import com.team03.monew.subscribe.repository.SubscribeRepository;
 import com.team03.monew.user.domain.User;
+import com.team03.monew.user.exception.UserNotFoundException;
 import com.team03.monew.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -103,8 +105,8 @@ public class SubscribeCreateTest {
     void SubscribeCreateUserDateFail() {
         //when & then
         assertThatThrownBy(() -> basicSubscribeService.subscribeCreate(user.getId(),interest.getId()))
-                .isInstanceOf(NoSuchObjectException.class)
-                .hasMessage("유저 정보 없음");
+                .isInstanceOf(UserNotFoundException.class)
+                .hasMessage("사용자를 찾을 수 없습니다.");
     }
 
     @Test
@@ -114,7 +116,7 @@ public class SubscribeCreateTest {
         when(userRepository.findById(any(UUID.class))).thenReturn(Optional.of(user));
         //when & then
         assertThatThrownBy(() -> basicSubscribeService.subscribeCreate(user.getId(),interest.getId()))
-                .isInstanceOf(NoSuchObjectException.class)
+                .isInstanceOf(InterestsNotFoundException.class)
                 .hasMessage("관심사 정보 없음");
     }
 }

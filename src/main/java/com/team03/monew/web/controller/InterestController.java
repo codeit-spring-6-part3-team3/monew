@@ -30,7 +30,6 @@ public class InterestController implements InterestApi {
     @PostMapping
     public ResponseEntity<InterestDto> interestCreate(
             @RequestBody
-            @Valid
             InterestRegisterRequest request
     ) {
         InterestDto response = interestService.interestCreate(request);
@@ -40,13 +39,11 @@ public class InterestController implements InterestApi {
     //2 관심사 컨트롤러 업데이트 추가
     @PatchMapping("/{interestId}")
     public ResponseEntity<InterestDto> interestUpdate(
-            @NotNull
             @PathVariable(name = "interestId")
             UUID interestId,
-            @Valid
             @RequestBody
             InterestUpdateRequest request
-    ) throws NoSuchObjectException {
+    ) {
         InterestDto response = interestService.interestUpdate(interestId,request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -54,20 +51,20 @@ public class InterestController implements InterestApi {
     //3 관심사 목록 조회 추가
     @GetMapping
     public ResponseEntity<CursorPageResponseInterestDto> interestList(
-            @RequestParam String keyword,
+            @RequestParam(required = false) String keyword,
             @RequestParam String orderBy,
             @RequestParam String direction,
             @RequestParam(required = false) String cursor,
-            @RequestParam(required = false) LocalDateTime after,
+            @RequestParam(required = false) String after,
             @RequestParam int limit,
-            @RequestParam(name = "Monew-Request-User-ID",required = false) UUID userId
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ){
         InterestSearchRequest request = new InterestSearchRequest(
                 keyword,
                 orderBy,
                 direction,
                 cursor,
-                after.toString(),
+                after,
                 limit
         );
         CursorPageResponseInterestDto response = interestService.interestList(userId,request);
@@ -79,9 +76,8 @@ public class InterestController implements InterestApi {
     public ResponseEntity<SubscribeDto> subscribeCreate(
             @PathVariable
             UUID interestId,
-            @RequestParam(name = "Monew-Request-User-ID")
-            UUID userId
-    ) throws NoSuchObjectException {
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
+    ) {
         SubscribeDto response = subscribeService.subscribeCreate(userId,interestId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -91,8 +87,7 @@ public class InterestController implements InterestApi {
     public ResponseEntity<Void> subscribeDelete(
             @PathVariable
             UUID interestId,
-            @RequestParam(name = "Monew-Request-User-ID")
-            UUID userId
+            @RequestHeader(name = "Monew-Request-User-ID") UUID userId
     ) throws NoSuchObjectException {
         subscribeService.subscribeDelete(userId,interestId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -103,7 +98,7 @@ public class InterestController implements InterestApi {
     public ResponseEntity<Void> interestDelete(
             @PathVariable
             UUID interestId
-    ) throws NoSuchObjectException {
+    ){
         interestService.interestDelete(interestId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

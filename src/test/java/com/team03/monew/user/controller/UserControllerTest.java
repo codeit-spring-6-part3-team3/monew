@@ -117,7 +117,7 @@ class UserControllerTest {
         // given
         UserRegisterRequest request = new UserRegisterRequest(
                 "test@monew.com",
-                "A",  // 2자 미만
+                null,  // 2자 미만
                 "test123!@#"
         );
 

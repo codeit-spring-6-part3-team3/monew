@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.team03.monew.interest.controller.InterestDeleteTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-11T22:05:25.491Z" hostname="ichihoui-MacBookPro.local" time="0.007">
+  <properties/>
+  <testcase name="관심사 삭제 성공 검증" classname="com.team03.monew.interest.controller.InterestDeleteTest" time="0.003"/>
+  <testcase name="관심사 삭제 관심사 없음 검증" classname="com.team03.monew.interest.controller.InterestDeleteTest" time="0.004"/>
+  <system-out><![CDATA[25-12-12 07:05:25.485 [Test worker] [] [] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.team03.monew.interest.controller.InterestDeleteTest]: InterestDeleteTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+25-12-12 07:05:25.490 [Test worker] [] [] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.team03.monew.MonewApplication for test class com.team03.monew.interest.controller.InterestDeleteTest
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

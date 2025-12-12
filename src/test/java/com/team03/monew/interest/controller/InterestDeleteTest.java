@@ -43,6 +43,7 @@ public class InterestDeleteTest {
 
         // When & Then
         mockMvc.perform(delete("/api/interests/{interestId}", interestId)
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
         .content(objectMapper.writeValueAsString(interestId)))
                 .andExpect(status().isNoContent());
     }
@@ -56,7 +57,8 @@ public class InterestDeleteTest {
                 .given(interestService)
                 .interestDelete(any(UUID.class));
 
-        mockMvc.perform(delete("/api/interests/{interestId}", interestId))
+        mockMvc.perform(delete("/api/interests/{interestId}", interestId)
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString()))
                 .andExpect(status().isNotFound());
     }
 }

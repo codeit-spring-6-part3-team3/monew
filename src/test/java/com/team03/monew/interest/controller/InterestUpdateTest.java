@@ -70,6 +70,7 @@ public class InterestUpdateTest {
 
         // When & Then
         mockMvc.perform(patch("/api/interests/{interestId}",interest.getId())
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(interest.getId()))
                         .content(objectMapper.writeValueAsString(request)))
@@ -91,6 +92,7 @@ public class InterestUpdateTest {
 
         // When & Then
         mockMvc.perform(patch("/api/interests/{interestId}",interest.getId())
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(interest.getId()))
                         .content(objectMapper.writeValueAsString(null)))
@@ -107,6 +109,7 @@ public class InterestUpdateTest {
 
         // When & Then
         mockMvc.perform(patch("/api/interests/{interestId}",interest.getId())
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(interest.getId()))
                         .content(objectMapper.writeValueAsString(request)))

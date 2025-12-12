@@ -69,6 +69,7 @@ public class InterestListTest {
 
         // When & Then
         mockMvc.perform(get("/api/interests")
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                         .param("Monew-Request-User-ID", String.valueOf(userId))
                         .param("keyword", "오늘에 뉴스")
                         .param("orderBy", "name")
@@ -92,6 +93,7 @@ public class InterestListTest {
 
         // When & Then
         mockMvc.perform(get("/api/interests")
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                         .param("Monew-Request-User-ID", String.valueOf(userId))
                         .param("keyword", "오늘에 뉴스")
                         .param("orderBy", "name")
@@ -105,6 +107,7 @@ public class InterestListTest {
     void InterestListSearchFail() throws Exception {
         // When & Then
         mockMvc.perform(get("/api/interests")
+                        .header("Monew-Request-User-ID", UUID.randomUUID().toString())
                         .param("Monew-Request-User-ID", String.valueOf(userId))
                         .param("keyword", "오늘에 뉴스")
                         .param("orderBy", "name")

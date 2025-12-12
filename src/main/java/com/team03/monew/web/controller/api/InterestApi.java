@@ -8,13 +8,16 @@ import com.team03.monew.interest.dto.InterestUpdateRequest;
 import com.team03.monew.subscribe.dto.SubscribeDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.headers.Header;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.rmi.NoSuchObjectException;
 import java.time.LocalDateTime;
@@ -43,7 +46,8 @@ public interface InterestApi {
             )
     })
     ResponseEntity<InterestDto> interestCreate(
-            @RequestBody(required = true,content = @Content(
+            @Valid
+            @RequestBody(content = @Content(
                     schema = @Schema(implementation = InterestRegisterRequest.class)))
             InterestRegisterRequest interestRegisterRequest
     );
@@ -74,7 +78,7 @@ public interface InterestApi {
                     schema = @Schema(implementation = InterestUpdateRequest.class)))
             InterestUpdateRequest interestUpdateRequest
 
-    ) throws NoSuchObjectException;
+    );
 
     @Operation(summary = "관심사 목록 조회")
     @ApiResponses(value = {
@@ -93,13 +97,13 @@ public interface InterestApi {
     })
     ResponseEntity<CursorPageResponseInterestDto> interestList(
             @Parameter(description = "검색어(관심사 이름, 키워드)",example = "스포츠") String keyword,
-            @Parameter(description = "정렬 속성 이름",required = true,
+            @Parameter(description = "정렬 속성 이름",
                 schema = @Schema(allowableValues = {"name","subscriberCount"})) String orderBy,
-            @Parameter(description = "정렬 방향 (ASC, DESC)",required = true,
+            @Parameter(description = "정렬 방향 (ASC, DESC)",
                 schema = @Schema(allowableValues = {"ASC", "DESC"})) String direction,
             @Parameter(description = "커서 값") String cursor,
-            @Parameter(description = "보조 커서(createdAt) 값")LocalDateTime after,
-            @Parameter(description = "커서 페이지 크기",required = true,example = "50") int limit,
+            @Parameter(description = "보조 커서(createdAt) 값")String after,
+            @Parameter(description = "커서 페이지 크기",example = "50") int limit,
             @Parameter(name ="Monew-Request-User-ID",description = "요청자 ID",required = true) UUID userId
             );
 
