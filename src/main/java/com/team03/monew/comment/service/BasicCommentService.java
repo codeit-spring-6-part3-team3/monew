@@ -125,7 +125,7 @@ public class BasicCommentService implements CommentService{
 
         UUID articleId = comment.getArticleId();
 
-        Article article = articleRepository.findById(commentRepository.findArticleIdById(commentId))
+        Article article = articleRepository.findById(articleId)
             .orElseThrow(() -> new MonewException(ArticleErrorCode.ARTICLE_NOT_FOUND));
 
         comment.softDelete();

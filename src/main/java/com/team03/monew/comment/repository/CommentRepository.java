@@ -1,10 +1,7 @@
 package com.team03.monew.comment.repository;
 
 import com.team03.monew.comment.domain.Comment;
-import com.team03.monew.comment.dto.CommentActivityDto;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,6 +20,4 @@ public interface CommentRepository extends JpaRepository<Comment, UUID>, Comment
 
     List<Comment> findTop10ByUserIdOrderByCreatedAtDesc(UUID userId);
 
-    @Query("SELECT c.articleId FROM Comment c WHERE c.id = :commentId")
-    UUID findArticleIdById(@Param("commentId") UUID commentId);
 }
